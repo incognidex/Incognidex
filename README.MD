@@ -1,3 +1,4 @@
+# Incognidex
 ### Visão Geral
 
 No cenário acadêmico atual, estudantes enfrentam a fragmentação de materiais e a falta de ferramentas que promovam um engajamento real com o conteúdo. A dispersão de recursos e a ausência de métodos de estudo interativos resultam em uma experiência de aprendizado desarticulada e pouco eficaz.
@@ -55,7 +56,7 @@ O projeto segue um plano de execução ágil de 9 semanas, focado em entregas de
 * **Fase I: Fundações (Semanas 1-2)**
   * `[✅ Concluído]` Definição de escopo, arquitetura do sistema e modelagem de dados (DER).
 * **Fase II: MVP Core (Semanas 3-4)**
-  * `[✅ Concluído]` Implementação da API de Autenticação e desenvolvimento das interfaces de Login/Cadastro.
+  * `[⏳ Em Andamento]` Implementação da API de Autenticação e desenvolvimento das interfaces de Login/Cadastro.
 * **Fase III: Expansão de Módulos (Semanas 5-7)**
   * `[⏳ Em Andamento]` Desenvolvimento das APIs de CRUD para Perfis, Conteúdo e Questionários. Integração contínua com o frontend.
 * **Fase IV: Quality Assurance e Refinamento (Semana 8)**
