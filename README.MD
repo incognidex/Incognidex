@@ -1,5 +1,6 @@
 # Incognidex
 <p align="center"><img src="https://github.com/incognidex/Incognidex/blob/main/backend/src/main/resources/public/Incognidex.png" alt="Logo Incognidex" width="200"/></p>
+
 ### Visão Geral
 
 No cenário acadêmico atual, estudantes enfrentam a fragmentação de materiais e a falta de ferramentas que promovam um engajamento real com o conteúdo. A dispersão de recursos e a ausência de métodos de estudo interativos resultam em uma experiência de aprendizado desarticulada e pouco eficaz.
