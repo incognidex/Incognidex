@@ -1,0 +1,180 @@
+/* ---- CONFIGURAÇÕES GLOBAIS E VARIÁVEIS ---- */
+:root {
+    --cor-preto-fundo: #0c0a14;
+    --cor-preto-card: #121020;
+    --cor-branco-texto: #f0f0f0;
+    --cor-laranja-destaque: #FFA500;
+    --cor-cinza-texto: #a0a0b4;
+    --cor-borda: rgba(255, 165, 0, 0.2);
+    --font-titulo: 'Poppins', sans-serif;
+    --font-corpo: 'Lato', sans-serif;
+    --transition-speed: 0.3s;
+}
+
+/* ---- RESET E ESTILOS GLOBAIS ---- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-corpo);
+    background-color: var(--cor-preto-fundo);
+    color: var(--cor-branco-texto);
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---- FUNDO ESTRELADO ---- */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+@keyframes move-stars {
+    from { transform: translateY(0px); }
+    to   { transform: translateY(-2000px); }
+}
+
+.stars, .stars2, .stars3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 200%; 
+    display: block;
+    background: transparent url(https://www.transparenttextures.com/patterns/stardust.png) repeat;
+}
+
+.stars { animation: move-stars 120s linear infinite; }
+.stars2 { animation: move-stars 80s linear infinite; }
+.stars3 { animation: move-stars 50s linear infinite; }
+
+/* ---- ESTILOS DO FORMULÁRIO ---- */
+.form-container {
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    padding: clamp(30px, 5vw, 45px);
+    border-radius: 16px;
+    border: 1px solid var(--cor-borda);
+    background-color: var(--cor-preto-card);
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.98) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.form-container .logo-container {
+    margin-bottom: 20px;
+}
+
+.form-container .logo-container img {
+    width: 100px;
+}
+
+.form-container h1 {
+    font-family: var(--font-titulo);
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.form-container p {
+    color: var(--cor-cinza-texto);
+    margin-bottom: 35px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+    text-align: left;
+}
+
+.form-group label {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    font-size: 16px;
+    color: var(--cor-cinza-texto);
+    pointer-events: none;
+    transition: all var(--transition-speed) ease;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px;
+    background-color: rgba(0,0,0,0.2);
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
+    color: var(--cor-branco-texto);
+    font-size: 16px;
+    transition: border-color var(--transition-speed) ease;
+}
+
+.form-group input:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label {
+    top: -10px;
+    left: 10px;
+    font-size: 12px;
+    color: var(--cor-laranja-destaque);
+    background-color: var(--cor-preto-card);
+    padding: 0 5px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--cor-laranja-destaque);
+}
+
+.btn {
+    padding: 15px 35px;
+    border-radius: 5px;
+    font-family: var(--font-titulo);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid var(--cor-laranja-destaque);
+    transition: all var(--transition-speed) ease;
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: var(--cor-laranja-destaque);
+    color: var(--cor-preto-fundo);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(255, 165, 0, 0.25);
+}
+
+.links-footer {
+    margin-top: 25px;
+}
+
+.links-footer a {
+    color: var(--cor-cinza-texto);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+.links-footer a:hover {
+    color: var(--cor-laranja-destaque);
+    text-decoration: underline;
+}

@@ -4,14 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Incognidex</title>
-    <link rel="stylesheet" href="/frontend/CSS/style.css">
-
+    <link rel="stylesheet" href="/frontend/CSS/logincadastro.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body class="form-page">
-    <div class="form-container">
+
+    <div class="background-container">
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="stars3"></div>
+    </div>
+
+    <main class="form-container">
         <div class="logo-container">
             <a href="index.html" title="Voltar para a página inicial">
                 <img src="../backend/src/main/resources/public/Incognidex.png" alt="Logo Incognidex">
@@ -21,18 +27,19 @@
         <p>Pronto para desvendar o desconhecido?</p>
         <form>
             <div class="form-group">
+                <input type="email" id="email" name="email" placeholder=" " required>
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
             </div>
             <div class="form-group">
+                <input type="password" id="password" name="password" placeholder=" " required>
                 <label for="password">Senha</label>
-                <input type="password" id="password" name="password" required>
             </div>
             <button type="submit" class="btn btn-primary">Entrar</button>
         </form>
         <div class="links-footer">
             <a href="cadastro.html">Não tem uma conta? Cadastre-se</a>
         </div>
-    </div>
+    </main>
+
 </body>
 </html>
