@@ -1,0 +1,181 @@
+/* ---- CONFIGURAÇÕES GLOBAIS E VARIÁVEIS ---- */
+:root {
+    --cor-preto-fundo: #23272A;
+    --cor-preto-card: #2C2F33;
+    --cor-branco-texto: #FFFFFF;
+    --cor-laranja-destaque: #FFA500;
+    --cor-cinza-texto: #99AAB5;
+    --font-titulo: 'Poppins', sans-serif;
+    --font-corpo: 'Lato', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-corpo);
+    background-color: var(--cor-preto-fundo);
+    color: var(--cor-branco-texto);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+/* ---- ESTILOS DA PÁGINA INDEX (LANDING PAGE) ---- */
+body.landing-page .main-container {
+    text-align: center;
+}
+
+body.landing-page .logo-container img {
+    width: 150px;
+    margin-bottom: 25px;
+}
+
+body.landing-page h1 {
+    font-family: var(--font-titulo);
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+body.landing-page h1 span {
+    color: var(--cor-laranja-destaque);
+}
+
+body.landing-page p.slogan {
+    font-size: 1.2rem;
+    color: var(--cor-cinza-texto);
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+.botoes-acao {
+    display: flex;
+    gap: 20px;
+}
+
+.btn {
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-family: var(--font-titulo);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--cor-laranja-destaque);
+    color: #000;
+    border: 2px solid var(--cor-laranja-destaque);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(255, 165, 0, 0.3);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--cor-laranja-destaque);
+    border: 2px solid var(--cor-laranja-destaque);
+}
+
+.btn-secondary:hover {
+    background-color: var(--cor-laranja-destaque);
+    color: #000;
+    transform: translateY(-3px);
+}
+
+
+/* ---- ESTILOS DAS PÁGINAS DE FORMULÁRIO (LOGIN/CADASTRO) ---- */
+.form-container {
+    background-color: var(--cor-preto-card);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.form-page .logo-container img {
+    width: 100px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.form-page .logo-container img:hover {
+    transform: scale(1.1);
+}
+
+.form-container h1 {
+    font-family: var(--font-titulo);
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.form-container p {
+    color: var(--cor-cinza-texto);
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-family: var(--font-titulo);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--cor-cinza-texto);
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--cor-preto-fundo);
+    border: 1px solid #4F545C;
+    border-radius: 4px;
+    color: var(--cor-branco-texto);
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--cor-laranja-destaque);
+}
+
+/* Reutilizando o .btn-primary para os botões de formulário */
+.form-container .btn-primary {
+    width: 100%;
+    padding: 15px; /* Ajuste no padding para botões de formulário */
+}
+
+.links-footer {
+    margin-top: 20px;
+}
+
+.links-footer a {
+    color: var(--cor-cinza-texto);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.links-footer a:hover {
+    text-decoration: underline;
+    color: var(--cor-laranja-destaque);
+}

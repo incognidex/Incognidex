@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Incognidex</title>
+    <link rel="stylesheet" href="/frontend/CSS/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="form-page">
+    <div class="form-container">
+        <div class="logo-container">
+            <a href="index.html" title="Voltar para a página inicial">
+                <img src="../backend/src/main/resources/public/Incognidex.png" alt="Logo Incognidex">
+            </a>
+        </div>
+        <h1>Crie sua conta</h1>
+        <p>Comece sua jornada de conhecimento agora mesmo.</p>
+        <form>
+            <div class="form-group">
+                <label for="fullname">Nome Completo</label>
+                <input type="text" id="fullname" name="fullname" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Criar Conta</button>
+        </form>
+        <div class="links-footer">
+            <a href="login.html">Já tem uma conta? Faça Login</a>
+        </div>
+    </div>
+</body>
+</html>
