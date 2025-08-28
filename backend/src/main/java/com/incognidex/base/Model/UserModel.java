@@ -50,7 +50,7 @@ public class UserModel {
     }
 
     public String getPassword() {
-        return password;
+        return password_hash;
     }
 
     public void setPassword(String password_hash) {

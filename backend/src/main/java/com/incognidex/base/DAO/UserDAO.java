@@ -8,7 +8,7 @@ public class UserDAO {
 
     // CREATE
     public void adicionarUser(User user) {
-        String sql = "INSERT INTO user (username, email, password) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO user (username, email, password_hash) VALUES (?, ?, ?)";
         try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, user.getUsername());
@@ -34,7 +34,7 @@ public class UserDAO {
                 u.setId(rs.getInt("id"));
                 u.setUsername(rs.getString("username"));
                 u.setEmail(rs.getString("email"));
-                u.setPassword(rs.getString("password"));
+                u.setPassword(rs.getString("password_hash"));
                 lista.add(u);
             }
         } catch (Exception e) {
@@ -45,7 +45,7 @@ public class UserDAO {
 
     // UPDATE
     public void atualizarUser(User user) {
-        String sql = "UPDATE users SET username=?, email=?, password=? WHERE id=?";
+        String sql = "UPDATE users SET username=?, email=?, password_hash=? WHERE id=?";
         try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, user.getUsername());
@@ -73,12 +73,12 @@ public class UserDAO {
     }
 
     // LOGIN
-    public boolean login(String email, String password) {
-        String sql = "SELECT * FROM usuarios WHERE email=? AND senha=?";
+    public boolean login(String email, String password_hash) {
+        String sql = "SELECT * FROM usuarios WHERE email=? AND password_hash=?";
         try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, email);
-            stmt.setString(2, senha);
+            stmt.setString(2, password_hash);
             ResultSet rs = stmt.executeQuery();
             return rs.next(); // true se achou
         } catch (Exception e) {
