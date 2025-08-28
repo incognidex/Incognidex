@@ -1,0 +1,268 @@
+/* ---- CONFIGURAÇÕES GLOBAIS E VARIÁVEIS ---- */
+
+:root {
+
+--cor-preto-fundo: #0c0a14;
+--cor-preto-card: #121020;
+--cor-branco-texto: #f0f0f0;
+--cor-laranja-destaque: #FFA500;
+--cor-laranja-brilho: #ffc966;
+--cor-cinza-texto: #a0a0b4;
+--cor-borda: rgba(255, 165, 0, 0.2);
+--cor-sucesso: #28a745;
+--cor-erro: #e14e59;
+--font-titulo: 'Poppins', sans-serif;
+--font-corpo: 'Lato', sans-serif;
+--transition-speed: 0.4s;
+
+}
+
+
+
+/* ---- RESET E ESTILOS GLOBAIS ---- */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+
+html {
+scroll-behavior: smooth;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+font-family: var(--font-corpo);
+background-color: var(--cor-preto-fundo);
+color: var(--cor-branco-texto);
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+padding: 20px;
+line-height: 1.6;
+}
+
+
+
+/* ---- FUNDO CÓSMICO ANIMADO ---- */
+
+.background-container {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: -1; /* Força o container a ficar atrás de todo o conteúdo */
+overflow: hidden;
+}
+
+
+
+@keyframes move-stars {
+from { transform: translateY(0px); }
+to { transform: translateY(-2000px); }
+}
+
+
+
+.stars, .stars2, .stars3 {
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+width: 100%;
+height: 200%; /* Aumenta a altura para a animação não cortar */
+display: block;
+}
+
+
+/* ---- KEYFRAME DA ANIMAÇÃO (NECESSÁRIO) ---- */
+/* Esta regra define o que a animação "move-stars" faz:
+   ela move a imagem de fundo verticalmente. */
+@keyframes move-stars {
+    from {
+    background-position-y: 0px;
+    }
+    to {
+    background-position-y: -10000px; /* Um valor alto para um longo percurso */
+}
+}
+
+
+/* ---- CAMADAS DE ESTRELAS COM EFEITO PARALLAX ---- */
+
+/* Estrelas mais distantes (movimento mais lento) */
+.stars {
+    background: transparent url(https://www.transparenttextures.com/patterns/stardust.png) repeat;
+  animation: move-stars 250s linear infinite; /* Duração bem longa */
+}
+
+/* Estrelas intermediárias (movimento médio) */
+.stars2 {
+    background: transparent url(https://www.transparenttextures.com/patterns/stardust.png) repeat;
+  animation: move-stars 150s linear infinite; /* Duração intermediária */
+}
+
+/* Estrelas mais próximas (movimento mais rápido) */
+.stars3 {
+    background: transparent url(https://www.transparenttextures.com/patterns/stardust.png) repeat;
+  animation: move-stars 80s linear infinite;  /* Duração mais curta */
+}
+
+
+/* ---- ESTILOS DA PÁGINA INDEX (LANDING PAGE) ---- */
+
+.main-container {
+text-align: center;
+animation: fadeIn 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 100vh;
+}
+
+
+.landing-page .logo-container img {
+width: 150px;
+margin-bottom: 25px;
+filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.3));
+animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-10px); }
+
+}
+
+
+
+.landing-page h1 {
+font-family: var(--font-titulo);
+font-size: clamp(2.5rem, 6vw, 4rem);
+font-weight: 700;
+margin-bottom: 15px;
+text-shadow: 0 0 15px rgba(0,0,0,0.7);
+letter-spacing: -1px;
+
+}
+
+
+
+.landing-page h1 span {
+
+color: var(--cor-laranja-destaque);
+text-shadow: 0 0 20px var(--cor-laranja-destaque);
+
+}
+
+
+
+.landing-page p.slogan {
+
+font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+color: var(--cor-cinza-texto);
+max-width: 600px;
+margin-bottom: 50px;
+
+}
+
+.botoes-acao {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 20px;
+
+}
+
+.btn {
+padding: 16px 38px;
+border-radius: 50px;
+font-family: var(--font-titulo);
+font-size: 16px;
+font-weight: 600;
+text-decoration: none;
+cursor: pointer;
+border: 2px solid var(--cor-laranja-destaque);
+transition: all var(--transition-speed) cubic-bezier(0.19, 1, 0.22, 1);
+position: relative;
+overflow: hidden;
+
+}
+
+
+
+.btn::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(120deg, transparent, var(--cor-laranja-brilho), transparent);
+transition: left var(--transition-speed) ease-in-out;
+}
+
+
+
+.btn:hover::before {
+left: 100%;
+
+}
+
+
+
+.btn-primary {
+background-color: var(--cor-laranja-destaque);
+color: var(--cor-preto-fundo);
+
+}
+
+
+
+.btn:hover {
+transform: translateY(-6px) scale(1.05);
+box-shadow: 0 10px 25px rgba(255, 165, 0, 0.4);
+
+}
+
+
+
+.btn:active {
+transform: translateY(-2px) scale(1.02);
+box-shadow: 0 4px 10px rgba(255, 165, 0, 0.3);
+
+}
+
+
+.btn-secondary {
+background-color: transparent;
+color: var(--cor-laranja-destaque);
+
+}
+
+
+
+.btn-secondary:hover {
+background-color: var(--cor-laranja-destaque);
+color: var(--cor-preto-fundo);
+
+}
+
+
+/* ---- MEDIA QUERIES ---- */
+
+@media (max-width: 480px) {
+
+body.landing-page h1 { font-size: 2rem; }
+body.landing-page p.slogan { font-size: 1rem; }
+.botoes-acao { flex-direction: column; width: 90%; }
+
+}
+
