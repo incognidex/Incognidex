@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class UserModel {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTIT,  length = 11)
+    @GeneratedValue(strategy = GenerationType.IDENTITY,  length = 11)
     private Long id;
 
     @Column(nullable = false, unique = true,  length = 50)
