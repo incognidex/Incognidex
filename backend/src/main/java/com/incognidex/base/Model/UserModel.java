@@ -1,43 +1,37 @@
-package main.java.com.incognidex.base.Model;
-import java.time.Instant;
+package com.incognidex.base.Model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-@Entity
-@Table(name = users)
+@Entity // Anotação que define esta classe como uma entidade do banco de dados
+@Table(name = "users") // CORRIGIDO: nome da tabela como String
 public class UserModel {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY,  length = 11)
-    private Long id;
 
-    @Column(nullable = false, unique = true,  length = 50)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // CORRIGIDO: removido o atributo "length"
+    private int id;
+
+    // CORRIGIDO: "Collumn" para "Column"
+    @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    @Collumn(nullable= false,  length = 100)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false,  length = 255)
-    private String password_hash;
+    @Column(name = "password_hash", nullable = false)
+    private String password;
 
-    @Collumn(nullable= true,  length = 150)
-    private String full_name;
+    // --- GETTERS E SETTERS ---
 
-    @Collumn(nullable= true,  length = 255)
-    private String avatar_url;
-
-    @Collumn(nullable= false)
-    private Instant created_at;
-
-    @Collumn(nullable= false)
-    private Instant update_at;
-
-    // Getters e Setters
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -49,36 +43,19 @@ public class UserModel {
         this.username = username;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
-        return password_hash;
+        return password;
     }
 
-    public void setPassword(String password_hash) {
-        this.password_hash = password_hash;
-    }
-
-    public String getFull_name() {
-        return full_name;
-    }
-
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
-    }
-    
-    public String getAvatar_url() {
-        return avatar_url;
-    }
-
-    public void setAvatar_url(String avatar_url) {
-        this.avatar_url = avatar_url;
-    }
-
-    public Instant getCreated_at(){
-        return created_at;
-    }
-
-    public Instant getUpdate_at(){
-        return update_at;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
-
