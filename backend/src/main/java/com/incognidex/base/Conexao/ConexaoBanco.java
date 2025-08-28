@@ -15,8 +15,8 @@ public class ConexaoBanco {
 
     // 2. Suas informações de conexão.
     private static final String URL = "jdbc:mysql://localhost:3306/incognidex_banco";
-    private static final String USER = "usuario_aqui";
-    private static final String PASSWORD = "senha_aquifelipe";
+    private static final String USER = "incognidexhub";
+    private static final String PASSWORD = "Meus2Gatos@TocamViolao!";
 
     /**
      * Método estático que estabelece e retorna uma conexão com o banco de dados.
