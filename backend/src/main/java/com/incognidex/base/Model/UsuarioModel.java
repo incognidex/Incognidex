@@ -7,12 +7,12 @@ public class UsuarioModel {
     private String nomeCompleto;
     private String urlFoto;
     private String biografia;
-    private String interessesAcademicos;   
-    
+    private String interessesAcademicos;
+
 
 public UsuarioModel(){
 }
- public UsuarioModel(int id, String username, String email, String senha, String nomeCompleto, String urlFoto, String biografia, String interessesAcademicos) {
+public UsuarioModel(int id, String username, String email, String senha, String nomeCompleto, String urlFoto, String biografia, String interessesAcademicos) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -75,7 +75,7 @@ public UsuarioModel(){
     public void save(UsuarioModel usuario) {
     }
     public static UsuarioModel buscarPorId(Object usuarioIdLogado) {
-        // TODO Auto-generated method stub
+
         throw new UnsupportedOperationException("Unimplemented method 'buscarPorId'");
     }
 }
