@@ -51,23 +51,6 @@ Construído sobre uma base tecnológica moderna, escalável e de alta performanc
 
 ---
 
-### 📊 Roadmap de Desenvolvimento & Status Atual
-
-O projeto segue um plano de execução ágil de 9 semanas, focado em entregas de valor incrementais.
-
-* **Fase I: Fundações (Semanas 1-2)**
-  * `[✅ Concluído]` Definição de escopo, arquitetura do sistema e modelagem de dados (DER).
-* **Fase II: MVP Core (Semanas 3-4)**
-  * `[⏳ Em Andamento]` Implementação da API de Autenticação e desenvolvimento das interfaces de Login/Cadastro.
-* **Fase III: Expansão de Módulos (Semanas 5-7)**
-  * `[⏳ Em Andamento]` Desenvolvimento das APIs de CRUD para Perfis, Conteúdo e Questionários. Integração contínua com o frontend.
-* **Fase IV: Quality Assurance e Refinamento (Semana 8)**
-  * `[ Mapeado ]` Ciclo de testes integrados, testes de usabilidade (UX) e otimização de performance.
-* **Fase V: Lançamento e Documentação (Semana 9)**
-  * `[ Mapeado ]` Code freeze, preparação da documentação final e build de produção.
-
----
-
 ### 👥 Equipe Principal
 
 Um time multidisciplinar dedicado a construir uma solução de alto impacto para a educação.
