@@ -1,54 +1,78 @@
 package com.incognidex.base.model;
 
+// Importações necessárias para as anotações do JPA
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+/**
+ * A anotação @Entity informa ao Hibernate que esta classe é uma entidade
+ * que deve ser mapeada para uma tabela no banco de dados.
+ */
+@Entity
+/**
+ * A anotação @Table especifica o nome exato da tabela no banco de dados.
+ * Isso garante que esta classe se conecte à tabela "users" que você criou.
+ */
+@Table(name = "users")
 public class UsuarioModel {
+
+    /**
+     * @Id marca este campo como a chave primária (Primary Key) da tabela.
+     */
+    @Id
+    /**
+     * @GeneratedValue define como a chave primária é gerada.
+     * GenerationType.IDENTITY é ideal para MySQL, pois usa a função AUTO_INCREMENT.
+     */
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    /**
+     * A anotação @Column é usada para mapear o campo para uma coluna específica.
+     * Embora não seja obrigatório se os nomes forem iguais, é uma boa prática.
+     */
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
+
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
+
+    // Adicionei o campo da senha que estava faltando para o login
+    @Column(name = "password_hash", nullable = false)
+    private String password;
+
+    @Column(name = "full_name")
     private String nomeCompleto;
+
+    @Column(name = "avatar_url")
     private String urlFoto;
-    private String biografia;
-    private String interessesAcademicos;
 
+    // Métodos `save`, `findById`, etc., foram removidos.
+    // O Spring Data JPA criará isso para você automaticamente em uma interface "Repository".
 
-public UsuarioModel(){
-}
-public UsuarioModel(int id, String username, String email, String senha, String nomeCompleto, String urlFoto, String biografia, String interessesAcademicos) {
+    // Construtores, Getters e Setters (seu código original aqui está ótimo)
+
+    public UsuarioModel() {
+    }
+
+    public UsuarioModel(int id, String username, String email, String password, String nomeCompleto, String urlFoto) {
         this.id = id;
         this.username = username;
         this.email = email;
+        this.password = password;
         this.nomeCompleto = nomeCompleto;
         this.urlFoto = urlFoto;
-        this.biografia = biografia;
-        this.interessesAcademicos = interessesAcademicos;
     }
+
+    // --- Getters e Setters ---
     public int getId() {
         return id;
     }
 
-    public String getNomeCompleto() {
-        return nomeCompleto;
-    }
-    public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
-    }
-    public String getUrlFoto() {
-        return urlFoto;
-    }
-    public void setUrlFoto(String urlFoto) {
-        this.urlFoto = urlFoto;
-    }
-    public String getBiografia() {
-        return biografia;
-    }
-    public void setBiografia(String biografia) {
-        this.biografia = biografia;
-    }
-    public String getInteressesAcademicos() {
-        return interessesAcademicos;
-    }
-    public void setInteressesAcademicos(String interessesAcademicos) {
-        this.interessesAcademicos = interessesAcademicos;
-    }
     public void setId(int id) {
         this.id = id;
     }
@@ -68,14 +92,28 @@ public UsuarioModel(int id, String username, String email, String senha, String 
     public void setEmail(String email) {
         this.email = email;
     }
-    public static UsuarioModel findById(int id) {
-        return null;
+
+    public String getPassword() {
+        return password;
     }
 
-    public void save(UsuarioModel usuario) {
+    public void setPassword(String password) {
+        this.password = password;
     }
-    public static UsuarioModel buscarPorId(Object usuarioIdLogado) {
 
-        throw new UnsupportedOperationException("Unimplemented method 'buscarPorId'");
+    public String getNomeCompleto() {
+        return nomeCompleto;
+    }
+
+    public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
+    }
+
+    public String getUrlFoto() {
+        return urlFoto;
+    }
+
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
     }
 }
