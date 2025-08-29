@@ -41,7 +41,6 @@ Construído sobre uma base tecnológica moderna, escalável e de alta performanc
   * **Core:**`Spring Web`, `Spring Data JPA`, `Spring Security`, `SpringDoc OpenAPI`
 * **Frontend:**
   * **Linguagem:**`JavaScript (ES6+)`
-  * **Framework/Biblioteca:**`React`
   * **Design System:**`HTML5`, `CSS3`, `Bootstrap`
 * **Banco de Dados:**
   * **SGBD:**`MySQL`
