@@ -1,17 +1,12 @@
 package com.incognidex.base.repository;
-import com.incognidex.base.model.UsuarioModel;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-public class Usuariorepository {
+import com.incognidex.base.model.UsuarioModel;
 
+// que é um repositório por estender JpaRepository.
 @Repository
-public interface Usuariorepository extends JpaRepository<UsuarioModel, Integer> {
+public interface UsuarioRepository extends JpaRepository<UsuarioModel, Long> {
 
-
-}
-
-public static void save(UsuarioModel usuario) {
-    throw new UnsupportedOperationException("Unimplemented method 'save'");
-}
 }
