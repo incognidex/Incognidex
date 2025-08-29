@@ -1,74 +1,70 @@
 package com.incognidex.base.model;
 
-// Importações necessárias para as anotações do JPA
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.GenerationType; // Importação para usar data e hora
+import jakarta.persistence.Id; // Importação para data de criação automática
+import jakarta.persistence.Table; // Importação para data de atualização automática
 
-/**
- * A anotação @Entity informa ao Hibernate que esta classe é uma entidade
- * que deve ser mapeada para uma tabela no banco de dados.
- */
 @Entity
-/**
- * A anotação @Table especifica o nome exato da tabela no banco de dados.
- * Isso garante que esta classe se conecte à tabela "users" que você criou.
- */
-@Table(name = "users")
+@Table(name = "users") // Conectando à tabela 'users' do seu script SQL original
 public class UsuarioModel {
 
-    /**
-     * @Id marca este campo como a chave primária (Primary Key) da tabela.
-     */
     @Id
-    /**
-     * @GeneratedValue define como a chave primária é gerada.
-     * GenerationType.IDENTITY é ideal para MySQL, pois usa a função AUTO_INCREMENT.
-     */
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    /**
-     * A anotação @Column é usada para mapear o campo para uma coluna específica.
-     * Embora não seja obrigatório se os nomes forem iguais, é uma boa prática.
-     */
-    @Column(name = "username", unique = true, nullable = false)
+    // Corrigido para VARCHAR(50) conforme o MER
+    @Column(name = "username", unique = true, nullable = false, length = 50)
     private String username;
 
-    @Column(name = "email", unique = true, nullable = false)
+    // Corrigido para VARCHAR(100) conforme o MER
+    @Column(name = "email", unique = true, nullable = false, length = 100)
     private String email;
 
-    // Adicionei o campo da senha que estava faltando para o login
-    @Column(name = "password_hash", nullable = false)
+    // Mantido como password_hash e com 255 para armazenar a senha criptografada (hash)
+    // O VARCHAR(20) do MER é muito pequeno para uma senha segura.
+    @Column(name = "password_hash", nullable = false, length = 255)
     private String password;
 
-    @Column(name = "full_name")
+    // Corrigido para nome_completo e VARCHAR(100) conforme o MER
+    @Column(name = "nome_completo", length = 100)
     private String nomeCompleto;
 
-    @Column(name = "avatar_url")
+    // Corrigido para url_foto e VARCHAR(255) conforme o MER
+    @Column(name = "url_foto", length = 255)
     private String urlFoto;
 
-    // Métodos `save`, `findById`, etc., foram removidos.
-    // O Spring Data JPA criará isso para você automaticamente em uma interface "Repository".
+    // Campo adicionado conforme o MER
+    @Column(name = "biografia", columnDefinition = "TEXT")
+    private String biografia;
 
-    // Construtores, Getters e Setters (seu código original aqui está ótimo)
+    // Campo adicionado conforme o MER
+    @Column(name = "interesses_academicos", columnDefinition = "TEXT")
+    private String interessesAcademicos;
 
+    // Campo adicionado conforme o MER - será preenchido automaticamente
+    @CreationTimestamp
+    @Column(name = "criacao", nullable = false, updatable = false)
+    private LocalDateTime criacao;
+
+    // Campo adicionado conforme o MER - será atualizado automaticamente
+    @UpdateTimestamp
+    @Column(name = "atualizacao")
+    private LocalDateTime atualizacao;
+
+
+    // --- Construtores, Getters e Setters ---
     public UsuarioModel() {
     }
 
-    public UsuarioModel(int id, String username, String email, String password, String nomeCompleto, String urlFoto) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.nomeCompleto = nomeCompleto;
-        this.urlFoto = urlFoto;
-    }
-
-    // --- Getters e Setters ---
+    // Getters e Setters para todos os campos...
     public int getId() {
         return id;
     }
@@ -115,5 +111,37 @@ public class UsuarioModel {
 
     public void setUrlFoto(String urlFoto) {
         this.urlFoto = urlFoto;
+    }
+
+    public String getBiografia() {
+        return biografia;
+    }
+
+    public void setBiografia(String biografia) {
+        this.biografia = biografia;
+    }
+
+    public String getInteressesAcademicos() {
+        return interessesAcademicos;
+    }
+
+    public void setInteressesAcademicos(String interessesAcademicos) {
+        this.interessesAcademicos = interessesAcademicos;
+    }
+
+    public LocalDateTime getCriacao() {
+        return criacao;
+    }
+
+    public void setCriacao(LocalDateTime criacao) {
+        this.criacao = criacao;
+    }
+
+    public LocalDateTime getAtualizacao() {
+        return atualizacao;
+    }
+
+    public void setAtualizacao(LocalDateTime atualizacao) {
+        this.atualizacao = atualizacao;
     }
 }
