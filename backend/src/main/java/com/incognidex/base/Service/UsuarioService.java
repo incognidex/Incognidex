@@ -1,9 +1,9 @@
-package com.incognidex.base.service;
+package com.incognidex.base.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.incognidex.base.model.UsuarioModel;
+import com.incognidex.base.Model.UsuarioModel;
 
 public interface UsuarioService {
 

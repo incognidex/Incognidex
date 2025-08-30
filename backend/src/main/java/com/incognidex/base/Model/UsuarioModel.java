@@ -1,4 +1,4 @@
-package com.incognidex.base.model;
+package com.incognidex.base.Model;
 
 import java.time.LocalDateTime;
 
@@ -28,7 +28,8 @@ public class UsuarioModel {
     @Column(name = "email", unique = true, nullable = false, length = 100)
     private String email;
 
-    // Mantido como password_hash e com 255 para armazenar a senha criptografada (hash)
+    // Mantido como password_hash e com 255 para armazenar a senha criptografada
+    // (hash)
     // O VARCHAR(20) do MER é muito pequeno para uma senha segura.
     @Column(name = "password_hash", nullable = false, length = 255)
     private String password;
@@ -58,7 +59,6 @@ public class UsuarioModel {
     @UpdateTimestamp
     @Column(name = "atualizacao")
     private LocalDateTime atualizacao;
-
 
     // --- Construtores, Getters e Setters ---
     public UsuarioModel() {

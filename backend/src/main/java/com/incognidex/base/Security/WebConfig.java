@@ -1,4 +1,4 @@
-package com.incognidex.base.security;
+package com.incognidex.base.Security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;

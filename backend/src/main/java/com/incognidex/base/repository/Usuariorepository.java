@@ -1,9 +1,9 @@
-package com.incognidex.base.repository;
+package com.incognidex.base.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.incognidex.base.model.UsuarioModel;
+import com.incognidex.base.Model.UsuarioModel;
 
 // que é um repositório por estender JpaRepository.
 @Repository
