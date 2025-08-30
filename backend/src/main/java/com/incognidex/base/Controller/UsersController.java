@@ -1,4 +1,4 @@
-package com.incognidex.base.controller;
+package com.incognidex.base.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.incognidex.base.model.UsuarioModel;
-import com.incognidex.base.service.UsuarioService;
+import com.incognidex.base.Model.UsuarioModel;
+import com.incognidex.base.Service.UsuarioService;
 
 @Controller
 @RequestMapping("/usuarios")

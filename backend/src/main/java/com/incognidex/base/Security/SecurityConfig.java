@@ -1,4 +1,4 @@
-package com.incognidex.base.security;
+package com.incognidex.base.Security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,21 +19,20 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable()) // Desabilitar CSRF para simplificar a comunicação com o frontend
-            .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/", "/index.html", "/login.html", "/css/**", "/js/**").permitAll()
-                .anyRequest().authenticated()
-            )
-            .formLogin((form) -> form
-                .loginPage("/login.html")
-                .loginProcessingUrl("/login")
-                .defaultSuccessUrl("http://localhost:5173/dashboard.html", true) // Use a URL completa do frontend
-                .failureUrl("/login.html?error=true")
-                .permitAll()
-            )
-            .logout((logout) -> logout
-                .logoutSuccessUrl("/login.html")
-                .permitAll());
+                .csrf(csrf -> csrf.disable()) // Desabilitar CSRF para simplificar a comunicação com o frontend
+                .authorizeHttpRequests((requests) -> requests
+                        .requestMatchers("/", "/index.html", "/login.html", "/css/**", "/js/**").permitAll()
+                        .anyRequest().authenticated())
+                .formLogin((form) -> form
+                        .loginPage("/login.html")
+                        .loginProcessingUrl("/login")
+                        .defaultSuccessUrl("http://localhost:5173/dashboard.html", true) // Use a URL completa do
+                                                                                         // frontend
+                        .failureUrl("/login.html?error=true")
+                        .permitAll())
+                .logout((logout) -> logout
+                        .logoutSuccessUrl("/login.html")
+                        .permitAll());
 
         return http.build();
     }
@@ -45,11 +44,11 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user = User.builder()
-            .username("user")
-            // A senha "password" será codificada com BCrypt
-            .password(passwordEncoder().encode("password"))
-            .roles("USER")
-            .build();
+                .username("user")
+                // A senha "password" será codificada com BCrypt
+                .password(passwordEncoder().encode("password"))
+                .roles("USER")
+                .build();
 
         return new InMemoryUserDetailsManager(user);
     }
