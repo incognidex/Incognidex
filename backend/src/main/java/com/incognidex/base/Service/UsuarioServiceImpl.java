@@ -1,4 +1,4 @@
-package com.incognidex.base.service;
+package com.incognidex.base.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.incognidex.base.model.UsuarioModel;
-import com.incognidex.base.repository.UsuarioRepository;
+import com.incognidex.base.Repository.UsuarioRepository;
+import com.incognidex.base.Model.UsuarioModel;
 
 @Service // A anotação @Service fica na classe de implementação
 public class UsuarioServiceImpl implements UsuarioService {
