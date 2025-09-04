@@ -1,7 +1,7 @@
-package com.incognidex.base.Model;
+package com.incognidex.base.model;
 
 public enum ContentType {
-    ARTIGO,
-    VIDEO,
-    ESPECIAL,
+    artigo,
+    video,
+    especial
 }

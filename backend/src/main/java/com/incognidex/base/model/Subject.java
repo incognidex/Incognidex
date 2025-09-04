@@ -1,6 +1,13 @@
-package com.incognidex.base.Model;
+// CORREÇÃO: Altere de "Model" para "model" (tudo em minúsculas).
+package com.incognidex.base.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
@@ -12,9 +19,9 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name")
+    @Column(nullable = false, length = 100)
     private String name;
 
-    @Column(name = "description", columnDefinition = "TEXT")
+    @Lob
     private String description;
 }

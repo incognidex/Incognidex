@@ -1,4 +1,4 @@
-package com.incognidex.base.service;
+package com.incognidex.base.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,6 @@ public class ContentService {
 
     @Transactional
     public Content createContent(ContentCreateDTO dto) {
-
         Subject subject = subjectRepository.findById(dto.getSubjectId())
                 .orElseThrow(() -> new RuntimeException("Subject not found with id: " + dto.getSubjectId()));
 
@@ -32,8 +31,6 @@ public class ContentService {
         newContent.setContentType(dto.getContentType());
         newContent.setSubject(subject);
 
-
         return contentRepository.save(newContent);
     }
-
 }
