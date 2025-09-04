@@ -1,10 +1,10 @@
-package com.incognidex.base.model;
+package com.incognidex.base.Model;
 
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "subjects") 
+@Table(name = "subjects")
 @Data
 public class Subject {
 
@@ -12,9 +12,9 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name") 
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "description", columnDefinition = "TEXT") 
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 }

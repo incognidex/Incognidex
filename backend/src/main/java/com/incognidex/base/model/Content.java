@@ -1,4 +1,4 @@
-package com.incognidex.base.model;
+package com.incognidex.base.Model;
 
 import java.time.LocalDateTime;
 

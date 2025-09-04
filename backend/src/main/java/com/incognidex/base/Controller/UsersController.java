@@ -1,4 +1,4 @@
-package com.incognidex.base.controller;
+package com.incognidex.base.Controller;
 
 import java.util.List;
 import java.util.Optional; // Garanta que a importação está correta
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.incognidex.base.model.UsuarioModel;
-import com.incognidex.base.service.UsuarioService;
+import com.incognidex.base.Model.UsuarioModel;
+import com.incognidex.base.Service.UsuarioService;
 
 @RestController
 @RequestMapping("/api/usuarios") // Um endpoint base comum para os usuários
