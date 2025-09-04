@@ -7,6 +7,6 @@ import com.incognidex.base.model.UsuarioModel;
 
 // que é um repositório por estender JpaRepository.
 @Repository
-public interface UsuarioRepository extends JpaRepository<UsuarioModel, Long> {
+public interface UsuarioRepository extends JpaRepository<UsuarioModel, Integer> {
 
 }

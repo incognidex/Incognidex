@@ -9,9 +9,11 @@ public interface UsuarioService {
 
     UsuarioModel salvarUsuario(UsuarioModel usuario);
 
-    Optional<UsuarioModel> buscarPorId(Long id);
+    // Altere o tipo do ID de Long para Integer aqui
+    Optional<UsuarioModel> buscarPorId(Integer id);
 
     List<UsuarioModel> listarTodos();
 
-    void deletarPorId(Long id);
+    // E altere aqui também
+    void deletarPorId(Integer id);
 }

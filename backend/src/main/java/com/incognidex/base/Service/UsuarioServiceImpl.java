@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.incognidex.base.model.UsuarioModel;
 import com.incognidex.base.repository.UsuarioRepository;
 
-@Service // A anotação @Service fica na classe de implementação
+@Service
 public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
@@ -20,8 +20,11 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+    /**
+     * O tipo do ID foi corrigido para Integer para corresponder à interface e ao repositório.
+     */
     @Override
-    public Optional<UsuarioModel> buscarPorId(Long id) {
+    public Optional<UsuarioModel> buscarPorId(Integer id) { // <-- CORRIGIDO
         return usuarioRepository.findById(id);
     }
 
@@ -30,8 +33,11 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioRepository.findAll();
     }
 
+    /**
+     * O tipo do ID também foi corrigido aqui.
+     */
     @Override
-    public void deletarPorId(Long id) {
+    public void deletarPorId(Integer id) { // <-- CORRIGIDO
         usuarioRepository.deleteById(id);
     }
 }
