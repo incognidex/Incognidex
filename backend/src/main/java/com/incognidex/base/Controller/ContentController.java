@@ -1,4 +1,4 @@
-package com.incognidex.base.Controller;
+package com.incognidex.base.controller;
 
 import java.security.Principal;
 
@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.incognidex.base.Repository.ContentRepository;
-import com.incognidex.base.Repository.SubjectRepository;
-import com.incognidex.base.Repository.UsuarioRepository;
-import com.incognidex.base.Model.Content;
-import com.incognidex.base.Model.Subject;
-import com.incognidex.base.Model.UsuarioModel;
+import com.incognidex.base.model.Content;
+import com.incognidex.base.model.Subject;
+import com.incognidex.base.model.UsuarioModel;
 import com.incognidex.base.dto.ContentCreateDTO;
+import com.incognidex.base.repository.ContentRepository;
+import com.incognidex.base.repository.SubjectRepository;
+import com.incognidex.base.repository.Usuariorepository;
 
 @RestController
 @RequestMapping("/api")
@@ -26,7 +26,7 @@ public class ContentController {
     private ContentRepository contentRepository;
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private Usuariorepository usuarioRepository;
 
     @Autowired
     private SubjectRepository subjectRepository;
@@ -34,7 +34,7 @@ public class ContentController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/conteudo")
     public ResponseEntity<?> criarConteudo(@RequestBody ContentCreateDTO dto, Principal principal) {
-        if (dto.title() == null || dto.body() == null || dto.contentType() == null || dto.subjectId() == null) {
+        if (dto.getTitle() == null || dto.getBody() == null || dto.getContentType() == null || dto.getSubjectId() == null) {
             return ResponseEntity.badRequest().body("Preencha todos os campos obrigatórios");
         }
 
@@ -43,15 +43,15 @@ public class ContentController {
             return ResponseEntity.badRequest().body("Usuário não encontrado");
         }
 
-        Subject subject = subjectRepository.findById(dto.subjectId()).orElse(null);
+        Subject subject = subjectRepository.findById(dto.getSubjectId()).orElse(null);
         if (subject == null) {
             return ResponseEntity.badRequest().body("Matéria não encontrada");
         }
 
         Content content = new Content();
-        content.setTitle(dto.title());
-        content.setBody(dto.body());
-        content.setContentType(dto.contentType());
+        content.setTitle(dto.getTitle());
+        content.setBody(dto.getBody());
+        content.setContentType(dto.getContentType());
         content.setSubject(subject);
         content.setAuthor(autor);
 

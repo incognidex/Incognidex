@@ -1,35 +1,49 @@
-package com.incognidex.base.Controller;
+package com.incognidex.base.controller; // Pacote em minúsculas
+
+// Importações do Spring Framework
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.incognidex.base.Model.UsuarioModel;
-import com.incognidex.base.Service.UsuarioService;
+import com.incognidex.base.model.UsuarioModel;
+import com.incognidex.base.service.UsuarioService;
 
-@Controller
-@RequestMapping("/usuarios")
+@RestController
+@RequestMapping("/api/usuarios")
 public class UsersController {
 
     @Autowired
     private UsuarioService usuarioService;
 
-    // A URL será algo como /usuarios/editar/1, onde 1 é o ID do usuário
-    @GetMapping("/editar/{id}")
-    public String exibirPaginaEdicao(@PathVariable("id") Long id, Model model) {
+    @PostMapping
+    public UsuarioModel criarUsuario(@RequestBody UsuarioModel usuario) {
+        return usuarioService.salvarUsuario(usuario);
+    }
 
-        // CORREÇÃO: Usamos .orElseThrow() para extrair o usuário do Optional
-        // ou lançar uma exceção se ele не for encontrado.
-        UsuarioModel usuario = usuarioService.buscarPorId(id)
-                .orElseThrow(() -> new IllegalArgumentException("ID de usuário inválido: " + id));
+    @GetMapping
+    public List<UsuarioModel> listarTodosUsuarios() {
+        return usuarioService.listarTodos();
+    }
 
-        // Adiciona o usuário encontrado ao modelo para ser usado na página HTML
-        model.addAttribute("usuario", usuario);
+    @GetMapping("/{id}")
+    public ResponseEntity<UsuarioModel> buscarUsuarioPorId(@PathVariable Integer id) {
+        Optional<UsuarioModel> usuario = usuarioService.buscarPorId(id);
+        return usuario.map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 
-        // Retorna o nome do arquivo HTML (template)
-        return "pagina-de-edicao";
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarUsuario(@PathVariable Integer id) {
+        usuarioService.deletarPorId(id);
+        return ResponseEntity.noContent().build();
     }
 }

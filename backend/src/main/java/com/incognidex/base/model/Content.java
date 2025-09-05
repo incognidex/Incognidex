@@ -1,21 +1,9 @@
-package com.incognidex.base.Model;
+package com.incognidex.base.model;
 
-import java.time.LocalDateTime;
-
-import org.hibernate.annotations.CreationTimestamp;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType; // CORREÇÃO: Importação adicionada
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+import java.time.LocalDateTime;
+import com.incognidex.base.model.Subject;
 
 @Entity
 @Table(name = "content")
@@ -26,25 +14,39 @@ public class Content {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "title", nullable = false)
+    @Column(nullable = false)
     private String title;
 
-    @Column(name = "body", columnDefinition = "TEXT")
+    @Lob
+    @Column(nullable = false)
     private String body;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "content_type", nullable = false)
+    @Column(name = "content_type")
     private ContentType contentType;
 
+    // Relacionamento com a entidade Subject
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "subject_id", nullable = false)
+    @JoinColumn(name = "subject_id")
     private Subject subject;
 
+    // Relacionamento com a entidade UsuarioModel
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_id", nullable = false)
-    private UsuarioModel author; // CORREÇÃO: "User" trocado por "UsuarioModel"
+    @JoinColumn(name = "author_id")
+    private UsuarioModel author;
 
-    @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
+
+    // Enum para os tipos de conteúdo
+    public enum ContentType {
+        artigo,
+        video,
+        especial
+    }
 }

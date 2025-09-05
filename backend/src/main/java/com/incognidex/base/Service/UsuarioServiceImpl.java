@@ -1,4 +1,4 @@
-package com.incognidex.base.Service;
+package com.incognidex.base.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,14 +6,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.incognidex.base.Repository.UsuarioRepository;
-import com.incognidex.base.Model.UsuarioModel;
+import com.incognidex.base.model.UsuarioModel;
+import com.incognidex.base.repository.Usuariorepository;
 
-@Service // A anotação @Service fica na classe de implementação
+@Service
 public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private Usuariorepository usuarioRepository;
 
     @Override
     public UsuarioModel salvarUsuario(UsuarioModel usuario) {
@@ -21,7 +21,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Optional<UsuarioModel> buscarPorId(Long id) {
+    public Optional<UsuarioModel> buscarPorId(Integer id) {
         return usuarioRepository.findById(id);
     }
 
@@ -31,7 +31,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public void deletarPorId(Long id) {
+    public void deletarPorId(Integer id) {
         usuarioRepository.deleteById(id);
     }
 }
