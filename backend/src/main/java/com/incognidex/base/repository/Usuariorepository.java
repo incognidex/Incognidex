@@ -9,4 +9,6 @@ import com.incognidex.base.Model.UsuarioModel;
 @Repository
 public interface UsuarioRepository extends JpaRepository<UsuarioModel, Long> {
 
+    UsuarioModel findByUsername(String name);
+
 }
