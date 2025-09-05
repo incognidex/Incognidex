@@ -3,6 +3,7 @@ package com.incognidex.base.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
+import com.incognidex.base.model.Subject;
 
 @Entity
 @Table(name = "content")

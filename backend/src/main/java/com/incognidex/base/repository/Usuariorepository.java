@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.incognidex.base.model.UsuarioModel;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<UsuarioModel, Integer> {
+public interface Usuariorepository extends JpaRepository<UsuarioModel, Integer> {
+
+    UsuarioModel findByUsername(String name);
 
 }

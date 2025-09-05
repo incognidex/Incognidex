@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.incognidex.base.model.UsuarioModel;
-import com.incognidex.base.repository.UsuarioRepository;
+import com.incognidex.base.repository.Usuariorepository;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private Usuariorepository usuarioRepository;
 
     @Override
     public UsuarioModel salvarUsuario(UsuarioModel usuario) {

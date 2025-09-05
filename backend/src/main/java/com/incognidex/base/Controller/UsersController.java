@@ -38,7 +38,7 @@ public class UsersController {
     public ResponseEntity<UsuarioModel> buscarUsuarioPorId(@PathVariable Integer id) {
         Optional<UsuarioModel> usuario = usuarioService.buscarPorId(id);
         return usuario.map(ResponseEntity::ok)
-                        .orElse(ResponseEntity.notFound().build());
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")

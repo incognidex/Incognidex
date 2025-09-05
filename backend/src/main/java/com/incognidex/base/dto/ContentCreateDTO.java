@@ -1,6 +1,5 @@
 package com.incognidex.base.dto;
 
-
 import com.incognidex.base.model.Content.ContentType;
 
 import lombok.Data;
@@ -17,4 +16,6 @@ public class ContentCreateDTO {
         private Integer subjectId; // We only need the ID of the related subject.
 
         private Integer authorId; // And the ID of the author.
+
+        public Object getTitle;
 }

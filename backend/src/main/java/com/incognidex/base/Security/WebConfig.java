@@ -15,11 +15,10 @@ public class WebConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // This is a basic configuration. You can customize it as needed.
         http
-            .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/api/public/**").permitAll() // Example public endpoint
-                .anyRequest().authenticated()
-            )
-            .csrf(csrf -> csrf.disable()); // Disabling CSRF for stateless APIs, common for JWT
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/api/public/**").permitAll() // Example public endpoint
+                        .anyRequest().authenticated())
+                .csrf(csrf -> csrf.disable()); // Disabling CSRF for stateless APIs, common for JWT
 
         return http.build();
     }

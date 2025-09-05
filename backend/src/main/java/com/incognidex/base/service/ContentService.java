@@ -32,7 +32,6 @@ public class ContentService {
         newContent.setContentType(dto.getContentType());
         newContent.setSubject(subject);
 
-
         return contentRepository.save(newContent);
     }
 
