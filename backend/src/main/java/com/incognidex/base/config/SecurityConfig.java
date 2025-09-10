@@ -1,4 +1,4 @@
-package com.incognidex.Config;
+package com.incognidex.base.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
