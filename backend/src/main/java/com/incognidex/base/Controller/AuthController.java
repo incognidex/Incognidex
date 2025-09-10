@@ -1,4 +1,4 @@
-package com.incognidex.base.Controller;
+package com.incognidex.base.controller;
 
 import java.util.Map;
 
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.incognidex.base.Model.User;
-import com.incognidex.base.Service.AuthService;
+import com.incognidex.base.model.User;
+import com.incognidex.base.service.AuthService;
 
 @RestController
 @RequestMapping("/api/auth")
