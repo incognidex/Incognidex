@@ -1,9 +1,9 @@
-package com.incognidex.base.Service;
+package com.incognidex.base.service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.incognidex.base.Model.User;
+import com.incognidex.base.model.User;
 import com.incognidex.base.repository.UserRepository;
 
 @Service

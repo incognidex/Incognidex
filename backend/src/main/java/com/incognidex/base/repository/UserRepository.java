@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.incognidex.base.Model.User;
+import com.incognidex.base.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {

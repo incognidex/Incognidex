@@ -1,4 +1,4 @@
-package com.incognidex.base.Model;
+package com.incognidex.base.model;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
