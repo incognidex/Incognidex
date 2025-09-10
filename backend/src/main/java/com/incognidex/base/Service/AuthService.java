@@ -8,13 +8,12 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.incognidex.base.config.Constants;
 import com.incognidex.base.model.PasswordResetToken;
 import com.incognidex.base.model.User;
 import com.incognidex.base.repository.PasswordResetTokenRepository;
 import com.incognidex.base.repository.UserRepository;
-
 @Service
 public class AuthService {
 
@@ -61,12 +60,10 @@ public class AuthService {
         PasswordResetToken myToken = new PasswordResetToken(token, user, LocalDateTime.now().plusHours(24));
         tokenRepository.save(myToken);
 
-        String appUrl = ServletUriComponentsBuilder.fromCurrentContextPath().toUriString();
-
         SimpleMailMessage emailMessage = new SimpleMailMessage();
         emailMessage.setTo(user.getEmail());
         emailMessage.setSubject("Incognidex - Redefinir Senha");
-        emailMessage.setText("Para redefinir sua senha, clique no link abaixo:\n" + appUrl + "/reset-password?token=" + token);
+        emailMessage.setText("Para redefinir sua senha, clique no link abaixo:\n" + Constants.FRONTEND_URL + "/pages/reset-password.html?token=" + token);
         mailSender.send(emailMessage);
     }
 

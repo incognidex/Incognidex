@@ -44,6 +44,9 @@ public class User {
     @Column(name = "atualizacao")
     private LocalDateTime updatedAt;
 
+    @Column
+    private String resetToken;
+
     // Construtores, Getters e Setters
     public User() {}
 
@@ -136,5 +139,12 @@ public class User {
     @PreUpdate
     protected void onUpdate() {
         this.updatedAt = LocalDateTime.now();
+    }
+    public String getResetToken() {
+        return resetToken;
+    }
+
+    public void setResetToken(String resetToken) {
+        this.resetToken = resetToken;
     }
 }
