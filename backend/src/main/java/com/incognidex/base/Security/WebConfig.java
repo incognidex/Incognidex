@@ -1,5 +1,5 @@
 // CORREÇÃO: Pacote em minúsculas
-package com.incognidex.base.security;
+package com.incognidex.base.Security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
