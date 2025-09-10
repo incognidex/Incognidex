@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             token: token,
             newPassword: newPassword
         };
-        
+
         try {
             const response = await fetch('http://localhost:8080/api/auth/reset-password', {
                 method: 'POST',
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const result = await response.text();
-            
+
             if (response.ok) {
                 if (messageDisplay) {
                     messageDisplay.textContent = 'Senha redefinida com sucesso!';

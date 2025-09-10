@@ -14,6 +14,7 @@ import com.incognidex.base.model.PasswordResetToken;
 import com.incognidex.base.model.User;
 import com.incognidex.base.repository.PasswordResetTokenRepository;
 import com.incognidex.base.repository.UserRepository;
+
 @Service
 public class AuthService {
 
@@ -65,6 +66,17 @@ public class AuthService {
         emailMessage.setSubject("Incognidex - Redefinir Senha");
         emailMessage.setText("Para redefinir sua senha, clique no link abaixo:\n" + Constants.FRONTEND_URL + "/frontend/pages/reset-password.html?token=" + token);
         mailSender.send(emailMessage);
+    }
+    
+    public User loginUser(String username, String password) {
+        Optional<User> userOptional = userRepository.findByUsername(username);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            if (passwordEncoder.matches(password, user.getPasswordHash())) {
+                return user;
+            }
+        }
+        throw new IllegalArgumentException("Invalid username or password");
     }
 
     public void resetPassword(String token, String newPassword) {
