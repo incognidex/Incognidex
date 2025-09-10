@@ -60,14 +60,15 @@ public class AuthController {
     }
 
     @PostMapping("/reset-password")
-    public ResponseEntity<String> resetPassword(@RequestBody Map<String, String> payload) {
-        try {
-            String token = payload.get("token");
-            String newPassword = payload.get("password");
-            authService.resetPassword(token, newPassword);
-            return ResponseEntity.ok("Senha redefinida com sucesso!");
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+public ResponseEntity<String> resetPassword(@RequestBody Map<String, String> payload) {
+    try {
+        String token = payload.get("token");
+        String newPassword = payload.get("newPassword");
+        authService.resetPassword(token, newPassword);
+        return ResponseEntity.ok("Senha redefinida com sucesso!");
+    } catch (IllegalArgumentException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
     }
+}
+
 }
