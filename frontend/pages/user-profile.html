@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuário - Incognidex</title>
+    <link rel="stylesheet" href="/frontend/css/user-profile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="background-container">
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="stars3"></div>
+    </div>
+
+    <div class="profile-container">
+        <header class="profile-header">
+            <div class="header-background"></div>
+            <div class="header-content">
+                <img id="profile-pic" src="https://via.placeholder.com/150" alt="Foto de Perfil">
+                <div class="user-info">
+                    <h1 id="user-name">Nome Completo</h1>
+                    <span id="user-username">@username</span>
+                </div>
+                <button id="edit-profile-btn" class="btn edit-btn">Editar Perfil</button>
+            </div>
+        </header>
+
+        <main class="profile-main-content">
+            <section class="profile-bio card">
+                <h2>Biografia</h2>
+                <p id="user-bio">A biografia do usuário será exibida aqui.</p>
+            </section>
+
+            <section class="profile-details card">
+                <div class="detail-item">
+                    <h3>Interesses Acadêmicos</h3>
+                    <p id="user-interests">Não informado</p>
+                </div>
+                <div class="detail-item">
+                    <h3>Membro desde</h3>
+                    <p id="user-join-date">Não informado</p>
+                </div>
+            </section>
+
+            <section class="profile-stats card">
+                <div class="stat-card">
+                    <h3>Quizzes Resolvidos</h3>
+                    <p id="stats-quizzes">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Conquistas</h3>
+                    <p id="stats-badges">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Conteúdos Criados</h3>
+                    <p id="stats-content">0</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/user-profile.js"></script>
+    <script src="js/modalverifyaccount.js"></script>
+</body>
+</html>

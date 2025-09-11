@@ -1,0 +1,196 @@
+/* ---- VARIÁVEIS DO SEU CSS GLOBAL ---- */
+:root {
+    --cor-preto-fundo: #0c0a14;
+    --cor-preto-card: #121020;
+    --cor-branco-texto: #f0f0f0;
+    --cor-laranja-destaque: #FFA500;
+    --cor-laranja-brilho: #ffc966;
+    --cor-cinza-texto: #a0a0b4;
+    --cor-borda: rgba(255, 165, 0, 0.2);
+    --cor-borda-foco: #FFA500;
+    --font-titulo: 'Poppins', sans-serif;
+    --font-corpo: 'Lato', sans-serif;
+    --transition-speed: 0.4s;
+}
+
+/* ---- ESTILOS GLOBAIS E FUNDO ANIMADO ---- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-corpo);
+    background-color: var(--cor-preto-fundo);
+    color: var(--cor-branco-texto);
+    line-height: 1.6;
+}
+
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.stars, .stars2, .stars3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 200%;
+    display: block;
+}
+
+@keyframes move-stars {
+    from { background-position-y: 0px; }
+    to { background-position-y: -10000px; }
+}
+
+.stars {
+    background: transparent url(https://www.transparenttextures.com/patterns/stardust.png) repeat;
+    animation: move-stars 250s linear infinite;
+}
+
+.stars2 {
+    background: transparent url(https://www.transparenttextures.com/patterns/stardust.png) repeat;
+    animation: move-stars 150s linear infinite;
+}
+
+.stars3 {
+    background: transparent url(https://www.transparenttextures.com/patterns/stardust.png) repeat;
+    animation: move-stars 80s linear infinite;
+}
+
+/* ---- ESTILOS DO PERFIL ---- */
+.profile-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-header {
+    position: relative;
+    background-color: var(--cor-preto-card);
+    border-radius: 12px;
+    border: 1px solid var(--cor-borda);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+    padding: 50px 40px 20px;
+    text-align: center;
+}
+
+.header-background {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    height: 120px;
+    border-radius: 12px 12px 0 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.header-content {
+    position: relative;
+}
+
+#profile-pic {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 5px solid var(--cor-preto-fundo);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+    margin-top: -100px;
+}
+
+.user-info {
+    margin-top: 15px;
+}
+
+#user-name {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: var(--font-titulo);
+}
+
+#user-username {
+    color: var(--cor-cinza-texto);
+    font-size: 1.3rem;
+}
+
+.edit-btn {
+    margin-top: 20px;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.card {
+    background-color: var(--cor-preto-card);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--cor-borda);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.card h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--cor-laranja-destaque);
+    padding-bottom: 10px;
+    font-family: var(--font-titulo);
+}
+
+.card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--cor-cinza-texto);
+    margin-bottom: 5px;
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.stat-card {
+    background-color: var(--cor-preto-fundo);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    min-width: 150px;
+    flex: 1;
+}
+
+.stat-card h3 {
+    margin: 0;
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--cor-cinza-texto);
+}
+
+.stat-card p {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--cor-laranja-destaque);
+    margin: 10px 0 0;
+}
+
+.detail-item p {
+    margin-top: 5px;
+    color: var(--cor-cinza-texto);
+}
