@@ -1,0 +1,312 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body */
+body {
+    background-color: rgb(18, 18, 18);
+    color: #fff;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background-color: #f5b104;
+    color: #111;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    flex-wrap: wrap;
+    gap: 20px;
+    box-shadow: 0 8px 20px rgba(175, 126, 0, 0.747);
+}
+
+.logo-explorar-group {
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #111;
+}
+
+.logo img {
+    width: 60px;
+    height: auto;
+}
+
+.explorar-link {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Barra de Pesquisa */
+.search-bar {
+    flex: 1;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    min-width: 250px;
+}
+
+.search-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #000;
+}
+
+.search-bar button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #666;
+    padding: 5px;
+}
+
+.search-bar button:hover {
+    color: #000;
+}
+
+/* Navegação */
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+header nav ul li a {
+    position: relative;
+    text-decoration: none;
+    color: #111;
+    font-weight: 600;
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ff6a00;
+    transition: width 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: #ff6a00;
+}
+
+header nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Responsividade simples para header */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-bar {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+.banner-carousel {
+  width: 100%;
+  max-width: 100vw;
+  margin: 0px 0px 40px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(255, 184, 0, 0.4);
+}
+
+.swiper {
+  width: 100%;
+  height: auto;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Paginação e botões */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #ff6a00;
+}
+
+
+/*cards*/
+.cards-texto{
+    max-width: 12000px;
+    margin: 0 auto 40px;
+    text-align: left;
+    padding: 0 20px;
+}
+.cards-texto h2 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.cards-texto p {
+    font-size: 1.1rem;
+    color: #aaa;
+}
+
+.carreiras {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: rgb(18, 18, 18);
+    color: #111;
+    
+}
+
+.carreiras h2 {
+    font-size: 4.2rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.carreiras p {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    color: #b9b9b9;
+}
+
+.carreira-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.carreira-card {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease;
+}
+
+.carreira-card:hover {
+    transform: translateY(-5px);
+}
+
+.carreira-card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    object-fit: cover;
+    height: 180px;
+}
+
+.carreira-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.carreira-card .info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+
+/*footer,final do css*/
+.footer {
+    background-color: #1c1c1c;
+    color: #ccc;
+    padding: 40px 20px 20px;
+    margin-top: 60px;
+    border-top: 1px solid #333;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.footer-logo img {
+    width: 40px;
+    height: auto;
+}
+
+.footer-links {
+    margin-bottom: 20px;
+}
+
+.footer-links a {
+    margin: 0 15px;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #f5b104;
+}
+
+.footer-copy {
+    font-size: 0.85rem;
+    color: #777;
+}
