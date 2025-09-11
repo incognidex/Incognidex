@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Incognidex</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/frontend/css/home.css">
+</head>
+
+<body>
+<header>
+    <div class="logo-explorar-group">
+        <div class="logo">
+            <img src="/backend/src/main/resources/public/Incognidex.png" alt="Logo Incognidex">
+            <span>Incognidex</span> 
+        </div>
+
+        <a href="#" class="explorar-link">Explorar</a>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" placeholder="Buscar...">
+        <button type="submit">🔍</button>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="cadastro.html">Cadastro</a></li>
+        </ul>
+    </nav>
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+</header>
+
+<section class="banner-carousel">
+  <div class="swiper">
+    <div class="swiper-wrapper">
+
+      <!-- Slide 1 -->
+      <div class="swiper-slide">
+        <img src="/frontend/assets/img/Acredite na mudança de quem faz acontecer..png" alt="Banner 1">
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="swiper-slide">
+        <img src="/frontend/assets/img/download (1).jpg" alt="Banner 2">
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="swiper-slide">
+        <img src="/imgs/banner3.jpg" alt="Banner 3">
+      </div>
+
+    </div>
+
+    <!-- Botões de navegação -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+
+    <!-- Paginação -->
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Inicialização do Swiper -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  });
+</script>
+
+<section class="cards-cards">
+    <div class="cards-texto">
+  <h2>Que tal conhecer nossos cursos?</h2>
+  <p>A dificuldade aqui não é um muro, mas uma escada para o próximo nível</p>
+</div>
+
+  <div class="carreira-cards">
+
+    <!-- Card 1 -->
+    <div class="carreira-card">
+      <img src="/imgs/web-fullstack.jpg" alt="img">
+      <h3>Profissional em Java</h3>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="carreira-card">
+      <img src="/imgs/marketing.jpg" alt="img">
+      <h3>Profissional em usar C#</h3>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="carreira-card">
+      <img src="/imgs/cientista.jpg" alt="img">
+      <h3>Carreira de chaves</h3>
+    </div>
+
+  </div>
+</section>
+
+<!--footer(lembrar que é no final do código)-->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-logo">
+      <img src="/backend/src/main/resources/public/Incognidex.png" alt="Logo">
+      <span>Incognidex</span>
+    </div>
+
+    <div class="footer-links">
+      <a href="#">Sobre</a>
+      <a href="#">Ajuda</a>
+      <a href="#">Termos</a>
+      <a href="#">Privacidade</a>
+    </div>
+
+    <div class="footer-copy">
+      © 2025 Incognidex. Todos os direitos reservados.
+    </div>
+  </div>
+</footer>
