@@ -1,0 +1,24 @@
+# Usa uma imagem base com o OpenJDK 21
+FROM openjdk:21-jdk-slim as build
+
+# Define o diretório de trabalho dentro do contêiner
+WORKDIR /app
+
+# Copia os arquivos de build do Maven
+COPY pom.xml .
+COPY src ./src
+
+# Executa o build da aplicação
+RUN mvn clean install
+
+# Segunda etapa, cria uma imagem menor para a execução
+FROM openjdk:21-jdk-slim
+
+# Define o diretório de trabalho
+WORKDIR /app
+
+# Copia o arquivo .jar da etapa de build para a etapa de execução
+COPY --from=build /app/target/*.jar app.jar
+
+# Define o comando de inicialização
+CMD ["java", "-jar", "app.jar"]
