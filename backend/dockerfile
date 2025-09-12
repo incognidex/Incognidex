@@ -1,5 +1,5 @@
-# Usa uma imagem base que já tem Maven e OpenJDK instalados
-FROM maven:3.9-openjdk-21-slim as build
+# Usa uma imagem base que já tem Maven e JDK 21
+FROM maven:3.9-eclipse-temurin-21-alpine as build
 
 # Define o diretório de trabalho dentro do contêiner
 WORKDIR /app
