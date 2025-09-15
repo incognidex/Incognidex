@@ -14,6 +14,8 @@ RUN mvn clean install -DskipTests
 # Segunda etapa, cria uma imagem menor para a execução
 FROM openjdk:21-jdk-slim
 
+EXPOSE 8080
+
 # Define o diretório de trabalho
 WORKDIR /app
 
