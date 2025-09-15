@@ -13,11 +13,8 @@ public class CorsConfig implements WebMvcConfigurer {
         registry.addMapping("/api/**")
                 .allowedOrigins(
                     "http://localhost:5500", // Para testes locais
-                    "https://incognidex.onrender.com", // Domínio do Render
-                    "https://www.incognidex.com.br", // Domínio personalizado (www)
-                    "https://incognidex.com.br", // Domínio personalizado (sem www)
-                    "https://incognidex-backend.onrender.com", // Domínio do Frontend no Render
-                    "*"
+                    "https://www.incognidex.com.br", // Domínio do frontend com www
+                    "https://incognidex.com.br" // Domínio do frontend sem www
                 )
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
