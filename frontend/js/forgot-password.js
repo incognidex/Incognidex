@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const payload = { email: email };
 
             try {
-                const response = await fetch('http://localhost:8080/api/auth/forgot-password', {
+                const response = await fetch('https://incognidex-backend.onrender.com/api/auth/forgot-password', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
