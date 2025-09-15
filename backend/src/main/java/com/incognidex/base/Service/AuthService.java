@@ -67,7 +67,7 @@ public class AuthService {
         emailMessage.setText("Para redefinir sua senha, clique no link abaixo:\n" + Constants.FRONTEND_URL + "/frontend/pages/reset-password.html?token=" + token);
         mailSender.send(emailMessage);
     }
-    
+
     public User loginUser(String username, String password) {
         Optional<User> userOptional = userRepository.findByUsername(username);
         if (userOptional.isPresent()) {
