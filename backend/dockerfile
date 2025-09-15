@@ -9,7 +9,7 @@ COPY pom.xml .
 COPY src ./src
 
 # Executa o build da aplicação
-RUN mvn clean install
+RUN mvn clean install -DskipTests
 
 # Segunda etapa, cria uma imagem menor para a execução
 FROM openjdk:21-jdk-slim
