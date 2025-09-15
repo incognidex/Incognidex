@@ -15,7 +15,8 @@ public class CorsConfig implements WebMvcConfigurer {
                     "http://localhost:5500", // Para testes locais
                     "https://incognidex.onrender.com", // Domínio do Render
                     "https://www.incognidex.com.br", // Domínio personalizado (www)
-                    "https://incognidex.com.br" // Domínio personalizado (sem www)
+                    "https://incognidex.com.br", // Domínio personalizado (sem www)
+                    "https://incognidex-backend.onrender.com" // Domínio do Frontend no Render
                 )
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
