@@ -36,16 +36,16 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody Map<String, String> payload) {
-        try {
-            String username = payload.get("username");
-            String password = payload.get("password");
-            authService.loginUser(username, password);
-            return ResponseEntity.ok("Login successful");
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
-        }
+public ResponseEntity<String> loginUser(@RequestBody Map<String, String> payload) {
+    try {
+        String identifier = payload.get("username"); // Continua usando a chave 'username' do frontend
+        String password = payload.get("password");
+        authService.loginUser(identifier, password); // Passa o identificador
+        return ResponseEntity.ok("Login successful");
+    } catch (IllegalArgumentException e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
     }
+}
 
     @PostMapping("/forgot-password")
     public ResponseEntity<String> forgotPassword(@RequestBody Map<String, String> payload) {
