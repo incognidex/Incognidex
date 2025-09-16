@@ -47,7 +47,7 @@ public ResponseEntity<String> loginUser(@RequestBody Map<String, String> payload
     }
 }
 
-    @PostMapping("/forgot-passwords")
+    @PostMapping("/forgot-password")
     public ResponseEntity<String> forgotPassword(@RequestBody Map<String, String> payload) {
         String email = payload.get("email");
         authService.createPasswordResetTokenForUser(email);
