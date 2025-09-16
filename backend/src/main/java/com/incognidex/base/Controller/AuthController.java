@@ -48,7 +48,7 @@ public ResponseEntity<String> loginUser(@RequestBody Map<String, String> payload
 }
 
     @PostMapping("/forgot-passwords")
-    public ResponseEntity<String> forgotPassword(@RequestBody Map<String, String> payload) {
+    public ResponseEntity<String> forgotPasswords(@RequestBody Map<String, String> payload) {
         String email = payload.get("email");
         authService.createPasswordResetTokenForUser(email);
         return ResponseEntity.ok("Se o e-mail estiver cadastrado, um link de redefinição de senha foi enviado para ele.");
