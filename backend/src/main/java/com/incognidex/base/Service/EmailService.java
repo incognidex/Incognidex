@@ -16,7 +16,7 @@ public class EmailService {
         message.setFrom("seu-email@gmail.com"); // Altere aqui
         message.setTo(toEmail);
         message.setSubject("Incognidex - Redefinição de Senha");
-        message.setText("Para redefinir sua senha, clique no link a seguir: http://localhost:5500/reset-password.html?token=" + token);
+        message.setText("Para redefinir sua senha, clique no link a seguir: 'https://incognidex.com.br/pages/reset-password.html?token=" + token);
 
         mailSender.send(message);
     }

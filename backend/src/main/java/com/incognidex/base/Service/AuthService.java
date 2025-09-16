@@ -64,20 +64,30 @@ public class AuthService {
         SimpleMailMessage emailMessage = new SimpleMailMessage();
         emailMessage.setTo(user.getEmail());
         emailMessage.setSubject("Incognidex - Redefinir Senha");
-        emailMessage.setText("Para redefinir sua senha, clique no link abaixo:\n" + Constants.FRONTEND_URL + "/frontend/pages/reset-password.html?token=" + token);
+        emailMessage.setText("Para redefinir sua senha, clique no link abaixo:\n" + Constants.FRONTEND_URL + "/pages/reset-password.html?token=" + token);
         mailSender.send(emailMessage);
     }
-    
-    public User loginUser(String username, String password) {
-        Optional<User> userOptional = userRepository.findByUsername(username);
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            if (passwordEncoder.matches(password, user.getPasswordHash())) {
-                return user;
-            }
-        }
+
+    public User loginUser(String identifier, String password) {
+    Optional<User> userOptional = userRepository.findByUsername(identifier);
+
+    // Se não encontrou por nome de usuário, tenta encontrar por email
+    if (userOptional.isEmpty()) {
+        userOptional = userRepository.findByEmail(identifier);
+    }
+
+    // Se ainda assim não encontrou, lança o erro
+    if (userOptional.isEmpty()) {
         throw new IllegalArgumentException("Invalid username or password");
     }
+
+    User user = userOptional.get();
+    if (passwordEncoder.matches(password, user.getPasswordHash())) {
+        return user;
+    }
+
+    throw new IllegalArgumentException("Invalid username or password");
+}
 
     public void resetPassword(String token, String newPassword) {
         Optional<PasswordResetToken> tokenOptional = tokenRepository.findByToken(token);
