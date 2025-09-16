@@ -64,7 +64,7 @@ public class AuthService {
         SimpleMailMessage emailMessage = new SimpleMailMessage();
         emailMessage.setTo(user.getEmail());
         emailMessage.setSubject("Incognidex - Redefinir Senha");
-        emailMessage.setText("Para redefinir sua senha, clique no link abaixo:\n" + Constants.FRONTEND_URL + "/reset-password.html?token=" + token);
+        emailMessage.setText("Para redefinir sua senha, clique no link abaixo:\n" + Constants.FRONTEND_URL + "/pages/reset-password.html?token=" + token);
         mailSender.send(emailMessage);
     }
 
