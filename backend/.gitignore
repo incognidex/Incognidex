@@ -31,4 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
-.application.properties
+
+# Ignora a pasta de uploads de arquivos de usuários
+uploads/
