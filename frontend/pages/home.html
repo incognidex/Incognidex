@@ -1,147 +1,264 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
-  <meta charset="UTF-8">
-  <title>Incognidex</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/Incognidex/frontend/css/home.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  
-
     <meta charset="UTF-8">
-    <title>Incognidex</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redefinir Senha - Incognidex</title>
+    <title>Incognidex - Cursos de Tecnologia e Carreira</title>
     <link rel="stylesheet" href="../css/home.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
-
 <body>
-  <header>
-    <div class="logo-explorar-group">
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-explorar-group">
+                <a href="/" class="logo">
+                    <img src="../img/Incognidex.png" alt="Logo Incognidex">
+                    <span>Incognidex</span>
+                </a>
+                <a href="#" class="explorar-link">Explorar</a>
+            </div>
 
-      <div class="logo">
-        <img src="/Incognidex/backend/src/main/resources/public/Incognidex.png" alt="Logo Incognidex">
-        <span>Incognidex</span>
-      </div>
-      <a href="#" class="explorar-link">Explorar</a>
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar...">
+                <button type="submit" aria-label="Buscar">🔍</button>
+            </div>
 
-        <div class="logo">
-            <img src="../img/Incognidex.png" alt="Logo Incognidex">
-            <span>Incognidex</span>
+            <nav class="main-nav">
+                <div id="user-profile">
+                    <a href="../pages/user-profile.html" class="profile-link">
+                        <img src="../img/profile-placeholder.png" alt="Foto de Perfil" class="profile-avatar">
+                        <span class="profile-name"></span>
+                    </a>
+                    <a href="#" class="logout-link">Sair</a>
+                </div>
+            </nav>
         </div>
+    </header>
 
-        <a href="#" class="explorar-link">Explorar</a>
+    <main>
+        <section class="banner-carousel">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="assets/img/Acredite na mudança de quem faz acontecer..png" alt="Acredite na mudança de quem faz acontecer.">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="assets/img/download (1).jpg" alt="Aprenda a programar com quem faz acontecer.">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="imgs/banner3.jpg" alt="Nova jornada profissional te espera.">
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
 
-    </div>
+        <section class="section-courses">
+            <div class="container">
+                <div class="section-header">
+                    <h2>📚 Cursos de T.I.</h2>
+                    <p>Descubra os caminhos para o futuro da tecnologia.</p>
+                </div>
+                <div class="course-cards-container swiper-container-custom">
+                    <div class="swiper-wrapper">
+                        <article class="course-card swiper-slide">
+                            <img src="imgs/it-1.jpg" alt="Curso de Desenvolvimento Full-Stack">
+                            <div class="card-content">
+                                <h3>Desenvolvimento Full-Stack</h3>
+                            </div>
+                        </article>
+                        <article class="course-card swiper-slide">
+                            <img src="imgs/it-2.jpg" alt="Curso de Cibersegurança">
+                            <div class="card-content">
+                                <h3>Cibersegurança</h3>
+                            </div>
+                        </article>
+                        <article class="course-card swiper-slide">
+                            <img src="imgs/it-3.jpg" alt="Curso de Análise de Dados">
+                            <div class="card-content">
+                                <h3>Análise de Dados com Python</h3>
+                            </div>
+                        </article>
+                        <article class="course-card swiper-slide">
+                            <img src="imgs/it-4.jpg" alt="Curso de UX/UI Design">
+                            <div class="card-content">
+                                <h3>UX/UI Design</h3>
+                            </div>
+                        </article>
+                        <article class="course-card swiper-slide">
+                            <img src="imgs/it-5.jpg" alt="Curso de Inteligência Artificial">
+                            <div class="card-content">
+                                <h3>Inteligência Artificial</h3>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </section>
 
-    <div class="search-bar">
-      <input type="text" placeholder="Buscar...">
-      <button type="submit">🔍</button>
-    </div>
+        <section class="section-courses">
+            <div class="container">
+                <div class="section-header">
+                    <h2>⚕️ Cursos de Medicina</h2>
+                    <p>Dedique-se a salvar vidas e promover o bem-estar.</p>
+                </div>
+                <div class="course-cards-container swiper-container-custom">
+                    <div class="swiper-wrapper">
+                        <article class="course-card swiper-slide">
+                            <img src="imgs/med-1.jpg" alt="Curso de Cardiologia">
+                            <div class="card-content">
+                                <h3>Cardiologia</h3>
+                            </div>
+                        </article>
+                        <article class="course-card swiper-slide">
+                            <img src="imgs/med-2.jpg" alt="Curso de Pediatria">
+                            <div class="card-content">
+                                <h3>Pediatria</h3>
+                            </div>
+                        </article>
+                        <article class="course-card swiper-slide">
+                            <img src="imgs/med-3.jpg" alt="Curso de Cirurgia Geral">
+                            <div class="card-content">
+                                <h3>Cirurgia Geral</h3>
+                            </div>
+                        </article>
+                        <article class="course-card swiper-slide">
+                            <img src="imgs/med-4.jpg" alt="Curso de Neurologia">
+                            <div class="card-content">
+                                <h3>Neurologia</h3>
+                            </div>
+                        </article>
+                        <article class="course-card swiper-slide">
+                            <img src="imgs/med-5.jpg" alt="Curso de Dermatologia">
+                            <div class="card-content">
+                                <h3>Dermatologia</h3>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </section>
 
-    <nav>
-      <ul>
-        <li><a href="login.html">Login</a></li>
-        <li><a href="cadastro.html">Cadastro</a></li>
-      </ul>
-    </nav>
-  </header>
+        <section class="section-courses">
+            <div class="container">
+                <div class="section-header">
+                    <h2>🐾 Cursos de Veterinária</h2>
+                    <p>Cuide da saúde e do bem-estar dos nossos amigos de quatro patas.</p>
+                </div>
+                <div class="course-cards-container swiper-container-custom">
+                    <div class="swiper-wrapper">
+                        <article class="course-card swiper-slide">
+                            <img src="imgs/vet-1.jpg" alt="Curso de Clínica Geral">
+                            <div class="card-content">
+                                <h3>Clínica de Pequenos Animais</h3>
+                            </div>
+                        </article>
+                        <article class="course-card swiper-slide">
+                            <img src="imgs/vet-2.jpg" alt="Curso de Animais Silvestres">
+                            <div class="card-content">
+                                <h3>Animais Silvestres</h3>
+                            </div>
+                        </article>
+                        <article class="course-card swiper-slide">
+                            <img src="imgs/vet-3.jpg" alt="Curso de Odontologia Veterinária">
+                            <div class="card-content">
+                                <h3>Odontologia Veterinária</h3>
+                            </div>
+                        </article>
+                        <article class="course-card swiper-slide">
+                            <img src="imgs/vet-4.jpg" alt="Curso de Fisioterapia Veterinária">
+                            <div class="card-content">
+                                <h3>Fisioterapia Veterinária</h3>
+                            </div>
+                        </article>
+                        <article class="course-card swiper-slide">
+                            <img src="imgs/vet-5.jpg" alt="Curso de Nutrição Animal">
+                            <div class="card-content">
+                                <h3>Nutrição Animal</h3>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </section>
 
-  <section class="banner-carousel">
-    <div class="swiper">
-      <div class="swiper-wrapper">
+        <section class="section-courses">
+            <div class="container">
+                <div class="section-header">
+                    <h2>🧠 Cursos de Psicologia</h2>
+                    <p>Entenda a mente humana e ajude as pessoas a se transformarem.</p>
+                </div>
+                <div class="course-cards-container swiper-container-custom">
+                    <div class="swiper-wrapper">
+                        <article class="course-card swiper-slide">
+                            <img src="imgs/psi-1.jpg" alt="Curso de Terapia Cognitivo-Comportamental">
+                            <div class="card-content">
+                                <h3>Terapia Cognitivo-Comportamental</h3>
+                            </div>
+                        </article>
+                        <article class="course-card swiper-slide">
+                            <img src="imgs/psi-2.jpg" alt="Curso de Neuropsicologia">
+                            <div class="card-content">
+                                <h3>Neuropsicologia</h3>
+                            </div>
+                        </article>
+                        <article class="course-card swiper-slide">
+                            <img src="imgs/psi-3.jpg" alt="Curso de Psicologia Clínica">
+                            <div class="card-content">
+                                <h3>Psicologia Clínica</h3>
+                            </div>
+                        </article>
+                        <article class="course-card swiper-slide">
+                            <img src="imgs/psi-4.jpg" alt="Curso de Psicologia Organizacional">
+                            <div class="card-content">
+                                <h3>Psicologia Organizacional</h3>
+                            </div>
+                        </article>
+                        <article class="course-card swiper-slide">
+                            <img src="imgs/psi-5.jpg" alt="Curso de Psicologia Infantil">
+                            <div class="card-content">
+                                <h3>Psicologia Infantil</h3>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-        <!-- Slide 1 -->
-        <div class="swiper-slide">
-          <img src="/frontend/assets/img/Acredite na mudança de quem faz acontecer..png" alt="Banner 1">
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <img src="../img/Incognidex.png" alt="Logo Incognidex">
+                    <span>Incognidex</span>
+                </div>
+                <nav class="footer-nav">
+                    <ul>
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Ajuda</a></li>
+                        <li><a href="#">Termos</a></li>
+                        <li><a href="#">Privacidade</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="footer-copy">
+                <p>&copy; 2025 Incognidex. Todos os direitos reservados.</p>
+            </div>
         </div>
+    </footer>
 
-        <!-- Slide 2 -->
-        <div class="swiper-slide">
-          <img src="/frontend/assets/img/download (1).jpg" alt="Banner 2">
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="swiper-slide">
-          <img src="/imgs/banner3.jpg" alt="Banner 3">
-        </div>
-
-      </div>
-
-      <!-- Botões de navegação -->
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-
-      <!-- Paginação -->
-      <div class="swiper-pagination"></div>
-    </div>
-  </section>
-
-  <section class="cards-cards">
-    <div class="cards-texto">
-      <h2>Que tal conhecer nossos cursos?</h2>
-      <p>A dificuldade aqui não é um muro, mas uma escada para o próximo nível</p>
-    </div>
-
-    <div class="carreira-cards">
-
-      <!-- Card 1 -->
-      <div class="carreira-card">
-        <img src="/imgs/web-fullstack.jpg" alt="img">
-        <h3>Profissional em Java</h3>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="carreira-card">
-        <img src="/imgs/marketing.jpg" alt="img">
-        <h3>Profissional em usar C#</h3>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="carreira-card">
-        <img src="/imgs/cientista.jpg" alt="img">
-        <h3>Carreira de chaves</h3>
-      </div>
-
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-logo">
-        <img src="/incognidex/backend/src/main/resources/public/Incognidex.png" alt="Logo">
-        <span>Incognidex</span>
-      </div>
-
-      <div class="footer-links">
-        <a href="#">Sobre</a>
-        <a href="#">Ajuda</a>
-        <a href="#">Termos</a>
-        <a href="#">Privacidade</a>
-      </div>
-
-<!--footer(lembrar que é no final do código)-->
-<footer class="footer">
-  <div class="footer-container">
-    <div class="footer-logo">
-      <img src="../img/Incognidex.png" alt="Logo">
-      <span>Incognidex</span>
-    </div>
-
-
-      <div class="footer-copy">
-        © 2025 Incognidex. Todos os direitos reservados.
-      </div>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="/Incognidex/frontend/js/home.js"></script>
-
-  <script src="/Incognidex/frontend/js/home.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="../js/home.js"></script>
 </body>
-
 </html>
