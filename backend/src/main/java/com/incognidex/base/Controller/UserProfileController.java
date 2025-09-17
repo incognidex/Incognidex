@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.incognidex.base.model.User;
 import com.incognidex.base.service.UserService;
+
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
@@ -45,7 +46,7 @@ public class UserProfileController {
             @RequestParam("interessesAcademicos") String newInteressesAcademicos,
             @RequestParam(value = "file", required = false) MultipartFile file,
             HttpServletRequest request) {
-        
+
         // Supondo que você tem uma forma de obter o nome de usuário autenticado
         // Por exemplo, usando um cabeçalho personalizado ou token JWT
         String currentUsername = request.getHeader("X-User-Username"); 

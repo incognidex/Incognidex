@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const userImage = localStorage.getItem('userImage');
 
         if (userName) {
+            // Se o nome de usuário existe, ele está logado.
             // Preenche o nome do usuário
             profileName.textContent = userName;
 
@@ -57,8 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 profileAvatar.src = '../img/profile-placeholder.png';
             }
         } else {
-            // Redireciona para a página de login se não houver dados.
-            // Isso é um ponto de segurança para garantir que a página não seja acessada sem login.
+            // Se não houver nome de usuário, redireciona para a página de login.
+            // Isso impede que a página seja acessada sem login.
             window.location.href = 'login.html';
         }
     }
