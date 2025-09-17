@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('password').value;
 
         const payload = {
-            username: identifier, // O backend espera a chave 'username'
+            username: identifier,
             password: password
         };
 
@@ -21,9 +21,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(payload)
             });
 
+            // O backend deve retornar o nome do usuário e, idealmente, um token.
+            const data = await response.json();
+
             if (response.ok) {
+                // Sucesso! Agora, salve os dados no localStorage.
+                // Isso permite que o home.html saiba que o usuário está logado.
+                localStorage.setItem('userName', data.username);
+                // Você pode adicionar mais dados aqui, como a URL da imagem.
+                if (data.avatarUrl) {
+                    localStorage.setItem('userImage', data.avatarUrl);
+                }
+
                 alert('Login bem-sucedido!');
-                // Redireciona para a página principal após o login
                 window.location.href = 'home.html';
             } else {
                 alert('Falha no login. Verifique suas credenciais.');
