@@ -1,5 +1,6 @@
 package com.incognidex.base.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
@@ -36,16 +37,28 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-public ResponseEntity<String> loginUser(@RequestBody Map<String, String> payload) {
-    try {
-        String identifier = payload.get("username"); // Continua usando a chave 'username' do frontend
-        String password = payload.get("password");
-        authService.loginUser(identifier, password); // Passa o identificador
-        return ResponseEntity.ok("Login successful");
-    } catch (IllegalArgumentException e) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+    public ResponseEntity<Map<String, Object>> loginUser(@RequestBody Map<String, String> payload) {
+        try {
+            String identifier = payload.get("username");
+            String password = payload.get("password");
+            User user = authService.loginUser(identifier, password);
+
+            // Crie um mapa para a resposta JSON
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", true);
+            response.put("username", user.getUsername());
+            response.put("avatarUrl", user.getAvatarUrl());
+
+            // Retorne o mapa como JSON
+            return ResponseEntity.ok(response);
+        } catch (IllegalArgumentException e) {
+            // Em caso de falha, retorne um JSON de erro
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("success", false);
+            errorResponse.put("message", e.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+        }
     }
-}
 
     @PostMapping("/forgot-password")
     public ResponseEntity<String> forgotPassword(@RequestBody Map<String, String> payload) {
