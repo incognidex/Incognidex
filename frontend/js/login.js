@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
 
     form.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Impede o envio padrão do formulário
+        event.preventDefault();
 
         const identifier = document.getElementById('identifier').value;
         const password = document.getElementById('password').value;
@@ -21,20 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(payload)
             });
 
-            // O backend deve retornar o nome do usuário e, idealmente, um token.
-            const data = await response.json();
+            // Adicione esta linha para depurar
+            const textResponse = await response.text();
+            console.log('Resposta do servidor:', textResponse);
+
+            const data = JSON.parse(textResponse);
 
             if (response.ok) {
-                // Sucesso! Agora, salve os dados no localStorage.
-                // Isso permite que o home.html saiba que o usuário está logado.
-                localStorage.setItem('userName', data.username);
-                // Você pode adicionar mais dados aqui, como a URL da imagem.
-                if (data.avatarUrl) {
-                    localStorage.setItem('userImage', data.avatarUrl);
-                }
-
-                alert('Login bem-sucedido!');
-                window.location.href = 'home.html';
+                // ... (o resto do seu código permanece o mesmo)
             } else {
                 alert('Falha no login. Verifique suas credenciais.');
             }
