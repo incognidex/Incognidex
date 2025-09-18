@@ -49,7 +49,7 @@ public class UserProfileController {
 
         // Supondo que você tem uma forma de obter o nome de usuário autenticado
         // Por exemplo, usando um cabeçalho personalizado ou token JWT
-        String currentUsername = request.getHeader("X-User-Username"); 
+        String currentUsername = request.getHeader("X-User-Username");
 
         try {
             User updatedUser = userService.updateProfileAndPhoto(
