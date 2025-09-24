@@ -3,50 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Incognidex - Cursos de Tecnologia e Carreira</title>
-    <link rel="stylesheet" href="../css/home.css">
+    <title>Incognidex - Cursos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWqU5oO6SgP+5v7mO6Tj8p1D4B5sD5j8S5/Q+t7R+O/9oR6n8K9B7A/vJ/b3tA/g==" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/home.css">
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <div class="logo-explorar-group">
-                <a href="/" class="logo">
-                    <img src="../img/Incognidex.png" alt="Logo Incognidex">
+
+    <header class="header sticky-top">
+        <div class="container-fluid header-content">
+            <div class="d-flex align-items-center logo-explorar-group">
+                <a href="/" class="logo d-flex align-items-center text-decoration-none">
+                    <img src="../img/Incognidex.png" alt="Logo Incognidex" class="logo-img me-2">
                     <span>Incognidex</span>
                 </a>
                 <a href="#" class="explorar-link">Explorar</a>
             </div>
-
-            <div class="search-bar">
-                <input type="text" placeholder="Buscar...">
-                <button type="submit" aria-label="Buscar">🔍</button>
+            <div class="search-bar d-flex rounded-pill overflow-hidden">
+                <input type="text" placeholder="Buscar..." class="form-control border-0 bg-transparent text-white">
+                <button type="submit" class="btn btn-warning" aria-label="Buscar">🔍</button>
             </div>
-
             <nav class="main-nav">
-                <div id="user-profile">
-                    <a href="../pages/user-profile.html" class="profile-link">
-                        <img src="../img/profile-placeholder.png" alt="Foto de Perfil" class="profile-avatar">
+                <div id="user-profile" class="d-flex align-items-center">
+                    <a href="../pages/user-profile.html" class="profile-link d-flex align-items-center text-decoration-none text-white">
+                        <img src="../img/profile-placeholder.png" alt="Foto de Perfil" class="profile-avatar me-2 rounded-circle border border-warning">
                         <span class="profile-name"></span>
                     </a>
-                    <a href="#" class="logout-link">Sair</a>
+                    <a href="#" class="logout-link ms-3">Sair</a>
                 </div>
             </nav>
         </div>
     </header>
 
-    <main>
+    <main class="container-fluid p-0">
         <section class="banner-carousel">
             <div class="swiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="assets/img/Acredite na mudança de quem faz acontecer..png" alt="Acredite na mudança de quem faz acontecer.">
+                        <img src="../img/askdsakfdaskfasdfasd.png" alt="Acredite na mudança de quem faz acontecer.">
                     </div>
                     <div class="swiper-slide">
-                        <img src="assets/img/download (1).jpg" alt="Aprenda a programar com quem faz acontecer.">
+                        <img src="../img/fmdSAFdsakf.png" alt="Aprenda a programar com quem faz acontecer.">
                     </div>
                     <div class="swiper-slide">
-                        <img src="imgs/banner3.jpg" alt="Nova jornada profissional te espera.">
+                        <img src="../img/34i93234923495342523452342.png" alt="Nova jornada profissional te espera.">
                     </div>
                 </div>
                 <div class="swiper-button-next"></div>
@@ -55,209 +58,85 @@
             </div>
         </section>
 
-        <section class="section-courses">
-            <div class="container">
-                <div class="section-header">
-                    <h2>📚 Cursos de T.I.</h2>
-                    <p>Descubra os caminhos para o futuro da tecnologia.</p>
-                </div>
-                <div class="course-cards-container swiper-container-custom">
-                    <div class="swiper-wrapper">
-                        <article class="course-card swiper-slide">
-                            <img src="imgs/it-1.jpg" alt="Curso de Desenvolvimento Full-Stack">
-                            <div class="card-content">
-                                <h3>Desenvolvimento Full-Stack</h3>
-                            </div>
-                        </article>
-                        <article class="course-card swiper-slide">
-                            <img src="imgs/it-2.jpg" alt="Curso de Cibersegurança">
-                            <div class="card-content">
-                                <h3>Cibersegurança</h3>
-                            </div>
-                        </article>
-                        <article class="course-card swiper-slide">
-                            <img src="imgs/it-3.jpg" alt="Curso de Análise de Dados">
-                            <div class="card-content">
-                                <h3>Análise de Dados com Python</h3>
-                            </div>
-                        </article>
-                        <article class="course-card swiper-slide">
-                            <img src="imgs/it-4.jpg" alt="Curso de UX/UI Design">
-                            <div class="card-content">
-                                <h3>UX/UI Design</h3>
-                            </div>
-                        </article>
-                        <article class="course-card swiper-slide">
-                            <img src="imgs/it-5.jpg" alt="Curso de Inteligência Artificial">
-                            <div class="card-content">
-                                <h3>Inteligência Artificial</h3>
-                            </div>
-                        </article>
+        <section class="container-lg my-5">
+            <div class="row info-blocks-container">
+                <div class="col-12 col-md-6 mb-4">
+                    <div class="info-block p-4 rounded" id="cursos-ti">
+                        <h2 class="block-title pb-2 mb-3">📚 Cursos de T.I.</h2>
+                        <ul class="list-unstyled mb-0">
+                            <li><a href="#" class="text-decoration-none">Desenvolvimento Full-Stack</a></li>
+                            <li><a href="#" class="text-decoration-none">Cibersegurança</a></li>
+                            <li><a href="#" class="text-decoration-none">Análise de Dados com Python</a></li>
+                            <li><a href="#" class="text-decoration-none">UX/UI Design</a></li>
+                            <li><a href="#" class="text-decoration-none">Inteligência Artificial</a></li>
+                        </ul>
                     </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
                 </div>
-            </div>
-        </section>
 
-        <section class="section-courses">
-            <div class="container">
-                <div class="section-header">
-                    <h2>⚕️ Cursos de Medicina</h2>
-                    <p>Dedique-se a salvar vidas e promover o bem-estar.</p>
-                </div>
-                <div class="course-cards-container swiper-container-custom">
-                    <div class="swiper-wrapper">
-                        <article class="course-card swiper-slide">
-                            <img src="imgs/med-1.jpg" alt="Curso de Cardiologia">
-                            <div class="card-content">
-                                <h3>Cardiologia</h3>
-                            </div>
-                        </article>
-                        <article class="course-card swiper-slide">
-                            <img src="imgs/med-2.jpg" alt="Curso de Pediatria">
-                            <div class="card-content">
-                                <h3>Pediatria</h3>
-                            </div>
-                        </article>
-                        <article class="course-card swiper-slide">
-                            <img src="imgs/med-3.jpg" alt="Curso de Cirurgia Geral">
-                            <div class="card-content">
-                                <h3>Cirurgia Geral</h3>
-                            </div>
-                        </article>
-                        <article class="course-card swiper-slide">
-                            <img src="imgs/med-4.jpg" alt="Curso de Neurologia">
-                            <div class="card-content">
-                                <h3>Neurologia</h3>
-                            </div>
-                        </article>
-                        <article class="course-card swiper-slide">
-                            <img src="imgs/med-5.jpg" alt="Curso de Dermatologia">
-                            <div class="card-content">
-                                <h3>Dermatologia</h3>
-                            </div>
-                        </article>
+                <div class="col-12 col-md-6 mb-4">
+                    <div class="info-block p-4 rounded" id="cursos-medicina">
+                        <h2 class="block-title pb-2 mb-3">⚕️ Cursos de Medicina</h2>
+                        <ul class="list-unstyled mb-0">
+                            <li><a href="#" class="text-decoration-none">Cardiologia</a></li>
+                            <li><a href="#" class="text-decoration-none">Pediatria</a></li>
+                            <li><a href="#" class="text-decoration-none">Cirurgia Geral</a></li>
+                            <li><a href="#" class="text-decoration-none">Neurologia</a></li>
+                            <li><a href="#" class="text-decoration-none">Dermatologia</a></li>
+                        </ul>
                     </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
                 </div>
-            </div>
-        </section>
 
-        <section class="section-courses">
-            <div class="container">
-                <div class="section-header">
-                    <h2>🐾 Cursos de Veterinária</h2>
-                    <p>Cuide da saúde e do bem-estar dos nossos amigos de quatro patas.</p>
-                </div>
-                <div class="course-cards-container swiper-container-custom">
-                    <div class="swiper-wrapper">
-                        <article class="course-card swiper-slide">
-                            <img src="imgs/vet-1.jpg" alt="Curso de Clínica Geral">
-                            <div class="card-content">
-                                <h3>Clínica de Pequenos Animais</h3>
-                            </div>
-                        </article>
-                        <article class="course-card swiper-slide">
-                            <img src="imgs/vet-2.jpg" alt="Curso de Animais Silvestres">
-                            <div class="card-content">
-                                <h3>Animais Silvestres</h3>
-                            </div>
-                        </article>
-                        <article class="course-card swiper-slide">
-                            <img src="imgs/vet-3.jpg" alt="Curso de Odontologia Veterinária">
-                            <div class="card-content">
-                                <h3>Odontologia Veterinária</h3>
-                            </div>
-                        </article>
-                        <article class="course-card swiper-slide">
-                            <img src="imgs/vet-4.jpg" alt="Curso de Fisioterapia Veterinária">
-                            <div class="card-content">
-                                <h3>Fisioterapia Veterinária</h3>
-                            </div>
-                        </article>
-                        <article class="course-card swiper-slide">
-                            <img src="imgs/vet-5.jpg" alt="Curso de Nutrição Animal">
-                            <div class="card-content">
-                                <h3>Nutrição Animal</h3>
-                            </div>
-                        </article>
+                <div class="col-12 col-md-6 mb-4">
+                    <div class="info-block p-4 rounded" id="cursos-veterinaria">
+                        <h2 class="block-title pb-2 mb-3">🐾 Cursos de Veterinária</h2>
+                        <ul class="list-unstyled mb-0">
+                            <li><a href="#" class="text-decoration-none">Clínica de Pequenos Animais</a></li>
+                            <li><a href="#" class="text-decoration-none">Animais Silvestres</a></li>
+                            <li><a href="#" class="text-decoration-none">Odontologia Veterinária</a></li>
+                            <li><a href="#" class="text-decoration-none">Fisioterapia Veterinária</a></li>
+                            <li><a href="#" class="text-decoration-none">Nutrição Animal</a></li>
+                        </ul>
                     </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
                 </div>
-            </div>
-        </section>
 
-        <section class="section-courses">
-            <div class="container">
-                <div class="section-header">
-                    <h2>🧠 Cursos de Psicologia</h2>
-                    <p>Entenda a mente humana e ajude as pessoas a se transformarem.</p>
-                </div>
-                <div class="course-cards-container swiper-container-custom">
-                    <div class="swiper-wrapper">
-                        <article class="course-card swiper-slide">
-                            <img src="imgs/psi-1.jpg" alt="Curso de Terapia Cognitivo-Comportamental">
-                            <div class="card-content">
-                                <h3>Terapia Cognitivo-Comportamental</h3>
-                            </div>
-                        </article>
-                        <article class="course-card swiper-slide">
-                            <img src="imgs/psi-2.jpg" alt="Curso de Neuropsicologia">
-                            <div class="card-content">
-                                <h3>Neuropsicologia</h3>
-                            </div>
-                        </article>
-                        <article class="course-card swiper-slide">
-                            <img src="imgs/psi-3.jpg" alt="Curso de Psicologia Clínica">
-                            <div class="card-content">
-                                <h3>Psicologia Clínica</h3>
-                            </div>
-                        </article>
-                        <article class="course-card swiper-slide">
-                            <img src="imgs/psi-4.jpg" alt="Curso de Psicologia Organizacional">
-                            <div class="card-content">
-                                <h3>Psicologia Organizacional</h3>
-                            </div>
-                        </article>
-                        <article class="course-card swiper-slide">
-                            <img src="imgs/psi-5.jpg" alt="Curso de Psicologia Infantil">
-                            <div class="card-content">
-                                <h3>Psicologia Infantil</h3>
-                            </div>
-                        </article>
+                <div class="col-12 col-md-6 mb-4">
+                    <div class="info-block p-4 rounded" id="cursos-psicologia">
+                        <h2 class="block-title pb-2 mb-3">🧠 Cursos de Psicologia</h2>
+                        <ul class="list-unstyled mb-0">
+                            <li><a href="#" class="text-decoration-none">Terapia Cognitivo-Comportamental</a></li>
+                            <li><a href="#" class="text-decoration-none">Neuropsicologia</a></li>
+                            <li><a href="#" class="text-decoration-none">Psicologia Clínica</a></li>
+                            <li><a href="#" class="text-decoration-none">Psicologia Organizacional</a></li>
+                            <li><a href="#" class="text-decoration-none">Psicologia Infantil</a></li>
+                        </ul>
                     </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
                 </div>
             </div>
         </section>
     </main>
 
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-top">
-                <div class="footer-logo">
-                    <img src="../img/Incognidex.png" alt="Logo Incognidex">
-                    <span>Incognidex</span>
+        <div class="container-fluid footer-container">
+            <ul class="list-unstyled d-flex flex-wrap justify-content-start m-0 p-0" style="gap: 1.5rem;"></ul>
+                        <img src="../img/Incognidex.png" alt="Logo Incognidex" class="me-2" style="height: 30px;">
+                        <span>Incognidex</span>
                 </div>
                 <nav class="footer-nav">
-                    <ul>
-                        <li><a href="#">Sobre</a></li>
-                        <li><a href="#">Ajuda</a></li>
-                        <li><a href="#">Termos</a></li>
-                        <li><a href="#">Privacidade</a></li>
+                    <ul class="list-unstyled d-flex flex-wrap justify-content-center m-0 p-0" style="gap: 1.5rem;">
+                        <li><a href="#" class="text-decoration-none">Sobre</a></li>
+                        <li><a href="#" class="text-decoration-none">Ajuda</a></li>
+                        <li><a href="#" class="text-decoration-none">Termos</a></li>
+                        <li><a href="#" class="text-decoration-none">Privacidade</a></li>
                     </ul>
                 </nav>
             </div>
-            <div class="footer-copy">
-                <p>&copy; 2025 Incognidex. Todos os direitos reservados.</p>
+            <div class="footer-copy text-center">
+                <p class="m-0">&copy; 2025 Incognidex. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-KyZXB4a7A8jL3I35y7r5v5eF9p5z6L6P5eC5P7eD5x5Q5P5V7j5uD5f5T5uL5eS5z5D5B5d5x5R5V5n5t5a5L5" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="../js/home.js"></script>
 </body>
