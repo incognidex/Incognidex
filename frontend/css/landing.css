@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Montserrat:wght@400;700&display=swap');
+
+:root {
+    --bg-escuro: #0a0a1a;
+    --cor-cinza-cards: #1a1a2b;
+    --cor-texto: #ffffff;
+    --cor-laranja: #FF8C00;
+    --cor-amarelo: #FFD700;
+    --sombra-neon: 0 0 15px var(--cor-laranja), 0 0 25px var(--cor-laranja);
+    --sombra-texto-neon: 0 0 8px var(--cor-amarelo);
+    --sombra-card: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--cor-texto);
+    margin: 0;
+    overflow-x: hidden;
+    position: relative;
+    /* Removemos a imagem de fundo daqui */
+    background-color: var(--bg-escuro); /* O body terá apenas uma cor de fundo */
+}
+
+/* Este elemento (body::before) agora conterá a imagem de fundo e o blur */
+body::before {
+    content: '';
+    position: fixed; /* Usa fixed para cobrir toda a viewport e rolar com o fundo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* A imagem de fundo e o blur estão aqui */
+    background: url('../img/conexao-de-rede-de-internet-de-negocios-globais-iot-internet-das-coisas-conceito-de-inteligencia-de-negocios-rede-global-de-negocios-fundo-de-tecnologia-futurista-ai-generative.jpg') no-repeat center center fixed;
+    background-size: cover;
+    filter: blur(3px); /* Ajuste o valor do blur conforme desejar */
+    -webkit-filter: blur(3px); /* Para compatibilidade com navegadores Webkit */
+    z-index: -2; /* Fica abaixo de tudo, incluindo a camada escura */
+}
+
+/* Adicionamos uma segunda camada para o escurecimento, por cima da imagem borrada */
+body::after {
+    content: '';
+    position: fixed; /* Usa fixed para cobrir toda a viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Camada escura */
+    z-index: -1; /* Fica por cima da imagem borrada, mas abaixo do conteúdo principal */
+}
+
+
+/* --- Posicionamento da Logo --- */
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    transition: transform 0.4s ease-in-out;
+    position: relative;
+    z-index: 2;
+}
+
+.logo-container:hover {
+    transform: scale(1.05);
+}
+
+.logo-image {
+    height: 170px;
+    width: auto;
+    filter: drop-shadow(0 0 8px var(--cor-amarelo));
+    transition: filter 0.3s ease-in-out;
+}
+
+.logo-container:hover .logo-image {
+    filter: drop-shadow(0 0 12px var(--cor-amarelo));
+}
+
+.logo-text {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--cor-texto);
+    text-shadow: var(--sombra-texto-neon);
+    margin: 0;
+}
+
+/* --- Seção Hero (Conteúdo Principal) --- */
+.hero-section {
+    min-height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 1; /* Garante que o conteúdo da hero section fique acima do fundo */
+}
+
+.hero-content {
+    z-index: 2;
+    max-width: 800px;
+    animation: fadeIn 1.5s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slogan {
+    font-size: 1.2rem;
+    color: var(--cor-texto);
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    background-color: rgba(255, 140, 0, 0.2);
+    border: 1px solid var(--cor-laranja);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative; /* Garante que os itens do countdown fiquem acima do fundo */
+    z-index: 2;
+}
+
+.countdown-item:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: var(--sombra-neon);
+}
+
+.countdown-item span {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--cor-amarelo);
+    text-shadow: var(--sombra-texto-neon);
+}
+
+.countdown-item small {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: var(--cor-texto);
+    letter-spacing: 1px;
+}
+
+/* --- Seção de Recursos (Features) --- */
+.features-section {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    background-color: var(--bg-escuro);
+    padding: 3rem 1rem;
+    gap: 1rem;
+    box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.5);
+    position: relative; /* Garante que a seção de features fique acima do fundo */
+    z-index: 1;
+}
+
+.feature-card {
+    flex: 1 1 300px;
+    background-color: var(--cor-cinza-cards);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: 1px solid transparent;
+    box-shadow: var(--sombra-card);
+    position: relative; /* Garante que os cards fiquem acima do fundo */
+    z-index: 2;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.6), var(--sombra-card);
+    border: 1px solid var(--cor-amarelo);
+}
+
+.feature-card i {
+    font-size: 3rem;
+    color: var(--cor-amarelo);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--cor-amarelo);
+}
+
+.feature-card h3 {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+    color: var(--cor-laranja);
+}
+
+.feature-card p {
+    color: var(--cor-texto);
+    font-size: 1rem;
+}
+
+/* --- Animações --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .logo-text {
+        font-size: 2rem;
+    }
+    .logo-image {
+        height: 50px;
+    }
+    .slogan {
+        font-size: 1rem;
+    }
+    .hero-content {
+        margin-top: 4rem;
+    }
+    .countdown-container {
+        gap: 1rem;
+    }
+    .countdown-item {
+        width: 80px;
+        height: 80px;
+    }
+    .countdown-item span {
+        font-size: 2rem;
+    }
+    .feature-card {
+        flex: 1 1 100%;
+    }
+}

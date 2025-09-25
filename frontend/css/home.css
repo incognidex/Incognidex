@@ -1,0 +1,278 @@
+/* Paleta de Cores & Fontes */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Montserrat:wght@400;700&display=swap');
+
+:root {
+    --bg-escuro: #0a0a1a;
+    --cor-cinza-cards: #1a1a2b;
+    --cor-texto: #ffffff;
+    --cor-laranja: #FF8C00;
+    --cor-amarelo: #FFD700;
+    --sombra-neon: 0 0 15px var(--cor-laranja), 0 0 25px var(--cor-laranja);
+    --sombra-texto-neon: 0 0 8px var(--cor-amarelo);
+    --sombra-card: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-escuro);
+    color: var(--cor-texto);
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Background fixo com overlay */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: url('../img/overwatch-2-season-3840x2160-23840.jpg') no-repeat center center / cover;
+    filter: blur(3px);
+    z-index: -2;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+
+/* --- HEADER --- */
+.header {
+    background-color: var(--bg-escuro);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(255, 140, 0, 0.2);
+    color: var(--cor-texto);
+    z-index: 10;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo-explorar-group {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.logo {
+    text-decoration: none;
+    color: var(--cor-texto);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.explorar-link {
+    color: var(--cor-laranja);
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.explorar-link:hover {
+    color: var(--cor-amarelo);
+}
+
+.search-bar {
+    display: flex;
+    border: 1px solid var(--cor-laranja);
+    border-radius: 20px;
+    background-color: var(--cor-cinza-cards);
+    overflow: hidden;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    padding: 0.5rem 1rem;
+    color: var(--cor-texto);
+    outline: none;
+    flex: 1;
+}
+
+.search-bar button {
+    border: none;
+    background-color: var(--cor-laranja);
+    color: var(--cor-texto);
+    padding: 0 1rem;
+    cursor: pointer;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--cor-texto);
+}
+
+.profile-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    border: 2px solid var(--cor-laranja);
+    object-fit: cover;
+}
+
+.logout-link {
+    margin-left: 1rem;
+    color: var(--cor-laranja);
+    text-decoration: none;
+}
+
+/* --- CAROUSEL --- */
+.banner-carousel {
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    height: 400px;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: var(--cor-laranja);
+}
+
+.swiper-pagination-bullet {
+    background: var(--cor-laranja);
+}
+
+/* --- Blocos de Cursos --- */
+.info-blocks-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.info-block {
+    background-color: var(--cor-cinza-cards);
+    border: 1px solid rgba(255, 140, 0, 0.1);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: var(--sombra-card);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-block:hover {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--cor-laranja);
+}
+
+.block-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--cor-laranja);
+    border-bottom: 2px solid var(--cor-amarelo);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.info-block ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.info-block ul li {
+    margin-bottom: 12px;
+}
+
+.info-block ul li a {
+    color: var(--cor-texto);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.info-block ul li a:hover {
+    color: var(--cor-laranja);
+    text-decoration: underline;
+}
+
+/* --- FOOTER --- */
+.footer {
+    background-color: var(--bg-escuro);
+    padding: 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 140, 0, 0.2);
+    margin-top: auto;
+    width: 100%;
+    flex-shrink: 0;
+    color: var(--cor-texto);
+}
+
+.footer-logo {
+    color: var(--cor-texto);
+    text-decoration: none;
+}
+
+.footer-nav a {
+    color: var(--cor-texto);
+    text-decoration: none;
+}
+
+.footer-nav a:hover {
+    color: var(--cor-laranja);
+    text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+
+    .info-blocks-container {
+        grid-template-columns: 1fr;
+    }
+}

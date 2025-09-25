@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-BaseApplication<base>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.incognidex.base.BaseApplication",
+            "projectName": "base",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

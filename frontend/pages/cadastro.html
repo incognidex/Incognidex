@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Conta - Incognidex</title>
+    <link rel="stylesheet" href="../css/cadastro.css">
+    <link rel="stylesheet" href="../assets/cursor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-container">
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="stars3"></div>
+    </div>
+
+    <div class="form-container">
+        <form action="#" method="post">
+            <div class="form-header">
+                <img src="../img/Incognidex.png" alt="Logo Incognidex" class="logo">
+                <h2>Crie sua Conta</h2>
+                <p>Junte-se à nossa comunidade de descobertas.</p>
+            </div>
+
+            <div class="input-group">
+                <label for="username">Nome de Usuário</label>
+                <input type="text" id="username" name="username" placeholder="ex: seu_usuario" required>
+            </div>
+
+            <div class="input-group">
+                <label for="full_name">Nome Completo</label>
+                <input type="text" id="full_name" name="full_name" placeholder="ex: Nome Sobrenome">
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="ex: seuemail@dominio.com" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" placeholder="••••••••" required>
+            </div>
+
+            <div class="input-group">
+                <label for="confirm_password">Confirmar Senha</label>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="••••••••" required>
+            </div>
+
+            <div class="input-group">
+                <label for="avatar_url">URL do Avatar (Opcional)</label>
+                <input type="url" id="avatar_url" name="avatar_url" placeholder="ex: https://site.com/imagem.png">
+            </div>
+
+            <button type="submit" class="btn">Cadastrar</button>
+
+            <div class="login-link">
+                <p>Já tem uma conta? <a href="login.html">Faça Login</a></p>
+            </div>
+        </form>
+    </div>
+    <script src="../js/cadastro.js"></script>
+</body>
+</html>
