@@ -4,41 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Incognidex - Cursos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWqU5oO6SgP+5v7mO6Tj8p1D4B5sD5j8S5/Q+t7R+O/9oR6n8K9B7A/vJ/b3tA/g==" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/home.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMD/CDt3lP7U1R7M6sF7/8B1b/zI8N3B6P8l2uC4h2Tf+1c2i7L2fP5z5P5V7j5uD5f5T5uL5eS5z5D5B5d5x5R5V5n5t5a5L5" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../frontend/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
     <header class="header sticky-top">
-        <div class="container-fluid header-top">
-            <a href="/" class="logo d-flex align-items-center text-decoration-none">
-                <img src="img/Incognidex.png" alt="Logo Incognidex" class="logo-img me-2">
+        <div class="header-top container-fluid-override">
+            <a href="/" class="logo flex-row align-center text-decoration-none">
+                <img src="img/Incognidex.png" alt="Logo Incognidex" class="logo-img margin-right-2">
                 <span>Incognidex</span>
             </a>
 
-            <div class="search-bar d-flex rounded-pill overflow-hidden flex-grow-1 mx-5 d-none d-lg-flex">
-                <input type="text" placeholder="Buscar documentação e cursos..." class="form-control border-0 bg-transparent text-white">
+            <div class="search-bar flex-row rounded-pill overflow-hidden flex-grow-1 margin-x-5 hidden-lg-down">
+                <input type="text" placeholder="Buscar documentação e cursos..." class="input-control border-0 bg-transparent text-white">
                 <button type="submit" class="btn btn-search" aria-label="Buscar">🔍</button>
             </div>
 
             <nav class="main-nav">
-                <div id="user-profile" class="d-flex align-items-center">
-                    <a href="user-profile.html" class="profile-link d-flex align-items-center text-decoration-none text-white">
-                        <img src="img/profile-placeholder.png" alt="Foto de Perfil" class="profile-avatar rounded-circle border border-warning">
-                        <span class="profile-name d-none d-sm-inline ms-2"></span>
+                <div id="user-profile" class="flex-row align-center">
+                    <a href="user-profile.html" class="profile-link flex-row align-center text-decoration-none text-white">
+                        <img src="img/profile-placeholder.png" alt="Foto de Perfil" class="profile-avatar rounded-circle border-warning">
+                        <span class="profile-name hidden-sm-down margin-left-2"></span>
                     </a>
-                    <a href="#" class="logout-link ms-3 d-none d-sm-inline">Desconectar</a>
+                    <a href="#" class="logout-link margin-left-3 hidden-sm-down">Desconectar</a>
                 </div>
             </nav>
         </div>
 
         <div class="header-bottom bg-dark-mdn">
-            <div class="container-fluid header-nav-links">
+            <div class="header-nav-links container-fluid-override">
                 <a href="#Novidades" class="nav-link text-white">Novidades</a>
                 <a href="#Sobre" class="nav-link text-white">Sobre</a>
                 <a href="#Contatos" class="nav-link text-white">Contatos</a>
@@ -47,7 +46,7 @@
         </div>
     </header>
 
-    <main class="container-fluid p-0">
+    <main class="container-fluid-override padding-0">
         <section class="banner-carousel">
             <div class="swiper">
                 <div class="swiper-wrapper">
@@ -67,71 +66,63 @@
             </div>
         </section>
 
-        <section class="container-lg my-5">
+        <section class="container-lg-override margin-y-5">
             <h1 class="main-content-title text-center">Categorias Populares para sua Jornada</h1>
-            <div class="row info-blocks-container">
-                <div class="col-12 col-md-6 mb-4">
-                    <div class="info-block p-4 rounded" id="cursos-ti">
-                        <h2 class="block-title pb-2 mb-3">Tecnologias</h2>
-                        <ul class="list-unstyled mb-0">
+            <div class="info-blocks-container grid-row gap-4">
+                
+                <div class="grid-col-12 grid-col-md-6 margin-bottom-4">
+                    <div class="info-block padding-4 rounded" id="cursos-ti">
+                        <h2 class="block-title padding-bottom-2 margin-bottom-3">Tecnologias</h2>
+                        <ul class="list-unstyled margin-bottom-0">
                             <li><a href="#" class="text-decoration-none">ADS</a></li>
                             <li><a href="#" class="text-decoration-none">Engenharia de Software</a></li>
                             <li><a href="#" class="text-decoration-none">Marketing Digital</a></li>
                             <li><a href="#" class="text-decoration-none">UX/UI Design</a></li>
                             <li><a href="#" class="text-decoration-none">Análise de dados</a></li>
                         </ul>
-                        <div class="info-block-subtitle-hover">
-                            Clique no seu e comece a jornada
-                        </div>
+                        <div class="info-block-subtitle-hover">Clique no seu e comece a jornada</div>
                     </div>
                 </div>
 
-
-                <div class="col-12 col-md-6 mb-4">
-                    <div class="info-block p-4 rounded" id="Ciências da saúde">
-                        <h2 class="block-title pb-2 mb-3">Ciências da saúde</h2>
-                        <ul class="list-unstyled mb-0">
+                <div class="grid-col-12 grid-col-md-6 margin-bottom-4">
+                    <div class="info-block padding-4 rounded" id="Ciências da saúde">
+                        <h2 class="block-title padding-bottom-2 margin-bottom-3">Ciências da saúde</h2>
+                        <ul class="list-unstyled margin-bottom-0">
                             <li><a href="#" class="text-decoration-none">Biomedicina</a></li>
                             <li><a href="#" class="text-decoration-none">Medicina Veterinária</a></li>
                             <li><a href="#" class="text-decoration-none">Odontologia</a></li>
                             <li><a href="#" class="text-decoration-none">Psicologia</a></li>
                             <li><a href="#" class="text-decoration-none">Nutrição</a></li>
                         </ul>
-                        <div class="info-block-subtitle-hover">
-                            Clique no seu e comece a jornada
-                        </div>
+                        <div class="info-block-subtitle-hover">Clique no seu e comece a jornada</div>
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6 mb-4">
-                    <div class="info-block p-4 rounded" id="cursos-educação">
-                        <h2 class="block-title pb-2 mb-3">Educação</h2>
-                        <ul class="list-unstyled mb-0">
+                <div class="grid-col-12 grid-col-md-6 margin-bottom-4">
+                    <div class="info-block padding-4 rounded" id="cursos-educação">
+                        <h2 class="block-title padding-bottom-2 margin-bottom-3">Educação</h2>
+                        <ul class="list-unstyled margin-bottom-0">
                             <li><a href="#" class="text-decoration-none">Educação Física</a></li>
                             <li><a href="#" class="text-decoration-none">Pedagogia</a></li>
                             <li><a href="#" class="text-decoration-none">Licenciatura em Matemática</a></li>
                             <li><a href="#" class="text-decoration-none">Licenciatura em Física</a></li>
                             <li><a href="#" class="text-decoration-none">Licenciatura em Artes Visuais</a></li>
                         </ul>
-                        <div class="info-block-subtitle-hover">
-                            Clique no seu e comece a jornada
-                        </div>
+                        <div class="info-block-subtitle-hover">Clique no seu e comece a jornada</div>
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6 mb-4">
-                    <div class="info-block p-4 rounded" id="cursos-psicologia">
-                        <h2 class="block-title pb-2 mb-3">Psicologia</h2>
-                        <ul class="list-unstyled mb-0">
+                <div class="grid-col-12 grid-col-md-6 margin-bottom-4">
+                    <div class="info-block padding-4 rounded" id="cursos-psicologia">
+                        <h2 class="block-title padding-bottom-2 margin-bottom-3">Psicologia</h2>
+                        <ul class="list-unstyled margin-bottom-0">
                             <li><a href="#" class="text-decoration-none">Terapia Cognitivo-Comportamental</a></li>
                             <li><a href="#" class="text-decoration-none">Neuropsicologia</a></li>
                             <li><a href="#" class="text-decoration-none">Psicologia Clínica</a></li>
                             <li><a href="#" class="text-decoration-none">Psicologia Organizacional</a></li>
                             <li><a href="#" class="text-decoration-none">Psicologia Infantil</a></li>
                         </ul>
-                        <div class="info-block-subtitle-hover">
-                            Clique no seu e comece a jornada
-                        </div>
+                        <div class="info-block-subtitle-hover">Clique no seu e comece a jornada</div>
                     </div>
                 </div>
             </div>
@@ -139,25 +130,25 @@
     </main>
 
     <footer class="footer">
-        <div class="container-fluid footer-container">
+        <div class="footer-container container-fluid-override">
 
-            <div class="row g-4 footer-links-section mb-4">
+            <div class="grid-row gap-4 footer-links-section margin-bottom-4">
 
-                <div class="col-12 col-sm-6 col-md-3 mb-4 mb-sm-0 footer-col-logo">
-                    <div class="footer-logo d-flex align-items-center mb-2">
-                        <img src="img/Incognidex.png" alt="Logo Incognidex" class="me-2" style="height: 30px;">
-                        <span class="fs-5 fw-bold text-white">Incognidex</span>
+                <div class="grid-col-12 grid-col-sm-6 grid-col-md-3 margin-bottom-4 margin-bottom-sm-0 footer-col-logo">
+                    <div class="footer-logo flex-row align-center margin-bottom-2">
+                        <img src="img/Incognidex.png" alt="Logo Incognidex" class="margin-right-2" style="height: 30px;">
+                        <span class="font-size-5 font-weight-bold text-white">Incognidex</span>
                     </div>
                     <p class="footer-tagline">Seu manual para a próxima jornada.</p>
 
-                    <div class="footer-social-links mt-3">
-                        <a href="#" aria-label="Github" class="text-white me-3"><i class="fa-brands fa-github"></i></a>
-                        <a href="#" aria-label="Twitter/X" class="text-white me-3"><i class="fa-brands fa-x-twitter"></i></a>
+                    <div class="footer-social-links margin-top-3">
+                        <a href="#" aria-label="Github" class="text-white margin-right-3"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" aria-label="Twitter/X" class="text-white margin-right-3"><i class="fa-brands fa-x-twitter"></i></a>
                         <a href="#" aria-label="Opera GX" class="text-white"><i class="fa-brands fa-opera"></i></a>
                     </div>
                 </div>
 
-                <div class="col-6 col-sm-3 mb-4 mb-sm-0 footer-col">
+                <div class="grid-col-6 grid-col-sm-3 margin-bottom-4 margin-bottom-sm-0 footer-col">
                     <h5 class="footer-col-title">Informações</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-decoration-none">Sobre Nós</a></li>
@@ -168,7 +159,7 @@
                     </ul>
                 </div>
 
-                <div class="col-6 col-sm-3 mb-4 mb-sm-0 footer-col">
+                <div class="grid-col-6 grid-col-sm-3 margin-bottom-4 margin-bottom-sm-0 footer-col">
                     <h5 class="footer-col-title">Comunidade</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-decoration-none">Fórum Incognidex</a></li>
@@ -179,7 +170,7 @@
                     </ul>
                 </div>
 
-                <div class="col-6 col-sm-3 mb-4 mb-sm-0 footer-col">
+                <div class="grid-col-6 grid-col-sm-3 margin-bottom-4 margin-bottom-sm-0 footer-col">
                     <h5 class="footer-col-title">Recursos</h5>
                     <ul class="list-unstyled">
                         <li><a href="#cursos-ti" class="text-decoration-none">Tecnologias Web</a></li>
@@ -190,7 +181,7 @@
                     </ul>
                 </div>
 
-                <div class="col-6 col-sm-3 mb-4 mb-sm-0 footer-col">
+                <div class="grid-col-6 grid-col-sm-3 margin-bottom-4 margin-bottom-sm-0 footer-col">
                     <h5 class="footer-col-title">Legal</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-decoration-none">Privacidade</a></li>
@@ -205,7 +196,7 @@
 
             <div class="footer-divider"></div>
 
-            <div class="footer-legal-section mt-3">
+            <div class="footer-legal-section margin-top-3">
 
                 <div class="footer-copy-mdn">
                     <p class="m-0 text-muted-mdn">&copy; 2025 Incognidex. Todos os direitos reservados.</p>
@@ -215,8 +206,7 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-KyZXB4a7A8jL3I35y7r5v5eF9p5z6L6P5eC5P7eD5x5Q5P5V7j5uD5f5T5uL5eS5z5D5B5d5x5R5V5n5t5a5L5" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="../js/home.js"></script>
+    <script src="js/home.js"></script>
 </body>
 </html>

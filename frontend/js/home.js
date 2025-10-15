@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (avatarUrl) {
                 profileAvatar.src = avatarUrl;
             } else {
-                profileAvatar.src = '../img/profile-placeholder.png';
+                profileAvatar.src = 'img/profile-placeholder.png';
             }
         } else {
             // Se não houver nome de usuário, você pode redirecionar para a página de login
