@@ -1,4 +1,5 @@
 package com.incognidex.base.model;
+
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -13,6 +14,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -38,18 +40,23 @@ public class User {
     @Column(name = "url_foto", length = 255)
     private String avatarUrl;
 
+    @Column(name = "banner_color", length = 7)
+    private String bannerColor;
+
+    @Column
+    private String resetToken;
+    
     @Column(name = "criacao", updatable = false)
     private LocalDateTime createdAt;
 
     @Column(name = "atualizacao")
     private LocalDateTime updatedAt;
 
-    @Column
-    private String resetToken;
+    // Construtores
+    public User() {
+    }
 
-    // Construtores, Getters e Setters
-    public User() {}
-
+    // Getters e Setters
     public Integer getId() {
         return id;
     }
@@ -114,6 +121,22 @@ public class User {
         this.avatarUrl = avatarUrl;
     }
 
+    public String getBannerColor() {
+        return bannerColor;
+    }
+
+    public void setBannerColor(String bannerColor) {
+        this.bannerColor = bannerColor;
+    }
+
+    public String getResetToken() {
+        return resetToken;
+    }
+
+    public void setResetToken(String resetToken) {
+        this.resetToken = resetToken;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -129,7 +152,8 @@ public class User {
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
-
+    
+    // Métodos de Ciclo de Vida do JPA
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
@@ -139,12 +163,5 @@ public class User {
     @PreUpdate
     protected void onUpdate() {
         this.updatedAt = LocalDateTime.now();
-    }
-    public String getResetToken() {
-        return resetToken;
-    }
-
-    public void setResetToken(String resetToken) {
-        this.resetToken = resetToken;
     }
 }
