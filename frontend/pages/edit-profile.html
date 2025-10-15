@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Perfil - Incognidex</title>
-    <link rel="stylesheet" href="/frontend/css/profile.css">
+    <link rel="stylesheet" href="/frontend/css/user-profile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
@@ -17,46 +17,55 @@
         <div class="stars3"></div>
     </div>
 
-    <div class="profile-container">
-        <form id="editProfileForm" class="card" action="#" method="post">
-            <div class="form-header">
-                <h2>Editar Perfil</h2>
-                <p>Gerencie suas informações e foto de perfil.</p>
-            </div>
-
-            <div class="profile-picture-group">
-                <label>Foto de Perfil</label>
-                <div class="profile-picture-preview">
-                    <img id="profilePicturePreview" src="https://via.placeholder.com/150" alt="Foto de Perfil">
+    <div class="profile-container edit-mode">
+        <header class="profile-header">
+            <div class="header-background"></div>
+            <div class="header-content">
+                <img id="edit-profile-pic-preview" src="https://via.placeholder.com/150" alt="Foto de Perfil Atual">
+                <div class="user-info">
+                    <h1>Editar Perfil</h1>
                 </div>
-                <input type="file" id="profilePictureInput" accept="image/*">
-                <button type="button" id="removePictureBtn" class="btn btn-secondary">Remover Foto</button>
             </div>
+        </header>
 
-            <div class="input-group">
-                <label for="username">Nickname</label>
-                <input type="text" id="username" name="username" placeholder="Digite seu novo nickname" required>
-            </div>
+        <main class="profile-main-content">
+            <form id="edit-profile-form" class="card form-card">
 
-            <div class="input-group">
-                <label for="nomeCompleto">Nome Completo</label>
-                <input type="text" id="nomeCompleto" name="nomeCompleto" placeholder="Digite seu nome completo">
-            </div>
+                <div class="form-group">
+                    <label for="file">Mudar Foto de Perfil:</label>
+                    <input type="file" id="file" name="file" accept="image/*">
+                </div>
 
-            <div class="input-group">
-                <label for="biografia">Biografia</label>
-                <textarea id="biografia" name="biografia" rows="4" placeholder="Escreva um pouco sobre você..."></textarea>
-            </div>
+                <div class="form-group">
+                    <label for="username">Nome de Usuário (@):</label>
+                    <input type="text" id="username" name="username" required>
+                    <small>Este será seu identificador único na plataforma.</small>
+                </div>
 
-            <div class="input-group">
-                <label for="interessesAcademicos">Interesses Acadêmicos</label>
-                <textarea id="interessesAcademicos" name="interessesAcademicos" rows="2" placeholder="Ex: Programação Web, Banco de Dados"></textarea>
-            </div>
+                <div class="form-group">
+                    <label for="nomeCompleto">Nome Completo:</label>
+                    <input type="text" id="nomeCompleto" name="nomeCompleto">
+                </div>
 
-            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                <div class="form-group">
+                    <label for="biografia">Biografia:</label>
+                    <textarea id="biografia" name="biografia" rows="4" maxlength="500"></textarea>
+                </div>
 
-            <div id="messageDisplay" class="form-message"></div>
-        </form>
+                <div class="form-group">
+                    <label for="interessesAcademicos">Interesses Acadêmicos:</label>
+                    <input type="text" id="interessesAcademicos" name="interessesAcademicos">
+                    <small>Ex: Java, Spring Boot, React, Estruturas de Dados.</small>
+                </div>
+
+                <div id="message-area" style="margin-top: 15px;"></div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn primary-btn">Salvar Alterações</button>
+                    <a href="user-profile.html" class="btn secondary-btn">Cancelar</a>
+                </div>
+            </form>
+        </main>
     </div>
 
     <script src="js/edit-profile.js"></script>
