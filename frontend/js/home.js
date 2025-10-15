@@ -1,8 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // ===========================================
-    // 1. Lógica do Carrossel (Swiper)
-    // ===========================================
-
     // Inicializa o Swiper para o carrossel principal
     const mainSwiper = new Swiper('.swiper', {
         loop: true,
@@ -20,66 +16,50 @@ document.addEventListener('DOMContentLoaded', function () {
         },
     });
 
-    // ===========================================
-    // 2. Lógica de Autenticação e Perfil do Usuário
-    // ===========================================
-
+    // --- Lógica de autenticação e perfil do usuário ---
     const userProfile = document.getElementById('user-profile');
-    const profileName = userProfile?.querySelector('.profile-name');
-    const profileAvatar = userProfile?.querySelector('.profile-avatar');
-    const logoutLink = userProfile?.querySelector('.logout-link');
+    const profileName = userProfile.querySelector('.profile-name');
+    const profileAvatar = userProfile.querySelector('.profile-avatar');
+    const logoutLink = userProfile.querySelector('.logout-link');
 
-    // Função: Garante que apenas usuários autenticados acessem a Home
-    function requireAuth() {
-        // Agora verifica o authToken, que é o padrão de segurança
-        const authToken = localStorage.getItem('authToken');
-
-        if (!authToken) {
-            // Redireciona para o login se não houver token
-            window.location.href = 'login.html';
-        }
-    }
-
-    // Função: Carregar o perfil do usuário logado
+    // Função para buscar e exibir os dados do usuário logado
     function loadUserProfile() {
+        // Pega as informações de login do localStorage
         const username = localStorage.getItem('username');
         const avatarUrl = localStorage.getItem('avatarUrl');
 
         if (username) {
-            if (profileName) profileName.textContent = username;
-            if (profileAvatar) {
-                // Usa o avatar retornado, ou um placeholder padrão
-                profileAvatar.src = avatarUrl || '../img/profile-placeholder.png';
+            // Se o nome de usuário existe, ele está logado.
+            profileName.textContent = username;
+
+            if (avatarUrl) {
+                profileAvatar.src = avatarUrl;
+            } else {
+                profileAvatar.src = '../img/profile-placeholder.png';
             }
         } else {
-            // Se não houver nome de usuário, mesmo com token, redireciona por segurança
-            window.location.href = 'login.html';
+            // Se não houver nome de usuário, você pode redirecionar para a página de login
+            // window.location.href = 'login.html';
+            console.log("Usuário não logado. Redirecionando ou exibindo link de login.");
         }
     }
 
-    // Função: Logout (sair)
+    // Função para lidar com o logout
     function handleLogout(event) {
-        event.preventDefault();
-        // Remove todos os dados de sessão e autenticação
-        localStorage.removeItem('authToken');
-        localStorage.removeItem('isAuthenticated');
+        event.preventDefault(); // Impede o link de navegar
+        // Remove as informações de login do localStorage
+        localStorage.removeItem('userToken');
         localStorage.removeItem('username');
         localStorage.removeItem('avatarUrl');
-
-        // Redireciona para a Home (deslogado) ou Login
-        window.location.href = 'index.html';
+        // Redireciona para a página de login
+        window.location.href = 'login.html';
     }
 
-    // Adiciona evento ao botão/link de sair, se existir
+    // Adiciona o evento de clique para o link de "Sair"
     if (logoutLink) {
         logoutLink.addEventListener('click', handleLogout);
     }
 
-    // ===========================================
-    // 3. Execução Principal (ao carregar a página)
-    // ===========================================
-
-    // Garante que apenas usuários logados acessem e carrega os dados
-    requireAuth();
+    // Chama a função ao carregar a página para exibir os dados do usuário
     loadUserProfile();
 });
