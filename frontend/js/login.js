@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('password').value;
 
         const payload = {
-            username: identifier, 
+            username: identifier,
             password: password
         };
 
@@ -21,43 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(payload)
             });
 
-            // 1. Leia a resposta do servidor para debug e processamento
+            // Adicione esta linha para depurar
             const textResponse = await response.text();
             console.log('Resposta do servidor:', textResponse);
-            // Tente analisar a resposta JSON
-            let data = {};
-            try {
-                data = JSON.parse(textResponse);
-            } catch (e) {
-                console.error('Erro ao analisar JSON:', e);
-                // Se a análise falhar, use uma estrutura padrão
-                data = { message: 'Resposta inválida do servidor.' };
-            }
+
+            const data = JSON.parse(textResponse);
 
             if (response.ok) {
-                // ===============================================
-                // 🎯 LÓGICA DE SUCESSO E REDIRECIONAMENTO 🎯
-                // ===============================================
-
-                // 2. Salve o Token (Assumindo que o token JWT venha em data.token)
-                if (data.token) {
-                    localStorage.setItem('authToken', data.token);
-                } else {
-                    // Se o servidor retornar sucesso, mas sem token, avise o console
-                    console.warn('Login bem-sucedido, mas nenhum token foi recebido.');
-                }
-                
-                // 3. Redirecione para a página home
-                // Ajuste 'index.html' para o caminho correto da sua página home!
-                window.location.href = 'index.html'; 
-                
+                // ... (o resto do seu código permanece o mesmo)
             } else {
-                // Lógica de falha de login (ex: status 401 Unauthorized)
-                const errorMessage = data.message || 'Verifique suas credenciais.';
-                alert('Falha no login: ' + errorMessage);
+                alert('Falha no login. Verifique suas credenciais.');
             }
         } catch (error) {
-            // Lógica de erro de rede (ex: servidor indisponível)
             console.error('Erro na requisição:', error);
             alert('Ocorreu um erro ao tentar se conectar com o servidor.');
         }
