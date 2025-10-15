@@ -25,12 +25,35 @@ document.addEventListener('DOMContentLoaded', () => {
             const textResponse = await response.text();
             console.log('Resposta do servidor:', textResponse);
 
-            const data = JSON.parse(textResponse);
+            let data = {};
+            try {
+                data = JSON.parse(textResponse);
+            } catch (e) {
+                console.error('Erro ao analisar JSON da resposta:', e);
+                data = { message: 'Resposta inválida ou erro interno do servidor.' };
+            }
 
             if (response.ok) {
-                // ... (o resto do seu código permanece o mesmo)
+                // ===============================================
+                // 🎯 CÓDIGO FALTANDO: SALVAR DADOS E REDIRECIONAR 🎯
+                // ===============================================
+
+                // 1. Salva o Token JWT (necessário para autenticar requisições futuras)
+                if (data.token) {
+                    localStorage.setItem('authToken', data.token);
+                }
+
+                // 2. Salva os dados do usuário para exibição na Home
+                localStorage.setItem('isAuthenticated', 'true');
+                localStorage.setItem('username', data.username || identifier);
+                localStorage.setItem('avatarUrl', data.avatarUrl || '');
+
+                // 3. Redireciona para a página Home
+                window.location.href = 'home.html'; 
+
             } else {
-                alert('Falha no login. Verifique suas credenciais.');
+                const errorMessage = data.message || 'Verifique suas credenciais.';
+                alert('Falha no login: ' + errorMessage);
             }
         } catch (error) {
             console.error('Erro na requisição:', error);
