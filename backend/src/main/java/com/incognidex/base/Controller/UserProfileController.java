@@ -44,21 +44,23 @@ public class UserProfileController {
             @RequestParam("nomeCompleto") String newFullName,
             @RequestParam("biografia") String newBiografia,
             @RequestParam("interessesAcademicos") String newInteressesAcademicos,
-            @RequestParam(value = "file", required = false) MultipartFile file,
-            HttpServletRequest request) {
+            @RequestParam("bannerColor") String bannerColor,
+            @RequestParam(value = "fotoPerfil", required = false) MultipartFile fotoPerfil,
+            HttpServletRequest request) throws IllegalAccessException {
 
         // Supondo que você tem uma forma de obter o nome de usuário autenticado
         // Por exemplo, usando um cabeçalho personalizado ou token JWT
         String currentUsername = request.getHeader("X-User-Username");
 
         try {
-            User updatedUser = userService.updateProfileAndPhoto(
+            User updatedUser = userService.updateProfile(
                 currentUsername,
                 newUsername,
                 newFullName,
                 newBiografia,
                 newInteressesAcademicos,
-                file
+                bannerColor,
+                fotoPerfil
             );
             return new ResponseEntity<>(updatedUser, HttpStatus.OK);
         } catch (IOException e) {
@@ -67,4 +69,5 @@ public class UserProfileController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+    
 }

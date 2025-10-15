@@ -27,13 +27,14 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-    public User updateProfileAndPhoto(
+    public User updateProfile(
         String currentUsername,
         String newUsername,
         String newFullName,
         String newBiografia,
         String newInteressesAcademicos,
-        MultipartFile file) throws IOException {
+        String bannerColor,
+        MultipartFile fotoPerfil) throws IOException, IllegalAccessException {
 
         Optional<User> userOptional = userRepository.findByUsername(currentUsername);
         if (userOptional.isEmpty()) {
@@ -43,8 +44,20 @@ public class UserService {
         User user = userOptional.get();
 
         // Lógica de upload da foto
-        if (file != null && !file.isEmpty()) {
-            String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+        if (fotoPerfil != null && !fotoPerfil.isEmpty()) {
+            //Validação de tipo
+            String contentType = fotoPerfil.getContentType();
+            if(contentType == null || !(contentType.equals("image/jpeg") ||
+            contentType.equals("image/png"))){
+                throw new IllegalAccessError("Apenas arquivos JPEG ou PNG são permitidos.");
+            }
+
+            long maxSize = 2 * 1024 * 1024; // 2MB
+            if(fotoPerfil.getSize() > maxSize){
+                throw new IllegalAccessException("O arquivo deve ter no máximo 2MB.");
+            }
+
+            String fileName = UUID.randomUUID().toString() + "_" + fotoPerfil.getOriginalFilename();
             Path uploadPath = Paths.get(UPLOAD_DIR);
 
             // Cria o diretório de uploads se não existir
@@ -53,7 +66,7 @@ public class UserService {
             }
 
             Path filePath = uploadPath.resolve(fileName);
-            Files.copy(file.getInputStream(), filePath);
+            Files.copy(fotoPerfil.getInputStream(), filePath);
 
             // Define a URL da foto
             String fileUrl = "/api/images/" + fileName;
@@ -61,10 +74,18 @@ public class UserService {
         }
 
         // Atualiza os outros dados do usuário
-        user.setUsername(newUsername);
+        if (!user.getUsername().equals(newUsername)) {
+            if (userRepository.findByUsername(newUsername).isPresent()) {
+                throw new IllegalArgumentException("Nome de usuário já está em uso.");
+            }
+            user.setUsername(newUsername);
+        } else {
+            user.setUsername(newUsername);
+        }
         user.setFullName(newFullName);
         user.setBiografia(newBiografia);
         user.setInteressesAcademicos(newInteressesAcademicos);
+        user.setBannerColor(bannerColor);
 
         return userRepository.save(user);
     }

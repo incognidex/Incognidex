@@ -47,6 +47,9 @@ public class User {
     @Column
     private String resetToken;
 
+    @Column(name = "banner_color", length = 20)
+    private String bannerColor; // cor do banner
+
     // Construtores, Getters e Setters
     public User() {}
 
@@ -146,5 +149,13 @@ public class User {
 
     public void setResetToken(String resetToken) {
         this.resetToken = resetToken;
+    }
+
+    public String getBannerColor() {
+        return bannerColor;
+    }
+
+    public void setBannerColor(String bannerColor) {
+        this.bannerColor = bannerColor;
     }
 }
