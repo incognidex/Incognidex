@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (profileName) profileName.textContent = username;
             if (profileAvatar) {
                 // Usa o avatar retornado, ou um placeholder padrão
-                profileAvatar.src = avatarUrl || '../img/profile-placeholder.png'; 
+                profileAvatar.src = avatarUrl || '../img/profile-placeholder.png';
             }
         } else {
             // Se não houver nome de usuário, mesmo com token, redireciona por segurança
