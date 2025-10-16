@@ -106,4 +106,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             messageArea.innerHTML = `<p style="color: red;">Erro de conexão com o servidor.</p>`;
         }
     });
+
+    document.getElementById('cancelBtn').addEventListener('click', function() {
+        window.location.href = 'user-profile.html';
+    });
 });

@@ -63,3 +63,23 @@ document.addEventListener('DOMContentLoaded', function () {
     // Chama a função ao carregar a página para exibir os dados do usuário
     loadUserProfile();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const editBtn = document.getElementById('editProfileBtn');
+  if (!editBtn) return;
+
+  editBtn.addEventListener('click', () => {
+    // tenta ler o username mostrado na página (ajuste o seletor se necessário)
+    const usernameEl = document.getElementById('profileUsername');
+    const username = usernameEl ? usernameEl.textContent.trim() : null;
+
+    if (username) {
+      sessionStorage.setItem('editingUsername', username);
+    } else {
+      // fallback: limpa chave para indicar edição do "usuário logado"
+      sessionStorage.removeItem('editingUsername');
+    }
+
+    window.location.href = 'edit-profile.html';
+  });
+});

@@ -29,7 +29,7 @@
         </header>
 
         <main class="profile-main-content">
-            <form id="edit-profile-form" class="card form-card">
+            <form id="edit-profile-form" class="card form-card" enctype="multipart/form-data">
 
                 <div class="form-group">
                     <label for="file">Mudar Foto de Perfil:</label>
@@ -38,31 +38,36 @@
 
                 <div class="form-group">
                     <label for="username">Nome de Usuário (@):</label>
-                    <input type="text" id="username" name="username" required>
+                    <input type="text" id="username" name="username" placeholder="Nome de usuário" required>
                     <small>Este será seu identificador único na plataforma.</small>
                 </div>
 
                 <div class="form-group">
                     <label for="nomeCompleto">Nome Completo:</label>
-                    <input type="text" id="nomeCompleto" name="nomeCompleto">
+                    <input type="text" id="nomeCompleto" name="nomeCompleto" placeholder="Nome completo">
                 </div>
 
                 <div class="form-group">
                     <label for="biografia">Biografia:</label>
-                    <textarea id="biografia" name="biografia" rows="4" maxlength="500"></textarea>
+                    <textarea id="biografia" name="biografia" rows="4" maxlength="500" placeholder="Biografia"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="interessesAcademicos">Interesses Acadêmicos:</label>
-                    <input type="text" id="interessesAcademicos" name="interessesAcademicos">
+                    <input type="text" id="interessesAcademicos" name="interessesAcademicos" placeholder="Interesses acadêmicos">
                     <small>Ex: Java, Spring Boot, React, Estruturas de Dados.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="bannerColor">Cor do Banner:</label>
+                    <input type="color" id="bannerColor" name="bannerColor">
                 </div>
 
                 <div id="message-area" style="margin-top: 15px;"></div>
 
                 <div class="form-actions">
                     <button type="submit" class="btn primary-btn">Salvar Alterações</button>
-                    <a href="user-profile.html" class="btn secondary-btn">Cancelar</a>
+                    <button type="button" id="cancelBtn" class="btn secondary-btn">Cancelar</button>
                 </div>
             </form>
         </main>
