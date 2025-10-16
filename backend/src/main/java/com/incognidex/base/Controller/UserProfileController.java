@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +32,7 @@ public class UserProfileController {
         this.userService = userService;
     }
 
+    // GET perfil por username
     @GetMapping("/{username}")
     public ResponseEntity<UserProfileResponse> getUserProfile(@PathVariable String username) {
         
@@ -62,18 +64,23 @@ public class UserProfileController {
     }
 
     @PutMapping("/edit")
-    public ResponseEntity<?> updateProfile(
-            @RequestParam("username") String newUsername,
-            @RequestParam("nomeCompleto") String newFullName,
-            @RequestParam("biografia") String newBiografia,
-            @RequestParam("interessesAcademicos") String newInteressesAcademicos,
-            @RequestParam("bannerColor") String bannerColor,
+    public ResponseEntity<?> UpdateProfile(
+            @RequestParam(value = "username", required = false) String newUsername,
+            @RequestParam(value = "nomeCompleto", required = false) String newFullName,
+            @RequestParam(value = "biografia", required = false) String newBiografia,
+            @RequestParam(value = "interessesAcademicos", required = false) String newInteressesAcademicos,
+            @RequestParam(value = "bannerColor", required = false) String bannerColor,
             @RequestParam(value = "fotoPerfil", required = false) MultipartFile fotoPerfil,
-            HttpServletRequest request) {
-        
-        String currentUsername = request.getHeader("X-User-Username");
+            @RequestHeader(value = "X-User-Username", required = false) String currentUsernameHeader
+    ) throws IllegalAccessException {
         try {
-            User updatedUser = userService.updateProfile(
+            // obter username do header
+            String currentUsername = currentUsernameHeader;
+            if (currentUsername == null) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário não autenticado");
+            }
+
+            User updated = userService.updateProfile(
                     currentUsername,
                     newUsername,
                     newFullName,
@@ -82,11 +89,11 @@ public class UserProfileController {
                     bannerColor,
                     fotoPerfil
             );
-            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+            return ResponseEntity.ok(updated);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (IOException e) {
-            return new ResponseEntity<>("Erro ao processar o arquivo.", HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch (IllegalAccessException | IllegalArgumentException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao salvar arquivo.");
         }
     }
     
