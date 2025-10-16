@@ -4,12 +4,12 @@
 :root {
     --bg-escuro: #0a0a1a;
     --cor-cinza-cards: #1a1a2b;
-    --cor-texto: #ffffff; 
-    --cor-laranja: #FF8C00; 
-    --cor-roxo-neon: #7F00FF; 
-    
-    --bg-header-bottom: #1c1c30; 
-    
+    --cor-texto: #ffffff;
+    --cor-laranja: #FF8C00;
+    --cor-roxo-neon: #7F00FF;
+
+    --bg-header-bottom: #1c1c30;
+
     --sombra-neon: 0 0 10px var(--cor-roxo-neon), 0 0 20px rgba(127, 0, 255, 0.7);
     --sombra-card: 0 10px 30px rgba(0, 0, 0, 0.5);
 
@@ -20,12 +20,11 @@
     --spacing-3: 1rem; /* Equivalente a p-3 */
     --spacing-4: 1.5rem; /* Equivalente a p-4 / mb-4 */
     --spacing-5: 3rem;  /* Equivalente a my-5 */
-    --spacing-x-5: 3rem; 
+    --spacing-x-5: 3rem;
     --spacing-y-5: 3rem;
     --border-radius: 0.5rem; /* Equivalente a rounded */
 }
 
-/* --- CLASES DE UTILIDADE (Substituição do Bootstrap) --- */
 
 /* Containers */
 .container-fluid-override {
@@ -166,28 +165,25 @@ body {
     min-height: 100vh;
 }
 
-/* Background fixo com overlay */
-body::before {
-    content: '';
+/* --- NOVO: Background Fixo com Overlay (Substituindo body::before e body::after) --- */
+#fixed-background {
     position: fixed;
-    inset: 0;
-    background: url('img/BannerFundo.png') no-repeat center center / cover;
+    inset: 0; /* Equivalente a top: 0; right: 0; bottom: 0; left: 0; */
+    /* PROPRIEDADES DO BACKGROUND E FILTRO */
+    background: url('/img/BannerFundo.png') no-repeat center center / cover;
     filter: blur(3px);
+    /* CAMADA DE OVERLAY (Escurece a imagem) */
+    /* Cria uma sombra interna gigante que cobre o elemento com a cor do overlay */
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.329);
+    /* Garante que fique no fundo de todo o conteúdo */
     z-index: -2;
 }
 
-body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.329); /* Mais escuro */
-    z-index: -1;
-}
 
 /* --- HEADER (MDN Style) --- */
 .header {
     background-color: var(--bg-escuro);
-    border-bottom: 1px solid var(--cor-laranja); 
+    border-bottom: 1px solid var(--cor-laranja);
     color: var(--cor-texto);
     z-index: 10;
 }
