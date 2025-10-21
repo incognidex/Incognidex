@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function loadUserProfile(username) {
         try {
             // Usa o GET do seu UserProfileController
-            const response = await fetch(`http://localhost:8080/api/profile/${username}`);
+            const response = await fetch(`https://incognidex-backend.onrender.com/api/profile/${username}`);
             if (!response.ok) {
                 throw new Error('Perfil não encontrado para edição.');
             }
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             messageArea.innerHTML = `<p style="color: orange;">Salvando alterações...</p>`;
 
             // Chama o endpoint PUT /api/profile/edit
-            const response = await fetch(`http://localhost:8080/api/profile/edit`, {
+            const response = await fetch(`/api/profile/edit`, {
                 method: 'PUT',
                 headers: {
                     // Simulação do header de autenticação esperado pelo seu controller

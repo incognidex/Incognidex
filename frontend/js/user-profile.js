@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("Carregando perfil para:", username);
 
     try {
-      const res = await fetch(`http://localhost:8080/api/profile/${encodeURIComponent(username)}`);
+      const res = await fetch(`https://incognidex-backend.onrender.com/api/profile/${encodeURIComponent(username)}`);
       
       if (!res.ok) {
          console.error(`Falha ao carregar perfil, API retornou ${res.status}. URL: ${res.url}`);
