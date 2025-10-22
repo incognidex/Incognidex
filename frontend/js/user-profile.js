@@ -43,9 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function setupEditButton() {
     const editBtn = document.getElementById('edit-profile-btn');
     
-    if (editBtn) {
-      console.log("Botão 'Editar Perfil' (#edit-profile-btn) encontrado. Adicionando clique.");
-      
       editBtn.addEventListener('click', () => {
         console.log("Botão clicado!");
         const usernameEl = document.getElementById('user-username');
@@ -60,14 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
            console.warn("Username está vazio ou é o padrão. Redirecionando mesmo assim.");
         }
         
-        const url = `edit-profile.html?username=${encodeURIComponent(username)}`;
+        const url = `https://www.incognidex.com.br/edit-profile.html${encodeURIComponent(username)}`;
         console.log("Redirecionando para:", url);
         window.location.href = url;
       });
-
-    } else {
-      console.error("FALHA: Botão 'Editar Perfil' (#edit-profile-btn) NÃO foi encontrado no HTML.");
-    }
   }
 
   loadProfile();
