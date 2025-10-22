@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   async function loadProfile() {
     
     const params = new URLSearchParams(window.location.search);
-    const username = params.get('username') || localStorage.getItem('loggedInUsername');
+    const username = params.get('username') || localStorage.getItem('username');
     
     if (!username) {
         console.warn("Nenhum usuário encontrado (na URL ou localStorage) para carregar o perfil.");
