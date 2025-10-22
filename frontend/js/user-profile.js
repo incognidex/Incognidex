@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
            console.warn("Username está vazio ou é o padrão. Redirecionando mesmo assim.");
         }
         
-        const url = `https://www.incognidex.com.br/edit-profile.html${encodeURIComponent(username)}`;
+        const url = `https://www.incognidex.com.br/edit-profile.html}`;
         console.log("Redirecionando para:", url);
         window.location.href = url;
       });
