@@ -276,3 +276,38 @@ to {
 .form-link a:hover {
     text-decoration: underline;
 }
+
+/* ---- Adições para Mostrar/Ocultar Senha ---- */
+
+/* Container para o campo de input e o ícone de toggle */
+.password-wrapper {
+    position: relative; /* Essencial para posicionar o ícone */
+}
+
+/* O input field dentro do wrapper (já está estilizado, garantimos que ele não cubra o ícone) */
+.password-wrapper input {
+    /* O padding à direita é crucial para que o texto não fique por baixo do ícone */
+    padding-right: 50px;
+}
+
+/* Estilização e posicionamento do ícone de olho/toggle */
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--cor-cinza-texto);
+    transition: color 0.2s ease;
+    z-index: 2; /* Garante que o ícone fique acima do input */
+    font-size: 1.1rem;
+}
+
+.password-toggle:hover {
+    color: var(--cor-laranja-destaque);
+}
+
+/* Estilo para ícones Font Awesome */
+.password-toggle i {
+    pointer-events: none; /* Garante que o clique seja capturado pelo SPAN */
+}

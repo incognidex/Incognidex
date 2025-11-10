@@ -34,9 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (response.ok) {
-                // ===============================================
-                // 🎯 CÓDIGO FALTANDO: SALVAR DADOS E REDIRECIONAR 🎯
-                // ===============================================
 
                 // 1. Salva o Token JWT (necessário para autenticar requisições futuras)
                 if (data.token) {
@@ -49,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('avatarUrl', data.avatarUrl || '');
 
                 // 3. Redireciona para a página Home
-                window.location.href = 'home.html'; 
+                window.location.href = 'home.html';
 
             } else {
                 const errorMessage = data.message || 'Verifique suas credenciais.';
@@ -60,4 +57,22 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Ocorreu um erro ao tentar se conectar com o servidor.');
         }
     });
+
+    const passwordField = document.getElementById('password');
+    const passwordToggle = document.getElementById('password-toggle');
+
+    // Verifica se os elementos existem antes de adicionar o listener
+    if (passwordField && passwordToggle) {
+        passwordToggle.addEventListener('click', function () {
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+
+            // Troca o ícone (funciona se estiver usando Font Awesome, conforme o HTML sugerido)
+            const icon = this.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-eye-slash'); // Olho fechado
+                icon.classList.toggle('fa-eye'); // Olho aberto
+            }
+        });
+    }
 });
