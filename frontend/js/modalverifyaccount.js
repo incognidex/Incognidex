@@ -13,7 +13,7 @@ const loggedInUsername = localStorage.getItem('loggedInUsername');
 
     try {
  // Obter os dados do perfil
-        const response = await fetch(`http://localhost:8080/api/profile/${profileUsername}`);
+        const response = await fetch(`https://incognidex-backend.onrender.com/api/profile/${profileUsername}`);
         if (!response.ok) {
             throw new Error('Perfil não encontrado.');
 }
