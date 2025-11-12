@@ -1,31 +1,23 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const urlParams = new URLSearchParams(window.location.search);
-<<<<<<< HEAD
   const usernameFromUrl = urlParams.get("username");
-=======
   const usernameFromUrl = urlParams.get("username"); 
->>>>>>> 8cdd02bee9fa6a16a19b38ee2ab871ab0c8a8d7d
   const form = document.getElementById("edit-profile-form");
   const messageArea = document.getElementById("message-area");
   const profilePicPreview = document.getElementById("edit-profile-pic-preview");
   const fileInput = document.getElementById("file");
-<<<<<<< HEAD
   const bannerColorInput = document.getElementById("bannerColor");
   const bannerPreview = document.getElementById("profile-banner"); 
   const loggedInUsername = localStorage.getItem("username");
 
   // Se não houver username na URL, redireciona
-=======
-
   const loggedInUsername = localStorage.getItem("username");
 
->>>>>>> 8cdd02bee9fa6a16a19b38ee2ab871ab0c8a8d7d
   if (!usernameFromUrl) {
     console.error("Nome de usuário não especificado para edição.");
     window.location.href = "index.html";
     return;
   }
-<<<<<<< HEAD
 
   // Carrega dados do backend e preenche formulário
   async function loadUserProfile(username) {
@@ -266,4 +258,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.location.href = `user-profile.html?username=${loggedInUsername}`;
   });
 });
->>>>>>> 8cdd02bee9fa6a16a19b38ee2ab871ab0c8a8d7d
