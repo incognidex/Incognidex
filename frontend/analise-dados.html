@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Dados - Big Data e BI | DocData</title>
+    <link rel="stylesheet" href="./css/doc-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="breadcrumbs">
+        <span>Ciências Exatas</span> > <span>Tecnologia</span> > <span>Dados</span> > <span>Analytics</span>
+    </div>
+
+    <div class="page-container">
+        
+        <aside class="sidebar-left">
+            <div class="filter-box">
+                <input type="text" placeholder="Filtrar tema...">
+            </div>
+            <div class="nav-group">
+                <h3>Data Science</h3>
+                <h4>Fundamentos</h4>
+                <ul>
+                    <li>> O que é Data Analytics</li>
+                    <li class="active">> Ciclo de Vida dos Dados</li>
+                    <ul class="sub-menu">
+                        <li>Coleta e ETL</li>
+                        <li>Limpeza (Cleaning)</li>
+                        <li>Análise Exploratória</li>
+                        <li>Visualização (Dataviz)</li>
+                        <li>Storytelling</li>
+                    </ul>
+                    <li>> Ferramentas</li>
+                    <ul class="sub-menu">
+                        <li>Python (Pandas/NumPy)</li>
+                        <li>SQL (Bancos de Dados)</li>
+                        <li>Power BI / Tableau</li>
+                        <li>Excel Avançado</li>
+                    </ul>
+                    <li>> Estatística Básica</li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="content">
+            <h1>Análise de Dados</h1>
+            <p><strong>Análise de Dados</strong> é o processo de inspecionar, limpar, transformar e modelar dados com o objetivo de descobrir informações úteis, sugerir conclusões e apoiar a tomada de decisões.</p>
+            <p>No mundo moderno, dados são o "novo petróleo". O analista é quem refina essa matéria-prima bruta em <em>insights</em> valiosos para o negócio.</p>
+
+            <h2>1. Tipos de Análise</h2>
+            <p>A análise geralmente evolui em complexidade e valor agregado:</p>
+            <ul class="content-list">
+                <li><strong>Descritiva:</strong> O que aconteceu? (Histórico, relatórios).</li>
+                <li><strong>Diagnóstica:</strong> Por que aconteceu? (Busca de causa raiz).</li>
+                <li><strong>Preditiva:</strong> O que vai acontecer? (Probabilidades, tendências futuras).</li>
+                <li><strong>Prescritiva:</strong> O que devemos fazer? (Recomendação de ação).</li>
+            </ul>
+
+            <h2>2. Ferramentas: Python e SQL</h2>
+            <p>Embora ferramentas visuais (como Power BI) sejam ótimas, a manipulação direta dos dados via código oferece mais poder e reprodutibilidade.</p>
+
+            <h3>Python (Biblioteca Pandas)</h3>
+            <p>O padrão da indústria para manipulação de tabelas (DataFrames).</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>Python (Pandas)</span>
+                    <button class="copy-btn">Copiar</button>
+                </div>
+                <pre><code><span class="comment"># Carregar e analisar vendas por categoria</span>
+<span class="selector">import</span> pandas <span class="selector">as</span> pd
+
+df = pd.read_csv(<span class="value">'vendas_2025.csv'</span>)
+<span class="comment"># Agrupar por categoria e somar o total</span>
+insights = df.groupby(<span class="property">'categoria'</span>)[<span class="property">'valor_total'</span>].sum()
+
+print(insights)</code></pre>
+            </div>
+
+            <h3>SQL (Structured Query Language)</h3>
+            <p>Essencial para extrair dados diretamente dos bancos de dados da empresa.</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>SQL Query</span>
+                    <button class="copy-btn">Copiar</button>
+                </div>
+                <pre><code><span class="comment">-- Selecionar clientes que compraram mais de 5 vezes</span>
+<span class="selector">SELECT</span> nome_cliente, <span class="selector">COUNT</span>(*) <span class="selector">as</span> total_compras
+<span class="selector">FROM</span> pedidos
+<span class="selector">GROUP BY</span> nome_cliente
+<span class="selector">HAVING</span> total_compras > <span class="value">5</span>;</code></pre>
+            </div>
+
+            <h2>3. Visualização de Dados e Storytelling</h2>
+            <p>Não basta encontrar o número, é preciso saber comunicá-lo. O <strong>Data Storytelling</strong> é a habilidade de narrar uma história com os dados, guiando a audiência para a conclusão correta.</p>
+            <ul class="content-list">
+                <li>Evite gráficos poluídos (Chartjunk).</li>
+                <li>Use cores para destacar o ponto principal, não para decorar.</li>
+                <li>Escolha o gráfico certo: Linha para tempo, Barra para comparação, Dispersão para correlação.</li>
+            </ul>
+
+            <h2>Referências Bibliográficas e Datasets</h2>
+            <p>Fontes para aprender e praticar com dados reais:</p>
+            
+            <table class="spec-table">
+                <thead>
+                    <tr><th>Fonte / Plataforma</th><th>Descrição</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://www.kaggle.com/" target="_blank">Kaggle 🔗</a></td>
+                        <td>Maior comunidade de Data Science do mundo. Repleto de datasets gratuitos e competições.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" target="_blank">Storytelling com Dados (Livro) 🔗</a></td>
+                        <td>Obra de <em>Cole Nussbaumer Knaflic</em>. Leitura obrigatória sobre visualização.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://pandas.pydata.org/docs/" target="_blank">Pandas Documentation 🔗</a></td>
+                        <td>Documentação oficial da principal biblioteca de análise em Python.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" target="_blank">Google Data Analytics Cert 🔗</a></td>
+                        <td>Certificação profissional do Google focada no processo de análise (Ask, Prepare, Process, Analyze, Share, Act).</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="feedback-box">
+                <div class="feedback-content">
+                    <h3>Este material ajudou?</h3>
+                    <p>Você conseguiu entender os conceitos de Data Analytics?</p>
+                    <div class="feedback-buttons">
+                        <button class="btn-yes">👍 Sim</button>
+                        <button class="btn-no">👎 Não</button>
+                    </div>
+                    <a href="#">Sugerir dataset</a>
+                    <p class="last-mod">Atualizado em 13 Nov, 2025.</p>
+                </div>
+            </div>
+        </main>
+
+        <aside class="sidebar-right">
+            <div class="toc">
+                <h3>Neste artigo</h3>
+                <ul>
+                    <li class="active-toc">O que é Análise</li>
+                    <li>1. Tipos (Descritiva a Prescritiva)</li>
+                    <li>2. Ferramentas (Python/SQL)</li>
+                    <li>3. Dataviz</li>
+                    <li>Referências</li>
+                </ul>
+            </div>
+            
+            <div class="ad-container">
+                <span class="ad-label">Oferta</span>
+                <div class="ad-content">
+                    <span class="aws-logo" style="color: #0088cc; font-family: sans-serif; font-weight: 800;">BI_Expert</span>
+                    <h4>Dashboards Incríveis</h4>
+                    <p>Domine o Power BI e Tableau em 4 semanas.</p>
+                    <p><strong>Ver Ementa ></strong></p>
+                    <hr>
+                    <p><strong>Projetos Reais</strong></p>
+                    <p style="font-size: 12px; color: #aaa;">Crie portfólio com dados de finanças, marketing e saúde.</p>
+                    <button class="ad-btn">Inscrever-se</button>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="./js/doc-script.js"></script>
+</body>
+</html>
