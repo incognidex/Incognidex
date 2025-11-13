@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engenharia de Software - Processos e Qualidade | DocTech</title>
+    <link rel="stylesheet" href="./css/doc-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="breadcrumbs">
+        <span>Tecnologia</span> > <span>Engenharia</span> > <span>Software</span> > <span>Fundamentos</span>
+    </div>
+
+    <div class="page-container">
+        
+        <aside class="sidebar-left">
+            <div class="filter-box">
+                <input type="text" placeholder="Buscar tópico...">
+            </div>
+            <div class="nav-group">
+                <h3>Eng. de Software</h3>
+                <h4>Corpo de Conhecimento</h4>
+                <ul>
+                    <li>> Visão Geral</li>
+                    <li class="active">> Processos de Software</li>
+                    <ul class="sub-menu">
+                        <li>Modelo Cascata (Waterfall)</li>
+                        <li>Modelos Ágeis (Scrum/XP)</li>
+                        <li>Modelo em V</li>
+                        <li>Espiral</li>
+                    </ul>
+                    <li>> Engenharia de Requisitos</li>
+                    <li>> Arquitetura e Design</li>
+                    <li>> Qualidade (QA) e Testes</li>
+                    <li>> Manutenção e Evolução</li>
+                    <li>> Gerência de Configuração</li>
+                    <li>> DevOps e CI/CD</li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="content">
+            <h1>Engenharia de Software</h1>
+            <p>A <strong>Engenharia de Software</strong> é a aplicação de uma abordagem sistemática, disciplinada e quantificável ao desenvolvimento, operação e manutenção de software. Em outras palavras, é a aplicação da engenharia ao software.</p>
+            <p>Diferente da programação pura, que foca na escrita do código, a engenharia de software preocupa-se com todo o ciclo de vida do produto, custos, prazos, qualidade e confiabilidade.</p>
+
+            <h2>1. Modelos de Processo de Software</h2>
+            <p>Um modelo de processo é uma representação simplificada de como o software é construído. Os dois paradigmas dominantes são:</p>
+            
+            <h3>Modelo Cascata (Waterfall)</h3>
+            <p>O modelo clássico e linear. Cada fase deve ser concluída antes que a próxima comece. É rígido e documentado.</p>
+            <ul class="content-list">
+                <li><strong>Vantagem:</strong> Fácil de gerenciar e entender.</li>
+                <li><strong>Desvantagem:</strong> Difícil acomodar mudanças de requisitos no meio do projeto.</li>
+            </ul>
+
+            <h3>Metodologias Ágeis</h3>
+            <p>Focam na entrega iterativa e incremental. O software é construído em pequenos ciclos (Sprints) com feedback constante do cliente.</p>
+            <ul class="content-list">
+                <li><strong>Scrum:</strong> Focado na gestão do projeto (Papéis: PO, Scrum Master, Dev Team).</li>
+                <li><strong>XP (Extreme Programming):</strong> Focado nas práticas de engenharia (TDD, Pair Programming).</li>
+            </ul>
+
+            <h2>2. Engenharia de Requisitos</h2>
+            <p>A principal causa de falha em projetos é a má definição do que deve ser construído. Esta fase envolve:</p>
+            <ul class="content-list">
+                <li><strong>Elicitação:</strong> Descobrir o que o cliente precisa (entrevistas, workshops).</li>
+                <li><strong>Análise:</strong> Verificar se os requisitos são claros e consistentes.</li>
+                <li><strong>Especificação:</strong> Documentar os requisitos (Casos de Uso, User Stories).</li>
+                <li><strong>Validação:</strong> Garantir que os requisitos definem o sistema que o cliente quer.</li>
+            </ul>
+
+            <h2>3. Qualidade e Testes (V&V)</h2>
+            <p>Garantir que o software faz o que deve fazer (Validação) e que foi construído corretamente (Verificação).</p>
+            <p>Os níveis de teste incluem:</p>
+            <ul class="content-list">
+                <li><strong>Teste Unitário:</strong> Testa a menor unidade de código (funções/métodos). Geralmente automatizado.</li>
+                <li><strong>Teste de Integração:</strong> Testa a comunicação entre módulos diferentes.</li>
+                <li><strong>Teste de Sistema:</strong> Testa o sistema completo quanto aos requisitos.</li>
+                <li><strong>Teste de Aceitação:</strong> O cliente testa para aprovar a entrega.</li>
+            </ul>
+
+            <h2>Referências Bibliográficas Essenciais</h2>
+            <p>Para dominar a Engenharia de Software, estas são as "bíblias" e documentos normativos da área:</p>
+            
+            <table class="spec-table">
+                <thead>
+                    <tr><th>Autor / Documento</th><th>Obra / Descrição</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#" target="_blank">Roger S. Pressman 🔗</a></td>
+                        <td><em>Engenharia de Software: Uma Abordagem Profissional</em>. O livro didático mais utilizado no mundo.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" target="_blank">Ian Sommerville 🔗</a></td>
+                        <td><em>Engenharia de Software</em>. Foca bastante em sistemas críticos e processos.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.computer.org/volunteering/boards-and-committees/professional-educational-activities/software-engineering-committee/swebok-evolution" target="_blank">SWEBOK Guide (IEEE) 🔗</a></td>
+                        <td>Software Engineering Body of Knowledge. O guia oficial da IEEE sobre o que um engenheiro deve saber.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://agilemanifesto.org/iso/ptbr/manifesto.html" target="_blank">Manifesto Ágil 🔗</a></td>
+                        <td>Documento original de 2001 que fundou o movimento ágil.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" target="_blank">Frederick Brooks</a></td>
+                        <td><em>The Mythical Man-Month</em>. Livro clássico sobre gestão de projetos complexos.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="feedback-box">
+                <div class="feedback-content">
+                    <h3>Este material foi útil?</h3>
+                    <p>Ajude-nos a manter a documentação atualizada.</p>
+                    <div class="feedback-buttons">
+                        <button class="btn-yes">👍 Sim</button>
+                        <button class="btn-no">👎 Não</button>
+                    </div>
+                    <a href="#">Reportar erro técnico</a>
+                    <p class="last-mod">Revisado em 12 Nov, 2025.</p>
+                </div>
+            </div>
+        </main>
+
+        <aside class="sidebar-right">
+            <div class="toc">
+                <h3>Neste artigo</h3>
+                <ul>
+                    <li class="active-toc">Definição</li>
+                    <li>1. Processos (Cascata vs Ágil)</li>
+                    <li>2. Requisitos</li>
+                    <li>3. Qualidade e Testes</li>
+                    <li>Bibliografia</li>
+                </ul>
+            </div>
+            
+            <div class="ad-container">
+                <span class="ad-label">Ferramenta</span>
+                <div class="ad-content">
+                    <span class="aws-logo" style="color: #00c0e7;">DevOps_Pro</span>
+                    <h4>Automatize seu Pipeline</h4>
+                    <p>Integração contínua (CI) e Deploy (CD) sem dor de cabeça.</p>
+                    <p><strong>Começar Grátis ></strong></p>
+                    <hr>
+                    <p><strong>Monitore em Tempo Real</strong></p>
+                    <p style="font-size: 12px; color: #aaa;">Logs, métricas e traces em um só lugar.</p>
+                    <button class="ad-btn">Testar Demo</button>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="./js/doc-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UX/UI Design - Experiência e Interface | DocDesign</title>
+    <link rel="stylesheet" href="./css/doc-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="breadcrumbs">
+        <span>Tecnologia</span> > <span>Produto</span> > <span>Design</span> > <span>UX/UI</span>
+    </div>
+
+    <div class="page-container">
+        
+        <aside class="sidebar-left">
+            <div class="filter-box">
+                <input type="text" placeholder="Buscar tópico...">
+            </div>
+            <div class="nav-group">
+                <h3>Product Design</h3>
+                <h4>Fundamentos</h4>
+                <ul>
+                    <li>> Introdução</li>
+                    <li class="active">> UX (User Experience)</li>
+                    <ul class="sub-menu">
+                        <li>Pesquisa (Research)</li>
+                        <li>Personas e Jornadas</li>
+                        <li>Arquitetura de Informação</li>
+                        <li>Testes de Usabilidade</li>
+                        <li>Heurísticas de Nielsen</li>
+                    </ul>
+                    <li>> UI (User Interface)</li>
+                    <ul class="sub-menu">
+                        <li>Tipografia e Cores</li>
+                        <li>Grid e Layout</li>
+                        <li>Design Systems</li>
+                        <li>Acessibilidade (a11y)</li>
+                    </ul>
+                    <li>> Ferramentas (Figma)</li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="content">
+            <h1>UX/UI Design</h1>
+            <p>Embora frequentemente usados juntos, <strong>UX</strong> (Experiência do Usuário) e <strong>UI</strong> (Interface do Usuário) são disciplinas distintas.</p>
+            <ul class="content-list">
+                <li><strong>UX Design:</strong> Foca em <em>como funciona</em> e como o usuário se sente. Preocupa-se com a utilidade, facilidade de uso e eficiência na resolução de problemas.</li>
+                <li><strong>UI Design:</strong> Foca em <em>como se parece</em>. Preocupa-se com a estética, guias de estilo, interatividade e a apresentação visual dos elementos.</li>
+            </ul>
+            
+            <h2>1. As 10 Heurísticas de Nielsen</h2>
+            <p>Jakob Nielsen definiu 10 princípios gerais para o design de interação. São as "regras de ouro" para evitar erros de usabilidade:</p>
+            <ul class="content-list">
+                <li><strong>Visibilidade do status do sistema:</strong> O usuário deve sempre saber o que está acontecendo (ex: barras de carregamento).</li>
+                <li><strong>Correspondência com o mundo real:</strong> Falar a linguagem do usuário, não termos técnicos (ex: ícone de lixeira para excluir).</li>
+                <li><strong>Liberdade e controle do usuário:</strong> Botões de "desfazer" e "refazer" são essenciais.</li>
+                <li><strong>Consistência e padrões:</strong> Não reinvente a roda; siga convenções da plataforma.</li>
+                <li><strong>Prevenção de erros:</strong> Melhor que uma boa mensagem de erro é um design que evita o erro.</li>
+            </ul>
+
+            <h2>2. Design Systems e Tokens</h2>
+            <p>Para manter a consistência entre UI e Desenvolvimento, utilizamos <strong>Design Tokens</strong>. Eles são as variáveis que guardam as decisões visuais (cores, fontes, espaçamentos).</p>
+            
+            <div class="code-block">
+                <div class="code-header">
+                    <span>Design Tokens (JSON)</span>
+                    <button class="copy-btn">Copiar</button>
+                </div>
+                <pre><code><span class="comment">/* Exemplo de estrutura de Design System */</span>
+{
+  <span class="selector">"colors"</span>: {
+    <span class="property">"primary"</span>: <span class="value">"#6200EE"</span>,
+    <span class="property">"error"</span>: <span class="value">"#B00020"</span>,
+    <span class="property">"background"</span>: <span class="value">"#121212"</span>
+  },
+  <span class="selector">"typography"</span>: {
+    <span class="property">"font-family"</span>: <span class="value">"Inter, sans-serif"</span>,
+    <span class="property">"h1-size"</span>: <span class="value">"2.5rem"</span>
+  }
+}</code></pre>
+            </div>
+
+            <h2>3. Leis da Gestalt e Psicologia</h2>
+            <p>O UI Design baseia-se fortemente em como o cérebro humano percebe padrões.</p>
+            <ul class="content-list">
+                <li><strong>Lei da Proximidade:</strong> Elementos próximos são percebidos como um grupo.</li>
+                <li><strong>Lei da Semelhança:</strong> Elementos parecidos (cor, forma) são vistos como relacionados.</li>
+                <li><strong>Lei de Fitts:</strong> O tempo para atingir um alvo depende da distância e do tamanho do alvo (botões importantes devem ser grandes e acessíveis).</li>
+            </ul>
+
+            <h2>Referências Bibliográficas Essenciais</h2>
+            <p>A literatura de Design é vasta, mas estes são os pilares obrigatórios:</p>
+            
+            <table class="spec-table">
+                <thead>
+                    <tr><th>Autor / Livro</th><th>Conceito Chave</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#" target="_blank">Don Norman 🔗</a></td>
+                        <td><em>O Design do Dia a Dia</em>. Pai do termo "UX". Ensina sobre affordances e design centrado no humano.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" target="_blank">Steve Krug 🔗</a></td>
+                        <td><em>Não Me Faça Pensar</em>. O guia definitivo e rápido sobre usabilidade web.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.nngroup.com/" target="_blank">Nielsen Norman Group 🔗</a></td>
+                        <td>Maior autoridade mundial em pesquisa de UX baseada em evidências.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" target="_blank">Google Material Design 🔗</a></td>
+                        <td>Documentação de Design System do Google (referência de mercado).</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" target="_blank">W3C WAI (WCAG) 🔗</a></td>
+                        <td>Diretrizes de Acessibilidade para Conteúdo Web (Inclusão digital).</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="feedback-box">
+                <div class="feedback-content">
+                    <h3>Documentação útil?</h3>
+                    <p>Este guia ajudou no seu processo de design?</p>
+                    <div class="feedback-buttons">
+                        <button class="btn-yes">👍 Sim</button>
+                        <button class="btn-no">👎 Não</button>
+                    </div>
+                    <a href="#">Sugerir tópico</a>
+                    <p class="last-mod">Atualizado em 13 Nov, 2025.</p>
+                </div>
+            </div>
+        </main>
+
+        <aside class="sidebar-right">
+            <div class="toc">
+                <h3>Neste artigo</h3>
+                <ul>
+                    <li class="active-toc">UX vs UI</li>
+                    <li>1. Heurísticas (Nielsen)</li>
+                    <li>2. Design Systems</li>
+                    <li>3. Gestalt</li>
+                    <li>Referências</li>
+                </ul>
+            </div>
+            
+            <div class="ad-container">
+                <span class="ad-label">Patrocinado</span>
+                <div class="ad-content">
+                    <span class="aws-logo" style="color: #a259ff; font-family: sans-serif; font-weight: 800;">Figma_Master</span>
+                    <h4>Domine o Figma</h4>
+                    <p>Do Wireframe ao Protótipo de Alta Fidelidade.</p>
+                    <p><strong>Acessar Curso ></strong></p>
+                    <hr>
+                    <p><strong>Plugin Pack Incluso</strong></p>
+                    <p style="font-size: 12px; color: #aaa;">Aprenda Auto Layout, Variants e Component Properties.</p>
+                    <button class="ad-btn">Ver Aulas</button>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="./js/doc-script.js"></script>
+</body>
+</html>
