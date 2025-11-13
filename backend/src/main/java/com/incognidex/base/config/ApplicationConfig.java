@@ -8,7 +8,8 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; // << NOVO IMPORT
+import org.springframework.security.crypto.password.PasswordEncoder; // << NOVO IMPORT
 
 import com.incognidex.base.repository.UserRepository;
 
@@ -16,42 +17,36 @@ import com.incognidex.base.repository.UserRepository;
 public class ApplicationConfig {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
 
-    public ApplicationConfig(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    // << MUDANÇA: REMOVIDO o PasswordEncoder daqui
+    public ApplicationConfig(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
-    /**
-     * Define como o Spring deve carregar os detalhes de um usuário.
-     * Ele usará o seu UserRepository para buscar o usuário pelo username.
-     */
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado: " + username));
     }
 
-    /**
-     * Define o "provedor de autenticação" que usa o UserDetailsService (acima)
-     * e o PasswordEncoder (do seu SecurityConfig) para validar um login.
-     */
     @SuppressWarnings("deprecation")
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder); // Usa o BCryptPasswordEncoder
+        // << MUDANÇA: Chama o método local passwordEncoder()
+        authProvider.setPasswordEncoder(passwordEncoder()); 
         return authProvider;
     }
 
-    /**
-     * Expõe o AuthenticationManager (gerenciador de autenticação) como um Bean.
-     * Isso é o que o seu AuthController usa para processar a tentativa de login.
-     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
+    }
+    
+    // << ADICIONADO: O Bean foi movido para cá >>
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
