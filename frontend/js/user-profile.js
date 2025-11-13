@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Imagem
       const avatar = document.getElementById('profile-pic');
       // Tenta pegar urlFoto OU avatarUrl
-      if (avatar) avatar.src = data.urlFoto || data.avatarUrl || "https://via.placeholder.com/150";
+      if (avatar) avatar.src = data.urlFoto || data.avatarUrl || "https://placehold.co/150";
 
       // Banner
       const banner = document.getElementById('profile-banner') || document.querySelector('.header-background');

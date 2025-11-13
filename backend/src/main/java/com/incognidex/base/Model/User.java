@@ -1,12 +1,12 @@
 package com.incognidex.base.model;
 
 import java.time.LocalDateTime;
-import java.util.Collection; // << NOVO IMPORT
-import java.util.List; // << NOVO IMPORT
+import java.util.Collection;
+import java.util.List;
 
-import org.springframework.security.core.GrantedAuthority; // << NOVO IMPORT
-import org.springframework.security.core.authority.SimpleGrantedAuthority; // << NOVO IMPORT
-import org.springframework.security.core.userdetails.UserDetails; // << NOVO IMPORT
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,7 +19,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User implements UserDetails { // << IMPLEMENTAÇÃO ADICIONADA
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,38 +67,37 @@ public class User implements UserDetails { // << IMPLEMENTAÇÃO ADICIONADA
     // ... (id, username, email, passwordHash, fullName, etc.) ...
 
     public Integer getId() {
-    return id;
-}
+        return id;
+    }
 
     public void setId(Integer id) {
-    this.id = id;
-}
+        this.id = id;
+    }
 
     @Override
     public String getUsername() {
-    return username;
-}
-
+        return username;
+    }
 
     public void setUsername(String username) {
-    this.username = username;
-}
+        this.username = username;
+    }
 
     public String getEmail() {
-    return email;
-}
+        return email;
+    }
 
     public void setEmail(String email) {
-    this.email = email;
-}
+        this.email = email;
+    }
 
     public String getPasswordHash() {
-    return passwordHash;
-}
+        return passwordHash;
+    }
 
     public void setPasswordHash(String passwordHash) {
-    this.passwordHash = passwordHash;
-}
+        this.passwordHash = passwordHash;
+    }
 
     // ... (Todos os outros getters/setters) ...
 

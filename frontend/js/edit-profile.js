@@ -54,8 +54,8 @@
         document.getElementById("biografia").value = user.biografia || "";
         document.getElementById("interessesAcademicos").value = user.interessesAcademicos || "";
 
-        // Trata a imagem (aceita urlFoto ou avatarUrl dependendo do seu Model Java)
-        profilePicPreview.src = user.urlFoto || user.avatarUrl || "https://via.placeholder.com/150";
+        // Trata a imagem
+        profilePicPreview.src = user.urlFoto || user.avatarUrl || "https://placehold.co/150";
 
         if (bannerColorInput) bannerColorInput.value = user.bannerColor || "#222";
         if (bannerPreview) bannerPreview.style.background = user.bannerColor || "#222";
