@@ -2,167 +2,132 @@
   document.addEventListener("DOMContentLoaded", async () => {
     console.log("✅ edit-profile.js carregado.");
 
-    // ==========================
-    // VARIÁVEIS PRINCIPAIS
-    // ==========================
+    // VARIÁVEIS
     const urlParams = new URLSearchParams(window.location.search);
     const usernameFromUrl = urlParams.get("username");
-    const form = document.getElementById("edit-profile-form");
-    const messageArea = document.getElementById("message-area");
-    const profilePicPreview = document.getElementById("edit-profile-pic-preview");
-    const fileInput = document.getElementById("file");
-    const bannerColorInput = document.getElementById("bannerColor");
-    const bannerPreview = document.getElementById("profile-banner");
-
     const loggedInUsername = localStorage.getItem("username");
     const token = localStorage.getItem("token");
 
+    const form = document.getElementById("edit-profile-form");
+    const messageArea = document.getElementById("message-area");
+    const profilePicPreview = document.getElementById("edit-profile-pic-preview");
+
+    // Garanta que no HTML o input seja <input type="file" id="file" name="fotoPerfil">
+    const fileInput = document.getElementById("file");
+
+    const bannerColorInput = document.getElementById("bannerColor");
+    const bannerPreview = document.getElementById("profile-banner");
+
     const BACKEND_URL = "https://incognidex-backend.onrender.com";
 
-    // ==========================
-    // VALIDAÇÕES INICIAIS
-    // ==========================
-    if (!usernameFromUrl) {
-      console.error("❌ Nome de usuário não especificado para edição.");
-      window.location.href = "index.html";
-      return;
-    }
-
+    // 1. VALIDAÇÕES DE SEGURANÇA
     if (!loggedInUsername || !token) {
-      console.error("❌ Usuário não autenticado ou token ausente.");
-      alert("Sua sessão expirou. Faça login novamente.");
+      alert("Sessão expirada.");
       window.location.href = "login.html";
       return;
     }
 
-    if (loggedInUsername !== usernameFromUrl) {
-      alert("⚠️ Você não tem permissão para editar este perfil.");
+    if (usernameFromUrl && usernameFromUrl !== loggedInUsername) {
+      alert("Você não pode editar este perfil.");
       window.location.href = `user-profile.html?username=${usernameFromUrl}`;
       return;
     }
 
-    // ==========================
-    // FUNÇÃO: Carrega perfil
-    // ==========================
-    async function loadUserProfile(username) {
+    // 2. CARREGAR DADOS ATUAIS
+    async function loadUserProfile() {
       try {
-        console.log(`🔹 Buscando perfil de: ${username}`);
-
-        const response = await fetch(`${BACKEND_URL}/api/profile/${encodeURIComponent(username)}`, {
-          method: "GET",
+        const response = await fetch(`${BACKEND_URL}/api/profile/${encodeURIComponent(loggedInUsername)}`, {
           headers: {
             "Authorization": `Bearer ${token}`,
-            "Content-Type": "application/json"
+            // Algumas rotas GET podem não exigir o X-User-Username, mas por segurança enviamos se a API pedir
+            "X-User-Username": loggedInUsername
           }
         });
 
-        if (!response.ok) {
-          if (response.status === 401) throw new Error("Token inválido ou expirado (401)");
-          if (response.status === 403) throw new Error("Acesso negado. (403)");
-          if (response.status === 404) throw new Error("Perfil não encontrado (404)");
-          throw new Error(`Erro desconhecido (Status: ${response.status})`);
-        }
+        if (!response.ok) throw new Error(`Erro ${response.status}`);
 
         const user = await response.json();
-        console.log("🟢 Perfil carregado com sucesso:", user);
 
-        // ==========================
-        // Preenche campos do formulário
-        // ==========================
-        document.getElementById("username").value = user.username || "";
+        // Preenche os campos
+        document.getElementById("username").value = user.username || loggedInUsername;
         document.getElementById("nomeCompleto").value = user.nomeCompleto || user.fullName || "";
         document.getElementById("biografia").value = user.biografia || "";
         document.getElementById("interessesAcademicos").value = user.interessesAcademicos || "";
 
-        profilePicPreview.src = user.urlFoto || "https://via.placeholder.com/150";
+        // Trata a imagem (aceita urlFoto ou avatarUrl dependendo do seu Model Java)
+        profilePicPreview.src = user.urlFoto || user.avatarUrl || "https://via.placeholder.com/150";
 
-        const color = user.bannerColor || "#222";
-        if (bannerColorInput) bannerColorInput.value = color;
-        if (bannerPreview) bannerPreview.style.background = color;
+        if (bannerColorInput) bannerColorInput.value = user.bannerColor || "#222";
+        if (bannerPreview) bannerPreview.style.background = user.bannerColor || "#222";
 
       } catch (error) {
-        console.error("❌ Erro ao carregar perfil:", error);
-        messageArea.innerHTML = `<p style="color: red;">${error.message}</p>`;
+        console.error("Erro ao carregar:", error);
+        messageArea.innerHTML = `<p style="color: red;">Erro ao carregar dados.</p>`;
       }
     }
 
-    await loadUserProfile(usernameFromUrl);
+    await loadUserProfile();
 
-    // ==========================
-    // Atualiza cor do banner em tempo real
-    // ==========================
+    // 3. PREVIEWS VISUAIS (Banner e Foto)
     if (bannerColorInput && bannerPreview) {
-      bannerColorInput.addEventListener("input", (e) => {
-        bannerPreview.style.background = e.target.value;
-      });
+      bannerColorInput.addEventListener("input", (e) => bannerPreview.style.background = e.target.value);
     }
 
-    // ==========================
-    // Pré-visualiza nova imagem de perfil
-    // ==========================
     if (fileInput) {
-      fileInput.addEventListener("change", (event) => {
-        const file = event.target.files[0];
-        if (file) {
-          profilePicPreview.src = URL.createObjectURL(file);
-        }
+      fileInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (file) profilePicPreview.src = URL.createObjectURL(file);
       });
     }
 
-    // ==========================
-    // Submissão do formulário
-    // ==========================
+    // 4. SALVAR ALTERAÇÕES (AQUI ESTAVA O ERRO)
     if (form) {
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
+        messageArea.innerHTML = `<p style="color: orange;">Salvando...</p>`;
 
         const formData = new FormData(form);
 
-        if (!fileInput.files.length) formData.delete("file");
+        // CORREÇÃO DE ARQUIVO:
+        // O Controller espera @RequestParam("fotoPerfil").
+        // Se o input HTML tiver name="fotoPerfil", o formData já pega certo.
+        // Se o usuário NÃO escolheu arquivo, deletamos a chave para evitar enviar um arquivo vazio "undefined"
+        if (!fileInput.files.length) {
+          formData.delete("fotoPerfil");
+          formData.delete("file"); // Garante limpeza caso o input chamasse "file"
+        }
 
         try {
-          messageArea.innerHTML = `<p style="color: orange;">Salvando alterações...</p>`;
-
           const response = await fetch(`${BACKEND_URL}/api/profile/edit`, {
             method: "PUT",
             headers: {
-              "Authorization": `Bearer ${token}`
+              "Authorization": `Bearer ${token}`,
+              "X-User-Username": loggedInUsername // <--- IMPORTANTE: O Controller exige isso!
             },
             body: formData
+            // IMPORTANTE: Não defina 'Content-Type' manualmente com FormData!
           });
 
           if (response.ok) {
             const updatedUser = await response.json();
-            console.log("🟢 Perfil atualizado:", updatedUser);
-            messageArea.innerHTML = `<p style="color: green; font-weight: bold;">✅ Perfil atualizado com sucesso!</p>`;
+            messageArea.innerHTML = `<p style="color: green;">✅ Salvo com sucesso!</p>`;
 
             setTimeout(() => {
-              window.location.href = `user-profile.html?username=${encodeURIComponent(updatedUser.username)}`;
+              window.location.href = `user-profile.html?username=${encodeURIComponent(updatedUser.username || loggedInUsername)}`;
             }, 1500);
           } else {
             const errorText = await response.text();
-            console.error("Erro no servidor:", response.status, errorText);
-
-            let errorMessage = "Erro ao salvar o perfil. Verifique os dados.";
-            if (response.status === 400 && errorText.includes("Duplicate entry"))
-              errorMessage = "Nome de usuário ou e-mail já estão em uso.";
-            else if (response.status === 400)
-              errorMessage = "Dados inválidos. Verifique os campos.";
-            else if (response.status === 403)
-              errorMessage = "Permissão negada. Faça login novamente.";
-
-            messageArea.innerHTML = `<p style="color: red;">❌ ${errorMessage}</p>`;
+            console.error("Erro Backend:", errorText);
+            messageArea.innerHTML = `<p style="color: red;">Erro: ${errorText}</p>`;
           }
         } catch (error) {
-          console.error("❌ Erro na requisição de atualização:", error);
-          messageArea.innerHTML = `<p style="color: red;">Erro de conexão com o servidor.</p>`;
+          console.error(error);
+          messageArea.innerHTML = `<p style="color: red;">Erro de conexão.</p>`;
         }
       });
     }
 
-    // ==========================
-    // Botão "Cancelar"
-    // ==========================
+    // Cancelar
     const cancelBtn = document.getElementById("cancelBtn");
     if (cancelBtn) {
       cancelBtn.addEventListener("click", () => {

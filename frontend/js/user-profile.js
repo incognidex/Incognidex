@@ -1,94 +1,83 @@
 document.addEventListener('DOMContentLoaded', () => {
+  console.log("✅ user-profile.js carregado.");
 
-  console.log("OK: user-profile.js carregado.");
-
-  // Pega o usuário logado e o token JWT para autenticação (CORREÇÃO)
   const loggedInUsername = localStorage.getItem('username');
-  const authToken = localStorage.getItem('token'); // << Adicionado: Pega o Token
+  const authToken = localStorage.getItem('token');
 
   async function loadProfile() {
-
     const params = new URLSearchParams(window.location.search);
-    // Define qual perfil vamos VISUALIZAR
     const usernameToView = params.get('username') || loggedInUsername;
 
     if (!usernameToView) {
-      console.warn("Nenhum usuário encontrado (na URL ou localStorage) para carregar o perfil.");
+      console.warn("Nenhum usuário para exibir.");
       return;
     }
 
-    console.log("Carregando perfil para:", usernameToView);
-
     try {
-      // Prepara os headers. Se tiver token, adiciona a autenticação.
       const headers = {};
+      if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
 
-      if (authToken) {
-        // CORREÇÃO: Usa o padrão de autenticação JWT 'Authorization: Bearer <token>'
-        headers['Authorization'] = `Bearer ${authToken}`;
-      }
+      // Mantemos o header extra caso alguma lógica do GET precise dele
+      if (loggedInUsername) headers['X-User-Username'] = loggedInUsername;
 
-      // Embora não recomendado, mantive o header X-User-Username CASO sua API o exija:
-      headers['X-User-Username'] = loggedInUsername;
-
-      // Realiza o fetch
       const res = await fetch(`https://incognidex-backend.onrender.com/api/profile/${encodeURIComponent(usernameToView)}`, {
         method: 'GET',
         headers: headers
       });
 
-
       if (!res.ok) {
-        // Adiciona uma verificação mais específica para 403
-        if (res.status === 403) {
-          console.error(`Falha de AUTENTICAÇÃO (403). Verifique se o token é válido.`);
-        }
-        console.error(`Falha ao carregar perfil, API retornou ${res.status}. URL: ${res.url}`);
+        console.error(`Erro API: ${res.status}`);
         return;
       }
-      const data = await res.json();
-      console.log("Dados do perfil recebidos:", data);
 
-      // Preenche os dados na tela
-      document.getElementById('user-username').textContent = '@' + (data.username || usernameToView);
-      document.getElementById('user-name').textContent = data.fullName || 'Nome Completo';
-      document.getElementById('user-bio').textContent = data.biografia || 'A biografia do usuário será exibida aqui.';
-      document.getElementById('user-interests').textContent = data.interessesAcademicos || 'Não informado';
+      const data = await res.json();
+      console.log("Dados recebidos:", data);
+
+      // Renderização segura (verifica se elementos existem)
+      const setText = (id, text) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = text;
+      };
+
+      setText('user-username', '@' + (data.username || usernameToView));
+      // Tenta pegar nomeCompleto OU fullName
+      setText('user-name', data.nomeCompleto || data.fullName || 'Nome Completo');
+      setText('user-bio', data.biografia || 'Sem biografia.');
+      setText('user-interests', data.interessesAcademicos || 'Não informado');
+
+      // Imagem
       const avatar = document.getElementById('profile-pic');
-      if (avatar && data.avatarUrl) avatar.src = data.avatarUrl;
-      const banner = document.querySelector('.header-background');
+      // Tenta pegar urlFoto OU avatarUrl
+      if (avatar) avatar.src = data.urlFoto || data.avatarUrl || "https://via.placeholder.com/150";
+
+      // Banner
+      const banner = document.getElementById('profile-banner') || document.querySelector('.header-background');
       if (banner && data.bannerColor) banner.style.background = data.bannerColor;
 
     } catch (err) {
-      console.error('Erro de rede ou JS ao tentar carregar perfil (verifique se a API está no ar)', err);
+      console.error('Erro de conexão:', err);
     }
   }
 
   function setupEditButton() {
     const editBtn = document.getElementById('edit-profile-btn');
+    // Verifica se está visualizando o próprio perfil
+    const params = new URLSearchParams(window.location.search);
+    const currentView = params.get('username');
+
+    // Se estou vendo o perfil de outra pessoa, escondo o botão editar
+    if (currentView && loggedInUsername && currentView !== loggedInUsername) {
+      if (editBtn) editBtn.style.display = 'none';
+      return;
+    }
 
     if (editBtn) {
       editBtn.addEventListener('click', () => {
-        console.log("Botão clicado!");
-        const usernameEl = document.getElementById('user-username');
-        if (!usernameEl) {
-          console.error("Não foi possível encontrar o elemento #user-username para pegar o nome.");
-          return;
-        }
-
-        const usernameOnPage = usernameEl.textContent.replace('@', '').trim();
-
-        // Redireciona para a página de edição
-        const url = `edit-profile.html?username=${encodeURIComponent(usernameOnPage)}`;
-        console.log("Redirecionando para:", url);
-        window.location.href = url;
+        window.location.href = `edit-profile.html?username=${encodeURIComponent(loggedInUsername)}`;
       });
-    } else {
-      console.error("Botão 'Editar Perfil' (#edit-profile-btn) NÃO foi encontrado.");
     }
   }
 
   loadProfile();
   setupEditButton();
-
 });

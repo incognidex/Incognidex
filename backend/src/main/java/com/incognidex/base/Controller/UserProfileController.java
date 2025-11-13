@@ -35,25 +35,19 @@ public class UserProfileController {
     // GET perfil por username
     @GetMapping("/{username}")
     public ResponseEntity<UserProfileResponse> getUserProfile(@PathVariable String username) {
-        
         Optional<UserProfileResponse> userProfileOptional = userService.getUserProfileByUsername(username);
-
-        if (userProfileOptional.isPresent()) {
-            
-            return new ResponseEntity<>(userProfileOptional.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return userProfileOptional
+                .map(response -> new ResponseEntity<>(response, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
- 
+
+    // PUT banner (atualização isolada)
     @PutMapping("/banner")
-    public ResponseEntity<String> updateUserBanner(
-            @RequestBody BannerUpdateRequest bannerRequest,
+    public ResponseEntity<String> updateUserBanner(@RequestBody BannerUpdateRequest bannerRequest,
             HttpServletRequest request) {
-        
         String currentUsername = request.getHeader("X-User-Username");
         if (currentUsername == null || currentUsername.isEmpty()) {
-            return new ResponseEntity<>("Usuário não autenticado.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("Usuário não autenticado no header.", HttpStatus.UNAUTHORIZED);
         }
         try {
             userService.updateUserBanner(currentUsername, bannerRequest.getBannerColor());
@@ -63,6 +57,7 @@ public class UserProfileController {
         }
     }
 
+    // PUT edit (atualização completa do perfil)
     @PutMapping("/edit")
     public ResponseEntity<?> UpdateProfile(
             @RequestParam(value = "username", required = false) String newUsername,
@@ -71,30 +66,37 @@ public class UserProfileController {
             @RequestParam(value = "interessesAcademicos", required = false) String newInteressesAcademicos,
             @RequestParam(value = "bannerColor", required = false) String bannerColor,
             @RequestParam(value = "fotoPerfil", required = false) MultipartFile fotoPerfil,
-            @RequestHeader(value = "X-User-Username", required = false) String currentUsernameHeader
-    ) throws IllegalAccessException {
+            @RequestHeader(value = "X-User-Username", required = false) String currentUsernameHeader) {
         try {
-            // obter username do header
-            String currentUsername = currentUsernameHeader;
-            if (currentUsername == null) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário não autenticado");
+            // 1. Validação de Segurança
+            if (currentUsernameHeader == null || currentUsernameHeader.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Header X-User-Username ausente.");
             }
 
+            // 2. Chama o serviço
             User updated = userService.updateProfile(
-                    currentUsername,
+                    currentUsernameHeader,
                     newUsername,
                     newFullName,
                     newBiografia,
                     newInteressesAcademicos,
                     bannerColor,
-                    fotoPerfil
-            );
+                    fotoPerfil);
+
             return ResponseEntity.ok(updated);
+
         } catch (IllegalArgumentException e) {
+            // Erro 400: Dados inválidos
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+
         } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao salvar arquivo.");
+            // Erro 500: Falha ao salvar arquivo
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erro ao processar arquivo: " + e.getMessage());
+
+        } catch (IllegalAccessException e) {
+            // Erro 403: Acesso ilegal ou proibido (ADICIONADO AQUI PARA CORRIGIR O ERRO)
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso negado: " + e.getMessage());
         }
     }
-    
 }
