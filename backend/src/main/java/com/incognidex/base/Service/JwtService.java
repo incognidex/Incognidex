@@ -1,28 +1,29 @@
 package com.incognidex.base.service;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
-
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
+
 @Service
 public class JwtService {
 
-    // IMPORTANTE: Gere uma chave segura e coloque-a nas suas variáveis de ambiente
-    // Use um site como: https://www.allkeysgenerator.com/ (256-bit)
-    private static final String SECRET_KEY = "SUA_CHAVE_SECRETA_DE_256_BITS_MUITO_LONGA_AQUI"; 
-    
+    // IMPORTANTE: Gerar uma chave segura e colocar nas variáveis de ambiente
+    //site: https://www.allkeysgenerator.com/ (256-bit)
+    private static final String SECRET_KEY = "2BA4569833F8862A42BFF2A7F563F"; 
+
     // Tempo de expiração (1 dia)
-    private static final long EXPIRATION_TIME = 1000 * 60 * 60 * 24; 
+    private static final long EXPIRATION_TIME = 1000 * 60 * 60 * 24;
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
