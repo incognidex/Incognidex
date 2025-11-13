@@ -38,24 +38,24 @@ public class SecurityConfig {
 
                 // 3️⃣ Regras de autorização
                 .authorizeHttpRequests(auth -> auth
-                        // Permite requisições pré-flight (CORS)
+                        // Libera OPTIONS (pré-flight)
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
-                        // Endpoints públicos (login, registro, etc)
+                        // Endpoints públicos
                         .requestMatchers("/api/auth/**").permitAll()
 
-                        // GET do perfil e PUT de edição exigem autenticação
+                        // Endpoints protegidos
                         .requestMatchers(HttpMethod.GET, "/api/profile/**").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/api/profile/edit").authenticated()
 
-                        // Outras rotas também exigem autenticação
+                        // Qualquer outra rota exige autenticação
                         .anyRequest().authenticated())
 
-                // 4️⃣ Usa autenticação stateless (sem sessão)
+                // 4️⃣ Sessão stateless
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-                // 5️⃣ Define provedor de autenticação e filtro JWT
+                // 5️⃣ Autenticação JWT
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
@@ -66,14 +66,27 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
+
         configuration.setAllowedOrigins(List.of(
                 "https://www.incognidex.com.br",
                 "https://incognidex.com.br",
                 "http://localhost:5500" // para testes locais
         ));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
-        configuration.setAllowCredentials(true); // permite envio de cookies/autenticação
+
+        // 🔧 Corrigido: inclui cabeçalhos personalizados e o wildcard
+        configuration.setAllowedHeaders(List.of(
+                "Authorization",
+                "Content-Type",
+                "X-User-Username",
+                "X-Requested-With",
+                "Accept",
+                "*"));
+
+        // 🔧 Expor headers úteis ao frontend
+        configuration.setExposedHeaders(List.of("Authorization"));
+
+        configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
