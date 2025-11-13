@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS selectors - Documentation</title>
+    <link rel="stylesheet" href="css/doc-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="breadcrumbs">
+        <span>Web</span> > <span>CSS</span> > <span>Reference</span> > <span>Selectors</span>
+    </div>
+
+    <div class="page-container">
+        
+        <aside class="sidebar-left">
+            <div class="filter-box">
+                <input type="text" placeholder="Filter">
+            </div>
+            <div class="nav-group">
+                <h3>CSS</h3>
+                <h4>Reference</h4>
+                <ul>
+                    <li>> Properties</li>
+                    <li class="active">> Selectors</li>
+                    <ul class="sub-menu">
+                        <li>& nesting selector</li>
+                        <li>Attribute selectors</li>
+                        <li>Class selectors</li>
+                        <li>ID selectors</li>
+                        <li>Type selectors</li>
+                        <li>Universal selectors</li>
+                    </ul>
+                    <li>> Combinators</li>
+                    <li>> Pseudo-classes</li>
+                    <li>> Pseudo-elements</li>
+                    <li>> At-rules</li>
+                    <li>> Values</li>
+                    <li>> Types</li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="content">
+            <h1>CSS selectors</h1>
+            <p><strong>CSS selectors</strong> are patterns used in <a href="#">CSS rules</a> to target and select specific elements for styling.</p>
+            <p>For example, to style paragraphs, you will use the <code>p</code> <a href="#">type selector</a> to select all <code>&lt;p&gt;</code> elements and apply a style to them:</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span>CSS</span>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <pre><code><span class="comment">/* Set font size on all &lt;p&gt; elements */</span>
+<span class="selector">p</span> {
+  <span class="property">font-size</span>: <span class="value">12px</span>;
+  <span class="property">color</span>: <span class="value">rebeccapurple</span>;
+}</code></pre>
+            </div>
+
+            <h2>Syntax</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>CSS</span>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <pre><code><span class="comment">/* Select elements and apply styles */</span>
+<span class="selector">selector</span> {
+  <span class="property">property</span>: <span class="value">value</span>;
+}</code></pre>
+            </div>
+
+            <h2>Index of selectors</h2>
+            <ul class="content-list">
+                <li><a href="#">& nesting selector</a></li>
+                <li><a href="#">Attribute selectors</a></li>
+                <li><a href="#">Class selectors</a></li>
+                <li><a href="#">ID selectors</a></li>
+                <li><a href="#">Pseudo-class selectors</a></li>
+                <li><a href="#">Pseudo-element selectors</a></li>
+                <li><a href="#">Type selectors</a></li>
+                <li><a href="#">Universal selectors</a></li>
+            </ul>
+
+            <h2>Specifications</h2>
+            <table class="spec-table">
+                <thead>
+                    <tr><th>Specification</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><a href="#">Selectors Level 4 🔗</a></td></tr>
+                </tbody>
+            </table>
+            <p>Check the <a href="#">pseudo-classes</a> and <a href="#">pseudo-elements</a> pages for their respective specification tables.</p>
+
+            <h2>See also</h2>
+            <ul class="content-list">
+                <li><a href="#">CSS selectors</a> module</li>
+                <li><a href="#">CSS selector structure</a></li>
+                <li><a href="#">CSS combinators</a></li>
+                <li><a href="#">Selector list</a></li>
+                <li><a href="#">Selectors and combinators</a></li>
+                <li><a href="#">CSS pseudo-elements</a> module</li>
+                <li><a href="#">CSS nesting</a> module</li>
+                <li><a href="#">Specificity</a></li>
+            </ul>
+
+            <div class="feedback-box">
+                <div class="feedback-content">
+                    <h3>Help improve this page</h3>
+                    <p>Was this page helpful to you?</p>
+                    <div class="feedback-buttons">
+                        <button class="btn-yes">👍 Yes</button>
+                        <button class="btn-no">👎 No</button>
+                    </div>
+                    <a href="#">Learn how to contribute</a>
+                    <p class="last-mod">This page was last modified on Nov 7, 2025 by <a href="#">contributors</a>.</p>
+                    <p><a href="#">View this page on GitHub</a> • <a href="#">Report a problem with this content</a></p>
+                </div>
+            </div>
+        </main>
+
+        <aside class="sidebar-right">
+            <div class="toc">
+                <h3>In this article</h3>
+                <ul>
+                    <li class="active-toc">Syntax</li>
+                    <li>Index of selectors</li>
+                    <li>Specifications</li>
+                    <li>See also</li>
+                </ul>
+            </div>
+            
+            <div class="ad-container">
+                <span class="ad-label">AD</span>
+                <div class="ad-content">
+                    <span class="aws-logo">aws</span>
+                    <h4>Power your data-driven apps.</h4>
+                    <p>High-performance and secure databases at any scale.</p>
+                    <p><strong>Get started ></strong></p>
+                    <hr>
+                    <p><strong>Reliability you can trust with AWS Databases</strong></p>
+                    <p style="font-size: 12px; color: #aaa;">Databases that are secure, reliable, and built for performance.</p>
+                    <button class="ad-btn">Learn more</button>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="js/doc-script.js"></script>
+</body>
+</html>
