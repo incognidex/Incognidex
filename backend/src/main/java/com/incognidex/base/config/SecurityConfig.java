@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-// (Imports de CORS não são mais necessários aqui)
 
 @Configuration
 @EnableWebSecurity
@@ -26,24 +25,34 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                // Desabilita CSRF (não necessário para APIs REST)
                 .csrf(csrf -> csrf.disable())
 
-                // << MUDANÇA IMPORTANTE: Desabilita o CORS do Spring Security
-                // para que o nosso WebConfig possa gerenciá-lo.
-                .cors(cors -> cors.disable())
+                // Habilita o CORS e usa o CorsConfig (WebMvcConfigurer)
+                .cors(cors -> {
+                })
 
+                // Regras de autorização
                 .authorizeHttpRequests(auth -> auth
-                        // Permite requisições de verificação (OPTIONS)
+                        // Libera OPTIONS para pré-flight (CORS)
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+
+                        // Endpoints públicos
                         .requestMatchers("/api/auth/**").permitAll()
+
+                        // Todos os outros exigem autenticação
                         .anyRequest().authenticated())
+
+                // Define autenticação stateless (sem sessão)
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+                // Define o provedor de autenticação
                 .authenticationProvider(authenticationProvider)
+
+                // Adiciona o filtro JWT antes do filtro padrão de autenticação
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
-
-    // << REMOVIDO: O Bean corsConfigurationSource() foi apagado daqui. >>
 }
