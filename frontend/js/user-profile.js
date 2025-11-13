@@ -1,5 +1,3 @@
-// /js/user-profile.js (Código Corrigido)
-
 document.addEventListener('DOMContentLoaded', () => {
   
   console.log("OK: user-profile.js carregado.");
@@ -21,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("Carregando perfil para:", usernameToView);
 
     try {
-      // --- CORREÇÃO AQUI ---
+
       // Adiciona os headers de autenticação no fetch
       const res = await fetch(`https://incognidex-backend.onrender.com/api/profile/${encodeURIComponent(usernameToView)}`, {
           method: 'GET',
@@ -33,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // 'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
       });
-      // --- FIM DA CORREÇÃO ---
+      
       
       if (!res.ok) {
          console.error(`Falha ao carregar perfil, API retornou ${res.status}. URL: ${res.url}`);
@@ -83,4 +81,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   loadProfile();
   setupEditButton();
+
 });
