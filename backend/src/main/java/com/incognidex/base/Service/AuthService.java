@@ -24,11 +24,10 @@ public class AuthService {
     private final JavaMailSender mailSender;
 
     public AuthService(
-        UserRepository userRepository,
-        PasswordEncoder passwordEncoder,
-        PasswordResetTokenRepository tokenRepository,
-        JavaMailSender mailSender
-    ) {
+            UserRepository userRepository,
+            PasswordEncoder passwordEncoder,
+            PasswordResetTokenRepository tokenRepository,
+            JavaMailSender mailSender) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.tokenRepository = tokenRepository;
@@ -64,30 +63,55 @@ public class AuthService {
         SimpleMailMessage emailMessage = new SimpleMailMessage();
         emailMessage.setTo(user.getEmail());
         emailMessage.setSubject("Incognidex - Redefinir Senha");
-        emailMessage.setText("Para redefinir sua senha, clique no link abaixo:\n" + Constants.FRONTEND_URL + "/pages/reset-password.html?token=" + token);
+        emailMessage.setText("Para redefinir sua senha, clique no link abaixo:\n" + Constants.FRONTEND_URL
+                + "/pages/reset-password.html?token=" + token);
         mailSender.send(emailMessage);
     }
 
     public User loginUser(String identifier, String password) {
-    Optional<User> userOptional = userRepository.findByUsername(identifier);
+        Optional<User> userOptional = userRepository.findByUsername(identifier);
 
-    // Se não encontrou por nome de usuário, tenta encontrar por email
-    if (userOptional.isEmpty()) {
-        userOptional = userRepository.findByEmail(identifier);
-    }
+        // Se não encontrou por nome de usuário, tenta encontrar por email
+        if (userOptional.isEmpty()) {
+            userOptional = userRepository.findByEmail(identifier);
+        }
 
-    // Se ainda assim não encontrou, lança o erro
-    if (userOptional.isEmpty()) {
+        // Se ainda assim não encontrou, lança o erro
+        if (userOptional.isEmpty()) {
+            throw new IllegalArgumentException("Invalid username or password");
+        }
+
+        User user = userOptional.get();
+        if (passwordEncoder.matches(password, user.getPasswordHash())) {
+            return user;
+        }
+
         throw new IllegalArgumentException("Invalid username or password");
     }
 
-    User user = userOptional.get();
-    if (passwordEncoder.matches(password, user.getPasswordHash())) {
-        return user;
-    }
+    // << NOVO MÉTODO REQUERIDO PELO AuthController (JWT) >>
+    /**
+     * Encontra um usuário pelo seu 'identifier' (que pode ser username ou email).
+     * Este método é usado pelo AuthController DEPOIS que o AuthenticationManager
+     * já validou a senha, para que possamos obter o objeto User completo.
+     */
+    public User findUserByIdentifier(String identifier) {
+        Optional<User> userOptional = userRepository.findByUsername(identifier);
 
-    throw new IllegalArgumentException("Invalid username or password");
-}
+        // Se não encontrou por nome de usuário, tenta encontrar por email
+        if (userOptional.isEmpty()) {
+            userOptional = userRepository.findByEmail(identifier);
+        }
+
+        // Se ainda assim não encontrou, lança o erro
+        if (userOptional.isEmpty()) {
+            // Esta exceção será capturada pelo AuthController
+            throw new IllegalArgumentException("Usuário não encontrado: " + identifier);
+        }
+
+        return userOptional.get();
+    }
+    // << FIM DO NOVO MÉTODO >>
 
     public void resetPassword(String token, String newPassword) {
         Optional<PasswordResetToken> tokenOptional = tokenRepository.findByToken(token);

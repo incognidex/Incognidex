@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // 1. Salva o Token JWT (necessário para autenticar requisições futuras)
                 if (data.token) {
-                    localStorage.setItem('authToken', data.token);
+                    localStorage.setItem('token', data.token);
                 }
 
                 // 2. Salva os dados do usuário para exibição na Home
