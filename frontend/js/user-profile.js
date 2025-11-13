@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Pega o usuário logado e o token JWT para autenticação (CORREÇÃO)
   const loggedInUsername = localStorage.getItem('username');
-  const authToken = localStorage.getItem('token'); // << Adicionado: Pega o Token
+  const authToken = localStorage.getItem('authToken'); // << Adicionado: Pega o Token
 
   async function loadProfile() {
 
