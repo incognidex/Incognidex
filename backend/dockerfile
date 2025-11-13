@@ -12,7 +12,7 @@ COPY src ./src
 RUN mvn clean install -DskipTests
 
 # Segunda etapa, cria uma imagem menor para a execução
-FROM openjdk:21-jdk-slim
+FROM openjdk:21-jre-slim-bullseye
 
 EXPOSE 8080
 
