@@ -12,7 +12,7 @@ COPY src ./src
 RUN mvn clean install -DskipTests
 
 # Segunda etapa, cria uma imagem menor para a execução
-FROM openjdk:21-jdk-slim
+FROM eclipse-temurin:21-jre-jammy
 
 EXPOSE 8080
 
