@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,10 @@
     <link rel="stylesheet" href="../css/user-profile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
 
     <div class="background-container">
@@ -38,8 +41,8 @@
 
                 <div class="form-group">
                     <label for="username">Nome de Usuário (@):</label>
-                    <input type="text" id="username" name="username" placeholder="Nome de usuário" required>
-                    <small>Este será seu identificador único na plataforma.</small>
+                    <input type="text" id="username" name="username" placeholder="Nome de usuário" required readonly>
+                    <small>Seu identificador único. Não pode ser alterado.</small>
                 </div>
 
                 <div class="form-group">
@@ -49,12 +52,14 @@
 
                 <div class="form-group">
                     <label for="biografia">Biografia:</label>
-                    <textarea id="biografia" name="biografia" rows="4" maxlength="500" placeholder="Biografia"></textarea>
+                    <textarea id="biografia" name="biografia" rows="4" maxlength="500"
+                        placeholder="Biografia"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="interessesAcademicos">Interesses Acadêmicos:</label>
-                    <input type="text" id="interessesAcademicos" name="interessesAcademicos" placeholder="Interesses acadêmicos">
+                    <input type="text" id="interessesAcademicos" name="interessesAcademicos"
+                        placeholder="Interesses acadêmicos">
                     <small>Ex: Java, Spring Boot, React, Estruturas de Dados.</small>
                 </div>
 
@@ -75,4 +80,5 @@
 
     <script src="../js/edit-profile.js"></script>
 </body>
+
 </html>

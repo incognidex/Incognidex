@@ -16,6 +16,7 @@
       return;
     }
 
+    // 🔹 Carrega dados do perfil
     async function loadUserProfile(username) {
       try {
         const response = await fetch(
@@ -29,10 +30,13 @@
 
         const user = await response.json();
 
+        // 🔸 Preenche campos do formulário
         document.getElementById("username").value = user.username || "";
-        document.getElementById("nomeCompleto").value = user.nome_completo || user.fullName || "";
+        document.getElementById("nomeCompleto").value =
+          user.nome_completo || user.fullName || "";
         document.getElementById("biografia").value = user.biografia || "";
-        document.getElementById("interessesAcademicos").value = user.interesses_academicos || "";
+        document.getElementById("interessesAcademicos").value =
+          user.interesses_academicos || "";
         profilePicPreview.src = user.url_foto || "https://via.placeholder.com/150";
 
         const color = user.bannerColor || user.banner_color || "";
@@ -44,21 +48,24 @@
       }
     }
 
-    if (!loggedInUsername || loggedInUsername !== usernameFromUrl) {
+    // 🔹 Impede que outro usuário edite um perfil que não é o dele
+    if (!loggedInUsername || loggedInUsername.toLowerCase() !== usernameFromUrl.toLowerCase()) {
       console.error("Usuário logado não corresponde ao perfil a ser editado.");
       alert("Você não tem permissão para editar este perfil.");
       window.location.href = `user-profile.html?username=${usernameFromUrl}`;
       return;
     }
 
-    loadUserProfile(usernameFromUrl);
+    await loadUserProfile(usernameFromUrl);
 
+    // 🔹 Atualiza a prévia da cor do banner
     if (bannerColorInput && bannerPreview) {
       bannerColorInput.addEventListener("input", (e) => {
         bannerPreview.style.background = e.target.value;
       });
     }
 
+    // 🔹 Atualiza a prévia da foto de perfil
     if (fileInput) {
       fileInput.addEventListener("change", (event) => {
         const file = event.target.files[0];
@@ -66,10 +73,16 @@
       });
     }
 
+    // 🔹 Envio do formulário
     if (form) {
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
         const formData = new FormData(form);
+
+        // 🔸 Não enviar o username, pois não é editável
+        formData.delete("username");
+
+        // 🔸 Se não há nova imagem, remove o campo file
         if (fileInput.files.length === 0) formData.delete("file");
 
         try {
@@ -86,19 +99,18 @@
           if (response.ok) {
             const updatedUser = await response.json();
             messageArea.innerHTML = `<p style="color: green; font-weight: bold;">✅ Perfil atualizado com sucesso!</p>`;
-            if (updatedUser.username !== loggedInUsername) {
-              localStorage.setItem("username", updatedUser.username);
-            }
+
+            // 🔸 Não alterar username no localStorage, já que ele é fixo
             setTimeout(() => {
-              window.location.href = `user-profile.html?username=${updatedUser.username}`;
+              window.location.href = `user-profile.html?username=${loggedInUsername}`;
             }, 1500);
           } else {
             const errorText = await response.text();
             let errorMessage = "Erro ao salvar o perfil. Verifique os dados.";
             if (response.status === 400 && errorText.includes("Duplicate entry"))
-              errorMessage = "Nome de usuário ou e-mail já estão em uso.";
+              errorMessage = "E-mail já está em uso.";
             else if (response.status === 400)
-              errorMessage = "Dados inválidos. Verifique se o nome de usuário tem o formato correto.";
+              errorMessage = "Dados inválidos. Verifique os campos preenchidos.";
             else if (response.status === 403)
               errorMessage = "Erro de permissão. Faça login novamente.";
             messageArea.innerHTML = `<p style="color: red;">❌ ${errorMessage}</p>`;
@@ -111,6 +123,7 @@
       });
     }
 
+    // 🔹 Botão de cancelar
     document.getElementById("cancelBtn").addEventListener("click", function () {
       window.location.href = `user-profile.html?username=${encodeURIComponent(loggedInUsername)}`;
     });
