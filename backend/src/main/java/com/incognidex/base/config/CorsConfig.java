@@ -10,13 +10,13 @@ public class CorsConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(@NonNull CorsRegistry registry) {
-        registry.addMapping("/api/**")
+        registry.addMapping("/api/**") // Aplica a todas as rotas da API
                 .allowedOrigins(
-                    "http://localhost:5500", // Para testes locais
-                    "https://www.incognidex.com.br", // Domínio do frontend com www
-                    "https://incognidex.com.br" // Domínio do frontend sem www
+                        "http://localhost:5500",        // Para testes locais
+                        "https://www.incognidex.com.br", // Seu domínio principal
+                        "https://incognidex.com.br"      // Seu domínio sem 'www'
                 )
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Métodos permitidos
                 .allowedHeaders("*")
                 .allowCredentials(true);
     }
