@@ -1,5 +1,7 @@
 (() => {
   document.addEventListener("DOMContentLoaded", async () => {
+    console.log("✅ edit-profile.js carregado.");
+
     const urlParams = new URLSearchParams(window.location.search);
     const usernameFromUrl = urlParams.get("username");
     const form = document.getElementById("edit-profile-form");
@@ -10,28 +12,37 @@
     const bannerPreview = document.getElementById("profile-banner");
 
     const loggedInUsername = localStorage.getItem("username");
-    const token = localStorage.getItem("token"); // ✅ JWT salvo no login
+    const token = localStorage.getItem("token");
 
     if (!usernameFromUrl) {
-      console.error("Nome de usuário não especificado para edição.");
+      console.error("❌ Nome de usuário não especificado para edição.");
       window.location.href = "index.html";
       return;
     }
 
-    if (!token) {
-      alert("Sessão expirada. Faça login novamente.");
+    if (!loggedInUsername || !token) {
+      console.error("❌ Usuário não autenticado ou token ausente.");
+      alert("Sua sessão expirou. Faça login novamente.");
       window.location.href = "login.html";
       return;
     }
 
+    if (loggedInUsername !== usernameFromUrl) {
+      alert("⚠️ Você não tem permissão para editar este perfil.");
+      window.location.href = `user-profile.html?username=${usernameFromUrl}`;
+      return;
+    }
+
+    // 🔹 Carrega dados do perfil para edição
     async function loadUserProfile(username) {
       try {
         const response = await fetch(
           `https://incognidex-backend.onrender.com/api/profile/${username}`,
           {
             headers: {
-              "Authorization": `Bearer ${token}`, // ✅ autenticação correta
-            },
+              "Authorization": `Bearer ${token}`,
+              "X-User-Username": loggedInUsername
+            }
           }
         );
 
@@ -40,8 +51,10 @@
         }
 
         const user = await response.json();
+        console.log("🟢 Perfil carregado:", user);
 
         // Preenche campos
+        document.getElementById("username").value = user.username || "";
         document.getElementById("nomeCompleto").value = user.nome_completo || user.fullName || "";
         document.getElementById("biografia").value = user.biografia || "";
         document.getElementById("interessesAcademicos").value = user.interesses_academicos || "";
@@ -52,29 +65,21 @@
         if (bannerPreview && color) bannerPreview.style.background = color;
 
       } catch (error) {
-        console.error("Erro ao carregar dados do perfil:", error);
-        messageArea.innerHTML = `<p style="color: red;">Erro ao carregar dados para edição. ${error.message}</p>`;
+        console.error("❌ Erro ao carregar dados do perfil:", error);
+        messageArea.innerHTML = `<p style="color: red;">Erro ao carregar dados: ${error.message}</p>`;
       }
     }
 
-    // Verifica se o usuário logado pode editar o perfil
-    if (!loggedInUsername || loggedInUsername !== usernameFromUrl) {
-      alert("Você não tem permissão para editar este perfil.");
-      window.location.href = `user-profile.html?username=${usernameFromUrl}`;
-      return;
-    }
+    await loadUserProfile(usernameFromUrl);
 
-    // Carrega dados
-    loadUserProfile(usernameFromUrl);
-
-    // Atualiza preview da cor
+    // Atualiza cor do banner em tempo real
     if (bannerColorInput && bannerPreview) {
       bannerColorInput.addEventListener("input", (e) => {
         bannerPreview.style.background = e.target.value;
       });
     }
 
-    // Preview da foto
+    // Pré-visualiza nova imagem de perfil
     if (fileInput) {
       fileInput.addEventListener("change", (event) => {
         const file = event.target.files[0];
@@ -82,12 +87,12 @@
       });
     }
 
-    // Envio do formulário
+    // Envia alterações do formulário
     if (form) {
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
-
         const formData = new FormData(form);
+
         if (fileInput.files.length === 0) formData.delete("file");
 
         try {
@@ -98,7 +103,8 @@
             {
               method: "PUT",
               headers: {
-                "Authorization": `Bearer ${token}`, // ✅ usa o JWT no PUT também
+                "Authorization": `Bearer ${token}`,
+                "X-User-Username": loggedInUsername
               },
               body: formData,
             }
@@ -113,20 +119,26 @@
             }, 1500);
           } else {
             const errorText = await response.text();
-            let errorMessage = "Erro ao salvar o perfil. Verifique os dados.";
-            if (response.status === 403)
-              errorMessage = "Erro de permissão. Faça login novamente.";
-            messageArea.innerHTML = `<p style="color: red;">❌ ${errorMessage}</p>`;
-            console.error("Erro na resposta do servidor:", response.status, errorText);
-          }
+            console.error("Erro no servidor:", response.status, errorText);
 
+            let errorMessage = "Erro ao salvar o perfil. Verifique os dados.";
+            if (response.status === 400 && errorText.includes("Duplicate entry"))
+              errorMessage = "Nome de usuário ou e-mail já estão em uso.";
+            else if (response.status === 400)
+              errorMessage = "Dados inválidos. Verifique o nome e email.";
+            else if (response.status === 403)
+              errorMessage = "Permissão negada. Faça login novamente.";
+
+            messageArea.innerHTML = `<p style="color: red;">❌ ${errorMessage}</p>`;
+          }
         } catch (error) {
-          console.error("Erro na requisição de atualização:", error);
+          console.error("❌ Erro na requisição de atualização:", error);
           messageArea.innerHTML = `<p style="color: red;">Erro de conexão com o servidor.</p>`;
         }
       });
     }
 
+    // Botão de cancelar edição
     document.getElementById("cancelBtn").addEventListener("click", function () {
       window.location.href = `user-profile.html?username=${encodeURIComponent(loggedInUsername)}`;
     });
