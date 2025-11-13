@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
+import static org.springframework.security.config.Customizer.withDefaults;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -13,7 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource; // << NOVO IMPORT
 
 @Configuration
 @EnableWebSecurity
@@ -32,8 +33,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
 
-                // << MUDANÇA AQUI: Aponta o CORS para o nosso Bean >>
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .cors(withDefaults())
 
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
@@ -47,30 +47,22 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // << NOVO BEAN: Define as regras de CORS >>
+    // Este Bean define a configuração de CORS que o .cors(withDefaults()) vai usar
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // Domínios permitidos (seu frontend)
         configuration.setAllowedOrigins(Arrays.asList(
                 "https://www.incognidex.com.br",
                 "https://incognidex.com.br",
-                "http://localhost:5500" // Para testes locais
-        ));
+                "http://localhost:5500"));
 
-        // Métodos permitidos
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-
-        // Cabeçalhos permitidos (incluindo o 'Authorization' para JWT)
         configuration.setAllowedHeaders(Arrays.asList("*"));
-
-        // Permite o envio de credenciais (tokens)
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        // Aplica esta configuração a todas as rotas da API
-        source.registerCorsConfiguration("/api/**", configuration);
+        source.registerCorsConfiguration("/**", configuration); // << MUDANÇA: Aplicando a TODAS as rotas
 
         return source;
     }
