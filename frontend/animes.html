@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incognidex - Cursos</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://www.incognidex.com.br/css/home.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Montserrat:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* --- CSS GERAL --- */
+        :root {
+            --primary-accent: #ffc107;
+            --page-bg: #121212;
+            --card-height: 400px;
+            /* Altura fixa para o card girar corretamente */
+        }
+
+        body {
+            background-color: var(--page-bg);
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        main.recommendations-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem 4rem 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .section-title p {
+            color: #aaa;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        /* --- ESTILO DOS FILTROS --- */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn-filter {
+            background: transparent;
+            border: 1px solid #555;
+            color: #aaa;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .btn-filter:hover,
+        .btn-filter.active {
+            background: var(--primary-accent);
+            border-color: var(--primary-accent);
+            color: #000;
+            font-weight: 700;
+        }
+
+        /* --- GRID E EFEITO FLIP (GIRATÓRIO) --- */
+        .anime-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* O Container do Card */
+        .flip-card {
+            background-color: transparent;
+            height: var(--card-height);
+            perspective: 1000px;
+            /* Dá a noção de profundidade 3D */
+            cursor: pointer;
+        }
+
+        /* O Container Interno que vai girar */
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Classe ativada pelo JS ao clicar */
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Frente e Verso */
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            /* Safari */
+            backface-visibility: hidden;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        /* --- FRENTE (Apenas Imagem) --- */
+        .flip-card-front {
+            background-color: #212529;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            /* Texto no fundo se houver */
+        }
+
+        /* Overlay escuro na frente para ler o título */
+        .front-overlay {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            width: 100%;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .click-hint {
+            font-size: 0.7rem;
+            color: var(--primary-accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        /* --- VERSO (Texto e Conteúdo) --- */
+        .flip-card-back {
+            background-color: #2c2c35;
+            /* Cor de fundo do verso */
+            color: white;
+            transform: rotateY(180deg);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: left;
+            border: 2px solid var(--primary-accent);
+        }
+
+        .flip-card-back h3 {
+            color: var(--primary-accent);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .flip-card-back p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #ddd;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            background: #444;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-top: auto;
+        }
+
+        /* Cores das Badges */
+        .badge.tech {
+            color: #3498db;
+            border: 1px solid #3498db;
+        }
+
+        .badge.art {
+            color: #e91e63;
+            border: 1px solid #e91e63;
+        }
+
+        .badge.social {
+            color: #9b59b6;
+            border: 1px solid #9b59b6;
+        }
+
+        .badge.health {
+            color: #e74c3c;
+            border: 1px solid #e74c3c;
+        }
+
+        .badge.edu {
+            color: #f1c40f;
+            border: 1px solid #f1c40f;
+        }
+
+        .badge.psy {
+            color: #2ecc71;
+            border: 1px solid #2ecc71;
+        }
+
+        /* Header Resets */
+        .flex-row {
+            display: flex;
+        }
+
+        .align-center {
+            align-items: center;
+        }
+
+        .text-white {
+            color: #fff;
+        }
+
+        .text-decoration-none {
+            text-decoration: none;
+        }
+
+        .margin-right-2 {
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="fixed-background"></div>
+
+    <main class="recommendations-container">
+        <div class="section-title">
+            <h2>Animes recomendados</h2>
+            <p>Clique nas cartas para ver o conteúdo</p>
+        </div>
+
+        <nav class="filters">
+            <button class="btn-filter active" onclick="filterAnimes('all')">Todos</button>
+            <button class="btn-filter" onclick="filterAnimes('tech')">Tecnologia</button>
+            <button class="btn-filter" onclick="filterAnimes('art')">Arte</button>
+            <button class="btn-filter" onclick="filterAnimes('social')">Direito</button>
+            <button class="btn-filter" onclick="filterAnimes('health')">Saúde</button>
+            <button class="btn-filter" onclick="filterAnimes('edu')">Educação</button>
+        </nav>
+
+        <div class="anime-grid">
+
+            <div class="flip-card" data-category="tech" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front"
+                        style="background-image: url('img/810xAbchhWL.jpg');">
+                        <div class="front-overlay">
+                            <span class="click-hint"><i class="fas fa-sync"></i> Clique para virar</span>
+                            <h3>New Game!</h3>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Tecnologia & Dev</h3>
+                        <p>Retrata com realismo o ambiente de uma desenvolvedora de jogos. Cobre Engenharia de Software
+                            (C++), correção de bugs, UX/UI Design e modelagem 3D.</p>
+                        <span class="badge tech">Foco: Programação & Design</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" data-category="art" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front"
+                        style="background-image: url('img/MV5BZDRhYWUyMjEtMDgxOC00M2M4LTgyZmItNWU5MmUwOGFkN2JmXkEyXkFqcGc@._V1_.jpg');">
+                        <div class="front-overlay">
+                            <span class="click-hint"><i class="fas fa-sync"></i> Clique para virar</span>
+                            <h3>Blue Period</h3>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Artes Visuais</h3>
+                        <p>A recomendação definitiva. Uma aula sobre Desenho Técnico, composição, Colorimetria e o
+                            esforço mental necessário para trabalhar com Artes Gráficas.</p>
+                        <span class="badge art">Foco: Processo Criativo</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" data-category="social" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front"
+                        style="background-image: url('img/Ace_Attorney_TV_series.jpg');">
+                        <div class="front-overlay">
+                            <span class="click-hint"><i class="fas fa-sync"></i> Clique para virar</span>
+                            <h3>Gyakuten Saiban</h3>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Direito & Lógica</h3>
+                        <p>Dramatiza os tribunais, a coleta de evidências e a defesa de clientes. Captura a tensão da
+                            advocacia, embora de forma exagerada.</p>
+                        <span class="badge social">Foco: Advocacia Criminal</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" data-category="health" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front"
+                        style="background-image: url('img/Cells_at_Work_v1_cover.jpg');">
+                        <div class="front-overlay">
+                            <span class="click-hint"><i class="fas fa-sync"></i> Clique para virar</span>
+                            <h3>Hataraku Saibou</h3>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Biomedicina</h3>
+                        <p>Antropomorfiza as células do corpo humano. Explica como o sistema imunológico reage a
+                            bactérias, circulação e nutrição celular com precisão.</p>
+                        <span class="badge health">Foco: Imunologia</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" data-category="edu" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front"
+                        style="background-image: url('img/Assassination_Classroom_Volume_1.jpg');">
+                        <div class="front-overlay">
+                            <span class="click-hint"><i class="fas fa-sync"></i> Clique para virar</span>
+                            <h3>Assassination Classroom</h3>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Pedagogia</h3>
+                        <p>O professor Koro-sensei demonstra métodos de ensino personalizados, focando nas dificuldades
+                            individuais e na autoconfiança de cada aluno.</p>
+                        <span class="badge edu">Foco: Metodologia de Ensino</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" data-category="psy" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front"
+                        style="background-image: url('img/Psycho_Pass.jpeg');">
+                        <div class="front-overlay">
+                            <span class="click-hint"><i class="fas fa-sync"></i> Clique para virar</span>
+                            <h3>Psycho-Pass</h3>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Psicologia & Sociologia</h3>
+                        <p>Explora Neuropsicologia e Psicologia Criminal em um futuro onde a saúde mental é
+                            quantificada. Questiona o que define a sanidade.</p>
+                        <span class="badge psy">Foco: Saúde Mental</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Função simples de filtro
+        function filterAnimes(category) {
+            const cards = document.querySelectorAll('.flip-card');
+            const buttons = document.querySelectorAll('.btn-filter');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.innerText.toLowerCase().includes(category === 'all' ? 'todos' : category) ||
+                    (category === 'tech' && btn.innerText === 'Tecnologia') ||
+                    (category === 'art' && btn.innerText === 'Arte') ||
+                    (category === 'social' && btn.innerText === 'Direito') ||
+                    (category === 'health' && btn.innerText === 'Saúde') ||
+                    (category === 'edu' && btn.innerText === 'Educação')) {
+                    btn.classList.add('active');
+                }
+            });
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+                card.classList.remove('flipped');
+            });
+        }
+    </script>
+</body>
+
+</html>
